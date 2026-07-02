@@ -1,0 +1,694 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Optima Academy Online</title><style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:system-ui,-apple-system,sans-serif;background:#F0F2F8;color:#0E1C42;line-height:1.6;-webkit-font-smoothing:antialiased;}
+.page-wrap{max-width:920px;margin:0 auto;background:#fff;box-shadow:0 0 40px rgba(14,28,66,.08);}
+
+/* ═══════════ PROGRESS BAR ═══════════ */
+.progress-wrap{position:sticky;top:0;z-index:200;background:#0E1C42;padding:8px 20px 10px;display:flex;align-items:center;gap:14px;}
+.progress-label{font-size:12px;color:#F9A825;font-weight:800;text-transform:uppercase;letter-spacing:.8px;white-space:nowrap;}
+.progress-track{flex:1;height:10px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden;}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#F9A825,#C8962A);border-radius:10px;transition:width .4s ease;}
+.progress-pct{font-size:13px;color:#F9A825;font-weight:800;min-width:36px;text-align:right;}
+
+/* ═══════════ HEADER ═══════════ */
+.header{background:linear-gradient(135deg,#0A2A4A 0%,#0E3A5C 60%,#14507A 100%);border-bottom:6px solid #C8962A;padding:20px 28px 18px;position:relative;overflow:hidden;}
+.header::after{content:'';position:absolute;bottom:6px;left:0;right:0;height:3px;background:linear-gradient(90deg,#C8962A,#F9A825,#C8962A);}
+.header-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.header-logo{width:52px;height:52px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+.header-logo img{width:48px;height:38px;}
+.header-org{font-size:22px;color:#fff;font-weight:800;line-height:1.15;}
+.header-sub{font-size:11px;color:#C8962A;letter-spacing:.5px;}
+.header-title{font-family:Georgia,serif;font-size:28px;color:#fff;font-weight:700;line-height:1.2;margin-bottom:10px;}
+.header-title em{color:#F9A825;font-style:italic;}
+.header-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,150,42,.15);border:1.5px solid rgba(200,150,42,.4);border-radius:28px;padding:6px 16px;}
+.header-badge-icon{font-size:22px;}
+.header-badge-text{font-size:18px;color:#fff;font-weight:800;}
+
+/* ═══════════ HERO BANNER ═══════════ */
+.hero-visual{background:linear-gradient(180deg,#020A18 0%,#061428 60%,#0D2240 100%);padding:0;position:relative;overflow:hidden;border-bottom:3px solid #C8962A;}
+.hero-visual svg{display:block;width:100%;height:auto;}
+
+/* ═══════════ INFO STRIP ═══════════ */
+.info-strip{display:flex;flex-wrap:wrap;background:#fff;border-bottom:2px solid #E2E8F4;}
+.info-cell{flex:1;min-width:150px;padding:12px 16px;border-right:1px solid #E2E8F4;display:flex;align-items:center;gap:10px;}
+.info-cell:last-child{border-right:none;}
+.info-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.info-label{font-size:10px;color:#7A88A8;text-transform:uppercase;letter-spacing:.5px;font-weight:700;}
+.info-value{font-size:16px;color:#0E1C42;font-weight:800;line-height:1.2;}
+.info-detail{font-size:11px;color:#3A4A6B;line-height:1.3;}
+
+/* ═══════════ QUOTE STRIP ═══════════ */
+.quote-strip{background:linear-gradient(135deg,#FFF8F0 0%,#FFF3DC 100%);border-bottom:2px solid #F5E6C8;padding:14px 28px;text-align:center;}
+.quote-strip-text{font-family:Georgia,serif;font-size:16px;font-style:italic;color:#5A4A3A;line-height:1.6;}
+.quote-strip-attr{font-size:11px;color:#7A88A8;font-weight:700;margin-top:4px;text-transform:uppercase;letter-spacing:.5px;}
+
+/* ═══════════ INTRO COLLAPSIBLE ═══════════ */
+.intro-section{transition:max-height .35s ease,padding .35s ease,opacity .25s ease;overflow:hidden;}
+.intro-section.collapsed .intro-content{display:none;}
+.intro-collapsed-bar{display:none;align-items:center;gap:12px;padding:10px 28px;background:#FFF8E8;border-bottom:2px solid #F5E6C8;cursor:pointer;transition:background .15s;}
+.intro-collapsed-bar:hover{background:#FFF8E8;}
+.intro-section.collapsed .intro-collapsed-bar{display:flex;}
+.intro-collapsed-icon{font-size:18px;}
+.intro-collapsed-text{font-size:14px;color:#3A2A10;font-weight:700;flex:1;}
+.intro-collapsed-toggle{font-size:12px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:.5px;}
+
+/* ═══════════ INTRO 2-COL ═══════════ */
+.intro-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px 28px 4px;}
+.intro-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);}
+.intro-card-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:2px solid;}
+.intro-card-head-icon{width:40px;height:40px;border-radius:50%;color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.intro-card-head-label{font-size:10px;color:#7A88A8;text-transform:uppercase;letter-spacing:.8px;font-weight:700;}
+.intro-card-head-title{font-size:18px;color:#0E1C42;font-weight:800;line-height:1.2;}
+.intro-card-body{padding:14px 18px;}
+.intro-card-body p{font-size:15px;color:#3A4A6B;line-height:1.65;margin-bottom:8px;}
+.intro-card-body p:last-child{margin-bottom:0;}
+.obj-line{display:flex;align-items:flex-start;gap:8px;font-size:15px;color:#0E1C42;line-height:1.55;margin-bottom:8px;}
+.obj-line:last-child{margin-bottom:0;}
+.obj-icon{flex-shrink:0;font-size:17px;}
+.theme-question .intro-card-head{background:#FFF3DC;border-color:#F5E6C8;}
+.theme-question .intro-card-head-icon{background:#F9A825;}
+.theme-objectives .intro-card-head{background:#E0F2F1;border-color:#B2DFDB;}
+.theme-objectives .intro-card-head-icon{background:#00695C;}
+
+/* ═══════════ TODAY'S PATH ═══════════ */
+.todays-path{display:flex;align-items:center;justify-content:center;gap:6px;padding:12px 28px;flex-wrap:wrap;}
+.path-pill{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;color:#fff;white-space:nowrap;}
+.path-pill.p-warmup{background:#52B788;}
+.path-pill.p-words{background:#F9A825;color:#0E1C42;}
+.path-pill.p-reading{background:#00796B;}
+.path-pill.p-assign{background:#7B5EA7;}
+.path-arrow{font-size:16px;color:#B0B8CC;}
+
+/* ═══════════ NEED STRIP ═══════════ */
+.need-strip{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:12px 28px 18px;}
+.need-strip-label{font-size:13px;color:#3A4A6B;font-weight:700;white-space:nowrap;}
+.need-chip{display:inline-flex;align-items:center;gap:5px;background:#E0F2F1;border:1.5px solid #B2DFDB;border-radius:20px;padding:5px 12px;font-size:13px;color:#0E1C42;font-weight:700;}
+
+/* ═══════════ TAB BAR ═══════════ */
+.tab-bar{position:sticky;top:38px;z-index:100;background:#fff;border-bottom:3px solid #E2E8F4;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;box-shadow:0 -4px 0 0 #0E1C42;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{flex:1;min-width:130px;padding:12px 8px 11px;background:transparent;border:none;border-bottom:4px solid transparent;font-family:system-ui,sans-serif;font-size:13px;font-weight:700;color:#7A88A8;cursor:pointer;transition:all .2s;white-space:nowrap;line-height:1.3;text-align:center;}
+.tab-btn:hover{color:#0E1C42;background:#EEF4FF;}
+.tab-btn.active{color:#0E1C42;border-bottom-color:#C8962A;background:#fff;}
+.tab-btn .tab-check{display:none;font-size:12px;color:#34B76F;margin-left:4px;font-weight:800;}
+.tab-btn.visited .tab-check{display:inline;}
+.tab-panel{display:none;padding:24px 28px 36px;}
+.tab-panel.active{display:block;}
+
+/* ═══════════ VIDEO WRAP ═══════════ */
+.video-wrap{border-radius:18px;overflow:hidden;border:2px solid #E2E8F4;box-shadow:0 4px 20px rgba(14,28,66,.08);background:#000;margin:0 0 22px;}
+.video-wrap-header{display:flex;align-items:center;gap:12px;padding:12px 18px;background:linear-gradient(135deg,#0A2A4A,#0E3A5C);border-bottom:2px solid rgba(200,150,42,.25);}
+.video-wrap-type{font-size:10px;color:#00897B;text-transform:uppercase;letter-spacing:1.5px;font-weight:800;margin-bottom:2px;}
+.video-wrap-title{font-size:16px;color:#fff;font-weight:800;line-height:1.2;}
+.video-ratio{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}
+.video-ratio iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.video-placeholder{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#0E1C42,#1A2D5A);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;}
+.video-placeholder-icon{font-size:44px;margin-bottom:10px;opacity:.55;}
+.video-placeholder-text{font-size:14px;color:rgba(255,255,255,.55);font-weight:600;line-height:1.5;}
+.video-placeholder-id{font-size:11px;color:rgba(200,150,42,.5);font-family:monospace;margin-top:6px;letter-spacing:.5px;}
+
+/* ═══════════ ACTIVITY CARDS ═══════════ */
+.activity{background:#fff;border:2px solid #E2E8F4;border-radius:18px;margin-bottom:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);}
+.activity.bl-sage{border-left:6px solid #52B788;}
+.activity.bl-gold{border-left:6px solid #C8962A;}
+.activity.bl-teal{border-left:6px solid #00796B;}
+.activity.bl-plum{border-left:6px solid #7B5EA7;}
+.activity.bl-navy{border-left:6px solid #0E3A5C;}
+.activity-head{display:flex;align-items:center;gap:12px;padding:14px 20px 14px 18px;border-bottom:1.5px solid #E2E8F4;}
+.activity-num{width:38px;height:38px;border-radius:14px;color:#fff;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.activity-title{font-size:19px;color:#0E1C42;font-weight:800;line-height:1.2;}
+.activity-sub{font-size:12px;color:#7A88A8;}
+.activity-body{padding:18px 22px;}
+.activity-body p{font-size:17px;color:#3A4A6B;line-height:1.75;margin-bottom:12px;}
+.activity-body p:last-child{margin-bottom:0;}
+
+/* ═══════════ CALLOUTS ═══════════ */
+.callout{border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}
+.callout:last-child{margin-bottom:0;}
+.callout-icon{font-size:28px;flex-shrink:0;margin-top:2px;}
+.callout p{font-size:16px;color:#0E1C42;line-height:1.65;margin:0;}
+.callout-info{background:#EEF4FF;border:2px solid #C8D8F0;}
+.callout-think{background:#FFF3DC;border:2px solid #F5E6C8;}
+.callout-tip{background:#E8F5E9;border:2px solid #C8E6C9;}
+.callout-vocab{background:#F3E5F5;border:2px solid #E1BEE7;}
+.callout-submit{background:#FCE4EC;border:2px solid #F8BBD0;}
+
+/* ═══════════ SOCRATIC BOX ═══════════ */
+.socratic-box{background:linear-gradient(135deg,#F3E5F5 0%,#EDE7F6 100%);border:2px solid #D1C4E9;border-radius:14px;padding:16px 18px;margin-bottom:14px;}
+.socratic-box:last-child{margin-bottom:0;}
+.socratic-label{font-size:12px;color:#7B5EA7;text-transform:uppercase;letter-spacing:.5px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.socratic-q{font-size:16px;color:#0E1C42;line-height:1.7;font-style:italic;margin-bottom:8px;}
+.socratic-q:last-child{margin-bottom:0;}
+.socratic-q strong{font-style:normal;color:#0E1C42;}
+
+/* ═══════════ DOL COMPONENTS ═══════════ */
+.dol-model-sentence{background:#fff;border:1.5px solid #E2E8F4;border-left:4px solid #C8962A;border-radius:10px;padding:14px 18px;font-family:Georgia,serif;font-size:17px;color:#0E1C42;line-height:1.7;margin-bottom:8px;cursor:default;}
+.dol-highlight-word{padding:2px 4px;border-radius:4px;cursor:pointer;transition:background .2s,color .2s;}
+.dol-highlight-word:hover{background:#FFF8E8;}
+.dol-highlight-word.tapped{background:#FFF3CD;color:#7A5500;}
+.dol-explanation{font-size:14px;color:#C8962A;font-style:italic;padding:6px 12px;min-height:28px;margin-bottom:10px;}
+.dol-fix-sentence{background:#FFF8E1;border:1.5px solid #FFE082;border-left:4px solid #F9A825;border-radius:10px;padding:14px 18px;font-family:Georgia,serif;font-size:17px;color:#0E1C42;line-height:1.7;margin-bottom:10px;}
+.dol-check-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,#7B5EA7,#9575CD);color:#fff;border:none;border-radius:20px;font-family:system-ui,sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px;transition:transform .15s;}
+.dol-check-btn:hover{transform:translateY(-2px);}
+.dol-answer{display:none;margin-top:10px;padding:12px 16px;background:#E8F5E9;border:2px solid #C8E6C9;border-left:4px solid #4CAF50;border-radius:10px;font-size:15px;color:#0E1C42;line-height:1.65;}
+.dol-answer.show{display:block;}
+
+/* ═══════════ KEY CONCEPT ═══════════ */
+.key-concept{background:#FFF3DC;border:2px solid #F5E6C8;border-radius:14px;padding:16px 18px;margin-bottom:14px;}
+.key-concept:last-child{margin-bottom:0;}
+.key-concept-label{font-size:12px;color:#F9A825;text-transform:uppercase;letter-spacing:.5px;font-weight:800;margin-bottom:8px;}
+.key-concept p{font-size:15px;color:#0E1C42;line-height:1.7;margin-bottom:6px;}
+
+/* ═══════════ VOCABULARY FLIP CARDS ═══════════ */
+.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+.flip-card{perspective:800px;height:175px;cursor:pointer;}
+.flip-card-inner{position:relative;width:100%;height:100%;transition:transform .5s ease;transform-style:preserve-3d;}
+.flip-card.flipped .flip-card-inner{transform:rotateY(180deg);}
+.flip-card-front,.flip-card-back{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 16px;text-align:center;border:2px solid #E2E8F4;box-shadow:0 2px 10px rgba(14,28,66,.06);}
+.flip-card-front{background:#fff;border-top:5px solid #C8962A;}
+.flip-card-front .fc-emoji{font-size:28px;margin-bottom:6px;}
+.flip-card-front .fc-word{font-family:Georgia,serif;font-size:17px;font-weight:700;color:#0E1C42;margin-bottom:4px;}
+.flip-card-front .fc-tap{font-size:11px;color:#7A88A8;font-weight:600;letter-spacing:.3px;}
+.flip-card-back{background:linear-gradient(145deg,#0A2A4A,#0E3A5C);border-color:#0E1C42;transform:rotateY(180deg);}
+.flip-card-back .fc-def{font-size:13.5px;color:#fff;line-height:1.5;font-weight:600;}
+.flip-card-back .fc-word-back{font-size:10px;color:#C8962A;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:6px;}
+.fc-color-1 .flip-card-front{border-top-color:#C8962A;}
+.fc-color-2 .flip-card-front{border-top-color:#52B788;}
+.fc-color-3 .flip-card-front{border-top-color:#7B5EA7;}
+.fc-color-4 .flip-card-front{border-top-color:#52B788;}
+.fc-color-5 .flip-card-front{border-top-color:#E57373;}
+.fc-color-6 .flip-card-front{border-top-color:#0E1C42;}
+
+/* ═══════════ STORY JOURNEY TRACKER ═══════════ */
+.tracker-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);margin-bottom:22px;}
+.tracker-header{display:flex;align-items:center;gap:10px;padding:12px 20px;background:linear-gradient(135deg,#004D40 0%,#00695C 100%);border-bottom:2px solid #00796B;}
+.tracker-header-icon{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tracker-header-label{font-size:10px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.8px;font-weight:700;}
+.tracker-header-title{font-size:17px;color:#fff;font-weight:800;line-height:1.2;}
+.scene-wrap{width:100%;position:relative;height:210px;overflow:hidden;border-bottom:3px solid #8b6f47;background:linear-gradient(180deg,#c2ddf0 0%,#d4c9a8 30%,#c4a56a 50%,#8b7340 58%,#6b5a30 65%,#5a4a28 100%);user-select:none;}
+.cloud{position:absolute;background:rgba(255,255,255,.55);border-radius:50%;filter:blur(2px);}
+.hills-far{position:absolute;bottom:60px;left:0;right:0;height:80px;background:radial-gradient(ellipse 220px 60px at 10% 100%,#8abb6d 70%,transparent 71%),radial-gradient(ellipse 300px 70px at 30% 100%,#79ad58 70%,transparent 71%),radial-gradient(ellipse 250px 55px at 55% 100%,#8abb6d 70%,transparent 71%),radial-gradient(ellipse 280px 65px at 78% 100%,#6fa04a 70%,transparent 71%),radial-gradient(ellipse 200px 50px at 95% 100%,#8abb6d 70%,transparent 71%);}
+.path-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+.tree,.house,.flower,.landmark{position:absolute;pointer-events:none;z-index:1;filter:drop-shadow(0 2px 2px rgba(0,0,0,.15));}
+.flower{filter:none;font-size:12px;z-index:2;}
+.node{position:absolute;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;z-index:5;border:3px solid #f5f0e6;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.18),inset 0 -2px 0 rgba(0,0,0,.05);}
+.node.done{background:#00695C;border-color:#F9A825;box-shadow:0 0 0 2px #00695C,0 2px 8px rgba(0,105,92,.45);color:#fff;}
+.node.active{background:#F9A825;border-color:#FFF3DC;box-shadow:0 0 0 3px #F9A825,0 0 14px rgba(249,168,37,.5);transform:scale(1.15);color:#0E1C42;}
+.node.upcoming{opacity:.55;}
+.char-token{position:absolute;font-size:26px;z-index:20;pointer-events:none;filter:drop-shadow(0 3px 5px rgba(0,0,0,.3));animation:hop 2s ease-in-out infinite;}
+@keyframes hop{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-5px) rotate(3deg);}}
+.title-plaque{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:rgba(253,248,240,.92);border:2px solid #c4a882;border-radius:8px;padding:3px 18px 4px;z-index:15;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.1);white-space:nowrap;}
+.title-plaque h1{font-family:Georgia,serif;font-size:14px;font-weight:700;color:#004D40;line-height:1.2;}
+.title-plaque h1 em{color:#F9A825;font-style:italic;}
+.tracker-chapter-label{text-align:center;padding:10px 16px;font-size:13px;color:#7A88A8;font-weight:600;background:#FAFBFF;border-top:1px solid #E2E8F4;}
+.tracker-chapter-label strong{color:#F9A825;}
+
+/* ═══════════ OPEN BOOK CARD ═══════════ */
+.open-book-wrap{position:relative;margin-bottom:22px;padding:10px 6px 6px;}
+.open-book-cover{position:absolute;top:0;left:2px;right:2px;bottom:0;background:linear-gradient(145deg,#2A4278,#3B5998,#4A69A8);border-radius:6px 20px 20px 6px;box-shadow:0 4px 20px rgba(59,89,152,.2);}
+.open-book-spine{position:absolute;top:0;left:50%;transform:translateX(-50%);width:22px;height:100%;background:linear-gradient(90deg,#1E3060,#2A4278,#1E3060);border-radius:4px;z-index:1;box-shadow:inset 0 0 6px rgba(0,0,0,.2);}
+.open-book-pages-3{position:absolute;top:3px;left:14px;right:14px;bottom:3px;background:#E8E0D4;border-radius:3px 12px 12px 3px;z-index:2;}
+.open-book-pages-2{position:absolute;top:5px;left:16px;right:16px;bottom:4px;background:#F0E8DC;border-radius:3px 10px 10px 3px;z-index:3;}
+.open-book-pages-1{position:absolute;top:7px;left:18px;right:18px;bottom:5px;background:#F5EEE4;border-radius:3px 8px 8px 3px;z-index:4;}
+.open-book{position:relative;background:linear-gradient(170deg,#FFFDF8 0%,#FFF8F0 40%,#FFFDF8 100%);border:none;border-radius:3px 6px 6px 3px;padding:0;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:160px;z-index:5;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.open-book::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.04) 20%,rgba(0,0,0,.07) 40%,rgba(90,70,50,.10) 50%,rgba(0,0,0,.07) 60%,rgba(0,0,0,.04) 80%,transparent 100%);z-index:6;pointer-events:none;}
+.open-book::after{content:'';position:absolute;top:8px;bottom:8px;right:0;width:4px;background:repeating-linear-gradient(180deg,transparent 0px,transparent 3px,rgba(200,185,165,.3) 3px,rgba(200,185,165,.3) 4px);border-radius:0 4px 4px 0;z-index:6;pointer-events:none;}
+.open-book-left{display:flex;align-items:center;justify-content:center;padding:24px;opacity:.3;position:relative;}
+.open-book-left::before{content:'';position:absolute;top:8px;bottom:8px;left:0;width:4px;background:repeating-linear-gradient(180deg,transparent 0px,transparent 3px,rgba(200,185,165,.3) 3px,rgba(200,185,165,.3) 4px);border-radius:4px 0 0 4px;}
+.open-book-left-deco{font-size:48px;filter:grayscale(30%);}
+.open-book-right{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:24px 28px 24px 20px;}
+.open-book-title{font-family:Georgia,serif;font-size:22px;font-weight:700;color:#0E1C42;margin-bottom:4px;}
+.open-book-title em{color:#C8962A;}
+.open-book-chapter{font-family:Georgia,serif;font-size:16px;color:#5A4A3A;font-style:italic;margin-bottom:14px;}
+.open-book-prompt{font-size:14px;color:#7A88A8;font-weight:600;}
+
+/* ═══════════ READING LINKS ═══════════ */
+.reading-links{background:#EEF4FF;border:2px solid #C8D8F0;border-radius:14px;padding:16px 18px;margin-bottom:16px;}
+.reading-links-title{font-size:14px;color:#C8962A;font-weight:800;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;}
+.reading-link{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border:1.5px solid #C8D8F0;border-radius:10px;margin-bottom:8px;font-size:15px;color:#0E1C42;font-weight:600;text-decoration:none;transition:background .15s,border-color .15s;}
+.reading-link:last-child{margin-bottom:0;}
+.reading-link:hover{background:#EEF4FF;border-color:#C8962A;}
+.reading-link-icon{font-size:20px;}
+
+/* ═══════════ PAUSE & THINK ═══════════ */
+.pause-columns{display:grid;grid-template-columns:1fr;gap:16px;margin:14px 0;}
+
+/* ═══════════ ASSIGNMENT QUESTIONS ═══════════ */
+.q-block{background:#FAFBFF;border:2px solid #E2E8F4;border-radius:14px;padding:14px 18px;margin-bottom:12px;}
+.q-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#C8962A;color:#fff;font-weight:800;font-size:14px;margin-right:8px;vertical-align:middle;}
+.q-text{font-size:16px;color:#0E1C42;line-height:1.65;margin-bottom:4px;}
+
+/* ═══════════ TEXTBOX PROMPT ═══════════ */
+.textbox-prompt{background:linear-gradient(135deg,#C8962A,#D4A843);color:#fff;font-size:14px;font-weight:700;padding:10px 16px;border-radius:10px 10px 0 0;margin-top:10px;line-height:1.5;}
+
+/* ═══════════ JOURNAL TEXTBOX ═══════════ */
+.journal-box{width:100%;min-height:70px;padding:12px 14px;border:2px solid #E2E8F4;border-radius:0 0 12px 12px;font-family:system-ui,sans-serif;font-size:15px;color:#0E1C42;line-height:1.6;resize:vertical;background:#FAFBFF;transition:border-color .2s,box-shadow .2s;}
+.journal-box:focus{outline:none;border-color:#C8962A;box-shadow:0 0 0 3px rgba(200,150,42,.15);background:#fff;}
+.journal-box::placeholder{color:#B0B8CC;font-style:italic;}
+.journal-box.standalone{border-radius:12px;margin-top:10px;}
+.journal-label{font-size:12px;color:#7A88A8;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:12px;display:flex;align-items:center;gap:6px;}
+.journal-label .saved-dot{width:8px;height:8px;border-radius:50%;background:#B0B8CC;transition:background .3s;}
+.journal-label .saved-dot.saved{background:#34B76F;}
+
+/* ═══════════ SHOW WHAT YOU KNOW ═══════════ */
+.swyk{background:linear-gradient(135deg,#FFF8F0 0%,#FFF3DC 100%);border:2px solid #F5E6C8;border-left:6px solid #C8962A;border-radius:14px;padding:16px 18px;margin-top:16px;}
+.swyk-label{font-size:12px;color:#C8962A;text-transform:uppercase;letter-spacing:.8px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.swyk-prompt{font-size:15px;color:#0E1C42;line-height:1.6;margin-bottom:8px;}
+
+/* ═══════════ FILL-IN-BLANK GAME ═══════════ */
+.fillin-game{margin:14px 0;}
+.fillin-item{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#fff;border:2px solid #E2E8F4;border-radius:12px;margin-bottom:10px;font-size:16px;color:#0E1C42;flex-wrap:wrap;}
+.fillin-input{display:inline-block;width:120px;padding:4px 10px;border:2px dashed #7B5EA7;border-radius:8px;font-family:Georgia,serif;font-size:15px;font-weight:700;color:#7B5EA7;text-align:center;background:#FAFBFF;outline:none;transition:border-color .2s,background .2s;}
+.fillin-input:focus{border-color:#C8962A;background:#fff;}
+.fillin-input.correct{border-color:#4CAF50;background:#E8F5E9;color:#1B5E20;border-style:solid;}
+.fillin-input.wrong{border-color:#E57373;background:#FFEBEE;animation:shake .4s ease;}
+.fillin-check-btn{display:block;margin:14px auto 0;padding:10px 24px;background:linear-gradient(135deg,#7B5EA7,#9575CD);color:#fff;border:none;border-radius:24px;font-family:system-ui,sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:transform .2s;}
+.fillin-check-btn:hover{transform:translateY(-2px);}
+.fillin-feedback{text-align:center;padding:10px;font-size:15px;font-weight:700;color:#4CAF50;display:none;}
+.fillin-feedback.show{display:block;}
+
+/* ═══════════ VOCAB MATCH GAME ═══════════ */
+.match-game{margin:14px 0;}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.match-item{padding:12px 14px;background:#fff;border:2px solid #E2E8F4;border-radius:12px;font-size:14px;color:#0E1C42;font-weight:600;cursor:pointer;text-align:center;line-height:1.5;transition:background .15s,border-color .2s,transform .15s;user-select:none;}
+.match-item:hover{transform:translateY(-1px);border-color:#C8962A;}
+.match-item.selected{background:#FFF8E8;border-color:#C8962A;box-shadow:0 0 0 3px rgba(200,150,42,.2);}
+.match-item.matched{background:#E8F5E9;border-color:#4CAF50;pointer-events:none;opacity:.8;}
+.match-item.wrong-flash{background:#FFEBEE;border-color:#E57373;animation:shake .4s ease;}
+.match-item.is-word{font-weight:800;font-family:Georgia,serif;font-size:16px;}
+.match-feedback{text-align:center;padding:10px;font-size:15px;font-weight:700;color:#4CAF50;display:none;}
+.match-feedback.show{display:block;}
+
+/* ═══════════ WORD SORT GAME ═══════════ */
+.sort-game{margin:14px 0;}
+.sort-bank{display:flex;flex-wrap:wrap;gap:8px;padding:14px;background:#FAFBFF;border:2px dashed #C8D8F0;border-radius:14px;margin-bottom:14px;min-height:52px;justify-content:center;}
+.sort-chip{display:inline-flex;align-items:center;padding:8px 16px;background:#fff;border:2px solid #E2E8F4;border-radius:24px;font-size:15px;font-weight:700;color:#0E1C42;cursor:grab;user-select:none;transition:transform .15s,box-shadow .15s,background .2s,border-color .2s;}
+.sort-chip:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(14,28,66,.12);}
+.sort-chip.placed{opacity:.4;pointer-events:none;}
+.sort-chip.correct{background:#E8F5E9;border-color:#4CAF50;color:#1B5E20;}
+.sort-chip.wrong{background:#FFEBEE;border-color:#E57373;color:#B71C1C;animation:shake .4s ease;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.sort-columns{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.sort-col{background:#fff;border:2px solid #E2E8F4;border-radius:14px;overflow:hidden;min-height:160px;}
+.sort-col-header{padding:10px 14px;font-size:15px;font-weight:800;color:#fff;text-align:center;}
+.sort-col-drop{padding:12px;display:flex;flex-direction:column;gap:8px;min-height:120px;}
+.sort-col-drop .sort-chip{cursor:pointer;}
+.sort-col-drop .sort-chip:hover{transform:none;box-shadow:none;}
+.sort-score{text-align:center;padding:10px;font-size:14px;font-weight:700;color:#4CAF50;display:none;}
+.sort-score.show{display:block;}
+
+/* ═══════════ GRAMMAR SPOTTER GAME ═══════════ */
+.spotter-game{margin:14px 0;}
+.spotter-sentence{background:#fff;border:2px solid #E2E8F4;border-radius:12px;padding:14px 16px;margin-bottom:10px;line-height:1.8;font-size:16px;color:#0E1C42;}
+.spotter-word{display:inline;padding:2px 6px;border-radius:6px;cursor:pointer;transition:background .15s,color .15s;border:2px solid transparent;}
+.spotter-word:hover{background:#FFF8E8;border-color:#C8962A;}
+.spotter-word.correct-reveal{background:#E8F5E9;border-color:#4CAF50;color:#1B5E20;font-weight:700;}
+.spotter-word.wrong-reveal{background:#FFEBEE;border-color:#E57373;text-decoration:line-through;}
+.spotter-result{font-size:14px;font-weight:700;padding:8px 14px;border-radius:10px;margin-top:6px;display:none;}
+.spotter-result.show{display:block;}
+.spotter-result.win{background:#E8F5E9;color:#1B5E20;}
+.spotter-result.miss{background:#FFF3DC;color:#E65100;}
+
+/* ═══════════ GATHERED ANSWERS ═══════════ */
+.gathered-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);margin-top:22px;}
+.gathered-header{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#0A2A4A,#0E3A5C);padding:16px 22px;border-bottom:2px solid rgba(200,150,42,.25);}
+.gathered-header-icon{font-size:28px;line-height:1;}
+.gathered-header-label{font-size:11px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+.gathered-header-title{font-family:Georgia,serif;font-size:20px;color:#fff;font-weight:700;}
+.gathered-body{padding:18px 22px 20px;}
+.gathered-intro{font-size:15px;color:#3A4A6B;margin-bottom:14px;line-height:1.55;}
+.gathered-output{width:100%;min-height:300px;padding:16px 18px;border:2px solid #E2E8F4;border-radius:12px;font-family:system-ui,sans-serif;font-size:14px;color:#0E1C42;line-height:1.65;background:#FAFBFF;resize:vertical;white-space:pre-wrap;}
+.gathered-actions{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
+.gathered-btn{flex:1;min-width:200px;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border:none;border-radius:14px;font-family:system-ui,sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:transform .2s,box-shadow .2s;}
+.gathered-btn:hover{transform:translateY(-2px);}
+.gathered-btn-copy{background:linear-gradient(135deg,#0E3A5C,#1A4A6C);color:#fff;box-shadow:0 4px 14px rgba(14,58,92,.25);}
+.gathered-btn-pdf{background:linear-gradient(135deg,#0A2A4A,#0E3A5C);color:#fff;border:2px solid #C8962A;box-shadow:0 4px 14px rgba(14,28,66,.25);}
+.gathered-copied{text-align:center;font-size:14px;font-weight:700;color:#4CAF50;margin-top:8px;display:none;}
+.gathered-copied.show{display:block;}
+
+/* ═══════════ TURN-IN CHECKLIST ═══════════ */
+.turn-in-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);margin-top:18px;}
+.turn-in-header{display:flex;align-items:center;gap:14px;background:#EEF4FF;padding:18px 22px;border-bottom:2px solid #C8D8F0;}
+.turn-in-header-icon{font-size:36px;line-height:1;flex-shrink:0;}
+.turn-in-header-label{font-size:11px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+.turn-in-header-title{font-family:Georgia,serif;font-size:22px;color:#0E1C42;font-weight:700;line-height:1.15;}
+.turn-in-body{padding:18px 22px 20px;}
+.turn-in-intro{font-size:15px;color:#3A4A6B;margin-bottom:16px;line-height:1.55;}
+.turn-in-checklist{display:flex;flex-direction:column;gap:10px;}
+.turn-in-item{display:flex;align-items:center;gap:14px;padding:12px 16px;background:#FAFBFF;border:1.5px solid #E2E8F4;border-radius:12px;cursor:pointer;transition:background .2s,border-color .2s;}
+.turn-in-item:hover{background:#EEF4FF;border-color:#C8D8F0;}
+.turn-in-item.checked{background:#FFF8E8;border-color:#F5E6C8;}
+.turn-in-item .turn-in-check{width:26px;height:26px;border-radius:8px;border:2px solid #C8D8F0;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;line-height:1;transition:background .2s,border-color .2s;}
+.turn-in-item.checked .turn-in-check{background:#4CAF50;border-color:#4CAF50;color:#fff;}
+.turn-in-item-text{font-size:15px;color:#0E1C42;font-weight:600;line-height:1.55;flex:1;}
+.turn-in-item.checked .turn-in-item-text{color:#3A4A6B;}
+
+/* ═══════════ TAB TRANSITION ═══════════ */
+.tab-next-wrap{text-align:center;padding:24px 0 8px;}
+.tab-transition-voice{font-family:Georgia,serif;font-size:15px;font-style:italic;color:#5A4A3A;margin-bottom:12px;line-height:1.6;}
+.tab-next-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;background:linear-gradient(135deg,#0E3A5C,#1A4A6C);color:#fff;border:none;border-radius:28px;font-family:system-ui,sans-serif;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(14,58,92,.3);transition:transform .2s,box-shadow .2s;}
+.tab-next-btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(14,58,92,.4);}
+
+/* ═══════════ BACK TO TOP ═══════════ */
+.back-to-top{position:fixed;bottom:28px;right:28px;height:44px;padding:0 18px 0 14px;border-radius:22px;background:linear-gradient(135deg,#0E3A5C,#1A4A6C);color:#fff;border:2px solid #C8962A;font-size:14px;font-weight:800;font-family:system-ui,sans-serif;cursor:pointer;box-shadow:0 4px 18px rgba(0,105,92,.35);display:flex;align-items:center;gap:6px;opacity:0;visibility:hidden;transform:translateY(20px);transition:opacity .3s,visibility .3s,transform .3s,box-shadow .2s;z-index:500;letter-spacing:.3px;}
+.back-to-top.show{opacity:1;visibility:visible;transform:translateY(0);}
+.back-to-top:hover{box-shadow:0 6px 24px rgba(200,150,42,.4);transform:translateY(-3px);}
+
+/* ═══════════ DOWNLOAD BUTTON ═══════════ */
+.download-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px 24px;background:linear-gradient(135deg,#0E1C42,#1A2D5A);color:#fff;border:2px solid #C8962A;border-radius:16px;font-family:system-ui,sans-serif;font-size:17px;font-weight:800;cursor:pointer;margin-top:18px;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(14,28,66,.25);}
+.download-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(14,28,66,.35);}
+.download-btn-sub{font-size:12px;color:rgba(255,255,255,.6);font-weight:600;text-align:center;margin-top:6px;}
+
+/* ═══════════ CONFETTI ═══════════ */
+#confettiCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10000;}
+
+/* ═══════════ FOOTER ═══════════ */
+.footer{background:#0A2A4A;border-top:4px solid #C8962A;padding:18px 28px;text-align:center;}
+.footer-main{font-size:14px;color:#fff;margin-bottom:4px;}
+.footer-main span{color:#C8962A;font-weight:700;}
+.footer-sub{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:2px;}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.3);}
+
+/* ═══════════ DISCOVERY REVEAL ═══════════ */
+.reveal-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,#0E3A5C,#1A4A6C);color:#fff;border:none;border-radius:20px;font-family:system-ui,sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px;transition:transform .15s;}
+.reveal-btn:hover{transform:translateY(-2px);}
+.reveal-content{display:none;margin-top:10px;padding:12px 16px;background:#E8F5E9;border:2px solid #C8E6C9;border-left:4px solid #4CAF50;border-radius:10px;font-size:15px;color:#0E1C42;line-height:1.65;}
+.reveal-content.show{display:block;}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:620px){
+  .intro-2col{grid-template-columns:1fr;}
+  .vocab-grid{grid-template-columns:1fr;}
+  .flip-card{height:165px;}
+  .header-title{font-size:22px;}
+  .tab-btn{min-width:100px;font-size:11px;padding:10px 6px 9px;}
+  .todays-path{gap:4px;}
+  .path-pill{font-size:11px;padding:5px 10px;}
+  .sort-columns{grid-template-columns:1fr;}
+  .match-grid{grid-template-columns:1fr;}
+  .pause-columns{grid-template-columns:1fr;}
+}
+
+/* ═══════════ CMB-SPECIFIC ADDITIONS ═══════════ */
+/* Extra bl- colors for CMB lessons */
+.activity.bl-copper{border-left:6px solid #C8962A;}
+
+/* WGRD block */
+.wgrd-block{background:linear-gradient(135deg,#EEF4FF 0%,#E8F0FA 100%);border:2px solid #C8D8F0;border-left:5px solid #7B5EA7;border-radius:14px;padding:18px 20px;margin-bottom:20px;}
+.wgrd-label{font-size:11px;color:#7B5EA7;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;}
+.wgrd-strategy{font-size:17px;color:#0E1C42;font-weight:800;margin-bottom:8px;line-height:1.3;}
+.wgrd-body{font-size:15px;color:#3A4A6B;line-height:1.7;}
+
+/* Story Journey Tracker */
+.tracker-card{background:linear-gradient(135deg,#061A30,#0A2A4A);border-radius:18px;overflow:hidden;margin-bottom:22px;box-shadow:0 4px 20px rgba(6,26,48,.3);}
+.tracker-header{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid rgba(200,150,42,.2);}
+.tracker-header-icon{font-size:30px;}
+.tracker-header-label{font-size:11px;color:#C8962A;text-transform:uppercase;letter-spacing:.8px;font-weight:700;}
+.tracker-header-title{font-size:17px;color:#fff;font-weight:800;}
+.tracker-header-title em{color:#C8962A;}
+.tracker-scene{position:relative;height:180px;overflow:hidden;}
+.tracker-path-svg{position:absolute;top:0;left:0;width:100%;height:100%;}
+.landmark{position:absolute;opacity:.4;z-index:1;}
+.node{position:absolute;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;z-index:3;border:2px solid transparent;}
+.node.done{background:rgba(200,150,42,.2);border-color:rgba(200,150,42,.4);opacity:.6;}
+.node.active{background:rgba(200,150,42,.4);border-color:#C8962A;opacity:1;box-shadow:0 0 12px rgba(200,150,42,.5);}
+.node.upcoming{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.15);opacity:.4;}
+.char-token{position:absolute;font-size:26px;z-index:5;transition:all .6s ease;filter:drop-shadow(0 2px 6px rgba(200,150,42,.8));}
+.tracker-chapter-label{padding:10px 20px;background:rgba(200,150,42,.08);font-size:13px;color:#C8962A;font-weight:700;border-top:1px solid rgba(200,150,42,.2);}
+
+/* Open Book (CMB navy cover) */
+.open-book-wrap{margin-bottom:22px;}
+.open-book{display:flex;border-radius:16px;overflow:hidden;box-shadow:0 6px 30px rgba(10,42,74,.25);border:2px solid rgba(200,150,42,.4);}
+.book-spine{width:22px;background:linear-gradient(180deg,#030E1C,#061A30);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.book-spine-text{font-size:8px;color:rgba(200,150,42,.6);letter-spacing:2px;text-transform:uppercase;writing-mode:vertical-lr;transform:rotate(180deg);}
+.book-page{flex:1;background:#FFFEF8;padding:20px 22px;}
+.book-page-left{flex:1;background:linear-gradient(145deg,#061A30,#0A2A4A,#0E3A5C);padding:20px 22px;border-right:2px solid rgba(200,150,42,.25);}
+.book-page-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.book-page-left .book-page-label{color:#C8962A;}
+.book-page .book-page-label{color:#7A88A8;}
+.book-page-title{font-family:Georgia,serif;font-size:17px;font-weight:700;margin-bottom:10px;line-height:1.3;}
+.book-page-left .book-page-title{color:#fff;}
+.book-page .book-page-title{color:#0E1C42;}
+.book-page-body{font-size:14px;line-height:1.7;}
+.book-page-left .book-page-body{color:rgba(255,255,255,.75);}
+.book-page .book-page-body{color:#3A4A6B;}
+.book-page-link{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:#0E3A5C;color:#fff;border:none;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;margin-top:12px;}
+
+/* Poetry block */
+.poetry-block{background:linear-gradient(135deg,#F0F5FF 0%,#E8F0FA 100%);border:2px solid #C8D8F0;border-left:5px solid #0E3A5C;border-radius:12px;padding:20px 24px;margin:14px 0;}
+.poetry-label{font-size:11px;color:#0E3A5C;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;}
+.poetry-title{font-family:Georgia,serif;font-size:14px;font-weight:700;color:#0E1C42;margin-bottom:2px;}
+.poetry-author{font-size:12px;color:#7A88A8;margin-bottom:14px;}
+.poetry-lines{font-family:Georgia,serif;font-size:16px;color:#1A3A5C;line-height:2.1;}
+
+/* RWM block */
+.rwm-block{background:linear-gradient(135deg,#FFF8F0,#FFF0E0);border:2px solid #FFD0A0;border-left:5px solid #C8962A;border-radius:14px;padding:18px 20px;margin-top:8px;}
+.rwm-label{font-size:11px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
+.rwm-sentence{font-family:Georgia,serif;font-size:17px;color:#1A2A4A;line-height:1.7;padding:12px 16px;background:rgba(255,255,255,.6);border-radius:8px;margin-bottom:14px;border-left:4px solid #C8962A;}
+.rwm-step{margin-bottom:12px;}
+.rwm-step-label{font-size:12px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;}
+.rwm-frame{font-family:Georgia,serif;font-size:15px;color:#1A2A4A;background:rgba(255,255,255,.8);border-radius:8px;padding:10px 14px;margin-top:8px;border:1.5px dashed #C8962A;line-height:1.8;}
+
+/* Pause card */
+.pause-card{background:#FFF8E1;border:2px solid #FFE082;border-radius:14px;padding:18px 20px;margin-bottom:16px;}
+.pause-label{font-size:11px;color:#E65100;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
+.pause-q{font-size:15px;color:#1A2A4A;line-height:1.7;font-style:italic;margin-bottom:12px;}
+
+/* Vocab choice grid (Day 4) */
+.vocab-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;}
+.vocab-choice-card{border:2.5px solid #E2E8F4;border-radius:16px;padding:14px 16px;background:#FAFBFF;cursor:pointer;transition:all .2s;text-align:left;}
+.vocab-choice-card:hover{border-color:#C8962A;background:#FFF8E8;}
+.vocab-choice-card.selected{border-color:#C8962A;background:#FFF3D0;box-shadow:0 0 0 3px rgba(200,150,42,.15);}
+.vocab-choice-num{font-size:11px;color:#7A88A8;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.vocab-choice-title{font-size:14px;color:#0E1C42;font-weight:800;margin-bottom:4px;}
+.vocab-choice-desc{font-size:13px;color:#3A4A6B;line-height:1.5;}
+
+/* Choice game (use-it activities) */
+.choice-game{display:flex;flex-direction:column;gap:14px;margin:14px 0;}
+.choice-item{background:#FAFBFF;border:2px solid #E2E8F4;border-radius:12px;padding:14px 16px;}
+.choice-item.done{background:#F0FFF4;border-color:#C8E6C9;}
+.choice-prompt{font-size:16px;color:#0E1C42;line-height:1.6;margin-bottom:10px;}
+.choice-blank{display:inline-block;min-width:100px;border-bottom:2px solid #C8962A;padding:0 4px;color:#C8962A;font-style:italic;}
+.choice-row{display:flex;gap:8px;flex-wrap:wrap;}
+.choice-btn{padding:8px 16px;border:2px solid #E2E8F4;border-radius:24px;background:#fff;font-family:system-ui,sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;}
+.choice-btn:hover{border-color:#C8962A;background:#FFF8E8;}
+.choice-btn.correct{background:#C8E6C9;border-color:#4CAF50;color:#1B5E20;cursor:default;}
+.choice-btn.wrong{background:#FFCDD2;border-color:#EF9A9A;color:#B71C1C;opacity:.6;cursor:default;}
+.choice-score{font-size:14px;color:#3A4A6B;margin-top:8px;display:none;}
+.choice-score.show{display:block;}
+
+/* Odd One Out / Root Detective (Day 4 Word Study) */
+.root-det-group,.odd-group,.wins-group{background:#FAFBFF;border:2px solid #E2E8F4;border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+.root-det-group.done,.odd-group.done,.wins-group.done{background:#F0FFF4;border-color:#C8E6C9;}
+.root-det-word{font-family:Georgia,serif;font-size:20px;font-weight:800;color:#0E1C42;margin-bottom:10px;}
+.root-det-row,.odd-row,.wins-options{display:flex;gap:10px;flex-wrap:wrap;}
+.wins-options{flex-direction:column;}
+.root-det-btn,.odd-btn{padding:8px 18px;border:2px solid #E2E8F4;border-radius:22px;background:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;}
+.wins-btn{padding:10px 16px;border:2px solid #E2E8F4;border-radius:10px;background:#fff;font-size:14px;font-weight:600;cursor:pointer;text-align:left;line-height:1.5;transition:all .15s;}
+.root-det-btn:hover,.odd-btn:hover,.wins-btn:hover{border-color:#C8962A;background:#FFF8E8;}
+.root-det-btn.correct,.odd-btn.correct,.wins-btn.correct{background:#C8E6C9;border-color:#4CAF50;color:#1B5E20;}
+.root-det-btn.wrong,.odd-btn.wrong,.wins-btn.wrong{background:#FFCDD2;border-color:#EF9A9A;color:#B71C1C;opacity:.6;}
+.root-det-msg,.odd-msg,.wins-msg{font-size:14px;margin-top:8px;display:none;line-height:1.5;}
+.root-det-msg.show,.odd-msg.show,.wins-msg.show{display:block;color:#1B5E20;}
+
+/* DOP model (DOL) fix sentence */
+.dol-model-sentence{background:#fff;border:1.5px solid #E2E8F4;border-left:4px solid #C8962A;border-radius:10px;padding:14px 18px;font-family:Georgia,serif;font-size:17px;color:#0E1C42;line-height:1.7;margin-bottom:8px;cursor:default;}
+.dol-fix-sentence{background:#FFF8E1;border:1.5px solid #FFE082;border-left:4px solid #F9A825;border-radius:10px;padding:14px 18px;font-family:Georgia,serif;font-size:17px;color:#0E1C42;line-height:1.7;margin-bottom:10px;}
+
+.umap-row{display:flex;align-items:flex-start;justify-content:center;padding:18px 16px 14px;gap:0;overflow-x:auto;}.umap-stop{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:80px;flex:1;}.umap-circle{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;border:3px solid rgba(200,150,42,.15);background:rgba(255,255,255,.04);}.umap-label{font-size:11px;color:rgba(255,255,255,.5);font-weight:700;text-align:center;}.umap-sub{font-size:10px;color:rgba(200,150,42,.4);text-align:center;}.umap-done .umap-circle{border-color:rgba(200,150,42,.4);background:rgba(200,150,42,.1);opacity:.65;}.umap-active .umap-circle{border-color:#C8962A;background:rgba(200,150,42,.25);box-shadow:0 0 14px rgba(200,150,42,.4);}.umap-active .umap-label{color:#C8962A;}.umap-active .umap-sub{color:#D4A843;}.umap-future .umap-circle{opacity:.25;}.umap-connector{flex:1;height:3px;background:rgba(200,150,42,.2);margin-top:23px;min-width:8px;}</style></head><body><canvas id="confettiCanvas"></canvas><button class="back-to-top" id="backToTop">&#9650; Back to Top</button><span id="pageTop" style="position:absolute;top:0;left:0;width:1px;height:1px;"></span><div class="page-wrap"><div class="progress-wrap"><span class="progress-label">&#x1F4D6; Lesson Progress</span><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><span class="progress-pct" id="progressPct">0%</span></div><div class="header"><div class="header-brand"><div class="header-logo"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy"></div><div><div class="header-org">Optima Academy Online</div><div class="header-sub">An Education Experience Company</div></div></div><div class="header-title"><em>Carry On, Mr. Bowditch</em> &mdash; Chapter 24</div><div class="header-badge"><span class="header-badge-icon">&#x1F52D;</span><span class="header-badge-text">Lesson 14.4</span></div></div><div class="hero-visual"><svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky144" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#010810"/><stop offset="100%" stop-color="#050E18"/></linearGradient>
+    <filter id="fog144"><feTurbulence type="fractalNoise" baseFrequency="0.04 0.06" numOctaves="3" seed="12" result="noise"/><feColorMatrix type="matrix" values="0 0 0 0 0.2  0 0 0 0 0.3  0 0 0 0 0.4  0 0 0 0.18 0" result="fogColor" in="noise"/><feComposite operator="in" in="fogColor" in2="SourceGraphic" result="fogMask"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="fogMask"/></feMerge></filter>
+    <radialGradient id="fogCenter" cx="50%" cy="60%" r="55%"><stop offset="0%" stop-color="#2A3A4A" stop-opacity=".7"/><stop offset="60%" stop-color="#0A1A28" stop-opacity=".4"/><stop offset="100%" stop-color="#010810" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="920" height="260" fill="url(#sky144)"/>
+  <!-- Dense fog layers -->
+  <ellipse cx="460" cy="170" rx="480" ry="120" fill="url(#fogCenter)"/>
+  <ellipse cx="200" cy="200" rx="280" ry="80" fill="#1A2A38" opacity=".25"/>
+  <ellipse cx="700" cy="195" rx="260" ry="70" fill="#1A2A38" opacity=".22"/>
+  <ellipse cx="460" cy="210" rx="400" ry="55" fill="#22323E" opacity=".3"/>
+  <!-- Barely visible ship emerging from fog -->
+  <polygon points="200,220 720,220 680,188 240,188" fill="#060E1C" opacity=".7"/>
+  <line x1="360" y1="188" x2="360" y2="90" stroke="#04090E" stroke-width="7" opacity=".6"/>
+  <line x1="520" y1="188" x2="520" y2="108" stroke="#04090E" stroke-width="5" opacity=".5"/>
+  <!-- Fog wisps over ship -->
+  <ellipse cx="460" cy="188" rx="320" ry="42" fill="#1E2E3C" opacity=".35"/>
+  <!-- Tiny light through fog (harbor beacon) -->
+  <circle cx="460" cy="135" r="3" fill="rgba(200,150,42,.6)"/>
+  <circle cx="460" cy="135" r="8" fill="rgba(200,150,42,.12)"/>
+  <circle cx="460" cy="135" r="16" fill="rgba(200,150,42,.06)"/>
+  <!-- Nat silhouette at prow, consulting papers -->
+  <ellipse cx="280" cy="183" rx="9" ry="12" fill="#030810"/>
+  <!-- Fog bottom -->
+  <rect x="0" y="220" width="920" height="40" fill="#04090E"/>
+  <!-- Title -->
+  <text x="680" y="70" font-family="Georgia,serif" font-size="22" font-weight="bold" fill="rgba(255,255,255,.85)" text-anchor="middle">Chapter 24</text>
+  <text x="680" y="96" font-family="Georgia,serif" font-size="15" fill="rgba(200,150,42,.88)" text-anchor="middle" font-style="italic">Man Against the Fog</text>
+  <text x="680" y="120" font-family="Georgia,serif" font-size="11" fill="rgba(180,190,210,.55)" text-anchor="middle">He could not see. He did not need to.</text>
+  <!-- UNIT COMPLETE banner -->
+  <rect x="180" y="18" width="260" height="34" rx="8" fill="rgba(200,150,42,.18)" stroke="rgba(200,150,42,.35)" stroke-width="1.5"/>
+  <text x="310" y="40" font-family="Georgia,serif" font-size="12" font-weight="bold" fill="rgba(200,150,42,.9)" text-anchor="middle">&#x2605; UNIT COMPLETE &#x2605;</text>
+</svg></div><div class="info-strip"><div class="info-cell"><div class="info-icon" style="background:#EEF4FF;">&#x1F4C5;</div><div><div class="info-label">Week &amp; Day</div><div class="info-value">Week 14 &middot; Day 4</div><div class="info-detail">Unit finale &middot; Publish complete</div></div></div><div class="info-cell"><div class="info-icon" style="background:#FFF8E1;">&#x1F4D6;</div><div><div class="info-label">Reading</div><div class="info-value">Chapter 24</div><div class="info-detail">Man Against the Fog</div></div></div><div class="info-cell"><div class="info-icon" style="background:#EDE7F6;">&#x1F52D;</div><div><div class="info-label">Vocab SWYK</div><div class="info-value">Choice Board</div><div class="info-detail">Six vocabulary words</div></div></div><div class="info-cell"><div class="info-icon" style="background:#FFF3DC;">&#x270D;&#xFE0F;</div><div><div class="info-label">Writer&rsquo;s Workshop</div><div class="info-value">★ Publish</div><div class="info-detail">Presentation planning</div></div></div></div><div class="quote-strip"><div class="quote-strip-text">&ldquo;He could not see through it. He did not need to.&rdquo;</div><div class="quote-strip-attr">Chapter 24 &bull; <em>Carry On, Mr. Bowditch</em></div></div><div class="intro-section" id="introSection"><div class="intro-collapsed-bar" onclick="expandIntro()"><span class="intro-collapsed-icon">&#x1F52D;</span><span class="intro-collapsed-text">Lesson 14.4 Overview</span><span class="intro-collapsed-toggle">Show &#x25be;</span></div><div class="intro-content"><div class="intro-2col"><div class="intro-card theme-question"><div class="intro-card-head"><div class="intro-card-head-icon">&#x1F52D;</div><div><div class="intro-card-head-label">Chapter 24</div><div class="intro-card-head-title">What does it mean to know something so well that you no longer need to see it?</div></div></div><div class="intro-card-body"><p>Today you read Chapter 24. Ask: <em>How does theme develop across the whole book?</em></p></div></div><div class="intro-card theme-objectives"><div class="intro-card-head"><div class="intro-card-head-icon">&#x1F3AF;</div><div><div class="intro-card-head-label">Today&rsquo;s Arc &mdash; Synthesize &amp; Publish</div><div class="intro-card-head-title">Chapter 24: Man Against the Fog</div></div></div><div class="intro-card-body"><div class="obj-line"><span class="obj-icon">&#x1F52D;</span><span><strong>Vocab SWYK:</strong> Choice board using all 6 unit vocabulary words.</span></div><div class="obj-line"><span class="obj-icon">&#x270F;&#xFE0F;</span><span><strong>Grammar:</strong> Final conventions check before essay submission.</span></div><div class="obj-line"><span class="obj-icon">&#x1F4DC;</span><span><strong>Closing Poem:</strong> Longfellow &ldquo;A Psalm of Life&rdquo; closing stanza.</span></div><div class="obj-line"><span class="obj-icon">&#x1F4D6;</span><span><strong>Reading:</strong> Chapter 24 + whole-book synthesis question</span></div></div></div></div><div class="todays-path"><span class="path-pill p-warmup">&#x1F305; Warm-Up</span><span class="path-arrow">&rarr;</span><span class="path-pill p-words">&#x1F524; Word Study</span><span class="path-arrow">&rarr;</span><span class="path-pill p-reading">&#x1F4D6; Read Ch. 24</span><span class="path-arrow">&rarr;</span><span class="path-pill p-assign">&#x1F4EC; Assignment</span></div><div class="need-strip"><span class="need-strip-label">You'll need:</span><span class="need-chip">&#x1F4D3; Reading Journal</span><span class="need-chip">&#x270F;&#xFE0F; Pencil</span><span class="need-chip">&#x1F4D5; Your Novel</span></div></div></div><div class="tab-bar" id="tabBar"><button class="tab-btn active" data-tab="warmup" onclick="switchTab('warmup')">&#x1F305; Warm-Up<span class="tab-check">&#10003;</span></button><button class="tab-btn" data-tab="words" onclick="switchTab('words')">&#x1F524; Word Study<span class="tab-check">&#10003;</span></button><button class="tab-btn" data-tab="reading" onclick="switchTab('reading')">&#x1F4D6; Reading<span class="tab-check">&#10003;</span></button><button class="tab-btn" data-tab="assignment" onclick="switchTab('assignment')">&#x1F4EC; Assignment<span class="tab-check">&#10003;</span></button></div><div class="tab-panel active" id="tab-warmup">
+<div class="video-wrap"><div class="video-wrap-header"><span style="font-size:20px;">&#x1F3AC;</span><div><div class="video-wrap-type">Welcome · Day 4 of 4</div><div class="video-wrap-title">The Finale: Chapter 24</div></div></div><div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">&#x1F3AC;</div><div class="video-placeholder-text">Coming soon</div><div class="video-placeholder-id"><!-- slot: 14-4-welcome --></div></div></div></div>
+  <div class="activity bl-plum"><div class="activity-head"><div class="activity-num" style="background:#7B5EA7;">&#x1F4DA;</div><div style="flex:1;"><div class="activity-title">What Good Readers Do</div><div class="activity-sub">Synthesize the whole book</div></div></div>
+    <div class="activity-body"><p>This is Day 4 of Week 14 &mdash; the final day of the unit. Chapter 24 is the climax and resolution of everything. As you read it today, you are not reading a chapter; you are completing a six-week conversation with a book. The question for Day 4 is not &ldquo;what happened in Chapter 24&rdquo; but &ldquo;what does the whole story mean?&rdquo; and &ldquo;how does the last chapter prove it?&rdquo;</p>
+    <div class="socratic-box"><div class="socratic-label">&#x1F9E0; Before you read Chapter 24, pause on this</div>
+      <p class="socratic-q">If the whole book is about Nat proving that navigation is &ldquo;a simple matter of mathematics,&rdquo; what kind of final test would perfectly prove it? What conditions would make the proof most dramatic and undeniable?</p>
+      <p class="socratic-q">As you read, ask: how does the fog function as more than just weather? What does the fog represent in the context of the whole book&rsquo;s themes?</p></div></div></div>
+<div class="activity bl-teal"><div class="activity-head"><div class="activity-num" style="background:#00796B;">&#x1F4DD;</div><div style="flex:1;"><div class="activity-title">Daily Oral Language</div><div class="activity-sub">Study the model &mdash; fix the sentence</div></div></div><div class="activity-body"><p style="font-size:14px;color:#7A88A8;font-weight:700;text-transform:uppercase;margin-bottom:8px;">Sentence 1 &mdash; The Correct Model</p><p style="font-size:14px;color:#3A4A6B;margin-bottom:10px;">Tap highlighted words to see what makes them correct.</p><div class="dol-model-sentence" id="dolModel">The final chapter, <span class="dol-highlight-word" onclick="dolWordClick(this,'Chapter title in quotation marks.')"> &ldquo;Man Against the Fog,&rdquo;</span> ends exactly where the book&rsquo;s argument began &mdash; with the claim that a reliable <span class="dol-highlight-word" onclick="dolWordClick(this,'Navigator is a noun formed from navig- (sail) + -ator (one who): the one who guides.')">navigator</span> needs no luck, only mathematics.</div><div class="dol-explanation" id="dolExplanation"></div><p style="font-size:14px;color:#7A88A8;font-weight:700;text-transform:uppercase;margin-top:16px;margin-bottom:8px;">Sentence 2 &mdash; Fix It</p><p style="font-size:14px;color:#3A4A6B;margin-bottom:10px;">Write the corrected sentence in your reading journal.</p><div class="dol-fix-sentence">in man against the fog nat bowditch proves everything he has worked toward since chapter one: that the information in his corrected navigator can guide a ship anywhere on earth</div><button class="dol-check-btn" onclick="document.getElementById('dolAns').classList.toggle('show')">&#x1F50D; Check My Work</button><div class="dol-answer" id="dolAns"><p><strong>Corrected:</strong> In &ldquo;Man Against the Fog,&rdquo; Nat Bowditch proves everything he has worked toward since Chapter 1: that the information in his corrected <em>Navigator</em> can guide a ship anywhere on earth.</p><p style="font-size:13px;color:#7A88A8;font-style:italic;margin-top:8px;">Fixes: chapter title in quotes; capitalize &ldquo;Nat Bowditch&rdquo; and &ldquo;Chapter&rdquo;; colon after the independent clause; <em>Navigator</em> (book title) italicized; period.</p></div></div></div>
+  <div class="activity bl-navy"><div class="activity-head"><div class="activity-num" style="background:#0E3A5C;">&#x1F4DC;</div><div style="flex:1;"><div class="activity-title">Closing Poem</div><div class="activity-sub">The poem that closes a life&rsquo;s work</div></div></div>
+    <div class="activity-body">
+      <p>As the final chapter approaches, here is the poem Longfellow wrote in 1838 &mdash; &ldquo;A Psalm of Life&rdquo; &mdash; the closing stanza of which feels like it was written for Nat Bowditch himself. Read it slowly.</p>
+      <div class="poetry-block"><div class="poetry-label">&#x1F4DC; Closing Poem &mdash; Six Weeks with Nat Bowditch</div><div class="poetry-title">from &ldquo;A Psalm of Life&rdquo; (closing stanza)</div><div class="poetry-author">Henry Wadsworth Longfellow, 1838 &mdash; public domain</div>
+        <div class="poetry-lines">
+          Let us, then, be up and doing,<br>
+          With a heart for any fate;<br>
+          Still achieving, still pursuing,<br>
+          Learn to labor and to wait.
+        </div>
+      </div>
+      <div class="callout callout-tip"><span class="callout-icon">&#x1F4A1;</span><p>Longfellow&rsquo;s four lines could be the subtitle of <em>Carry On, Mr. Bowditch</em>. &ldquo;Still achieving, still pursuing&rdquo; &mdash; Nat never stopped correcting, calculating, teaching. &ldquo;Learn to labor and to wait&rdquo; &mdash; nine years in the chandlery, waiting. The poem says the whole story in four lines.</p></div>
+      <div class="socratic-box"><div class="socratic-label">&#x1F914; Think &mdash; Write in Your Journal</div><p class="socratic-q">Which of Longfellow&rsquo;s four lines fits Nat Bowditch most perfectly, and why? Use specific evidence from the novel to support your choice.</p></div>
+    </div></div>
+  <div class="tab-next-wrap"><p class="tab-transition-voice">Final chapter awaits. Let&rsquo;s finish the Word Study first.</p><button class="tab-next-btn" onclick="switchTab('words')">Continue to &#x1F524; Word Study &rarr;</button></div>
+</div><div class="tab-panel" id="tab-words">
+  <div class="activity bl-plum"><div class="activity-head"><div class="activity-num" style="background:#7B5EA7;">1</div><div style="flex:1;"><div class="activity-title">&#x1F9ED; Morphology: Explain the Full System</div><div class="activity-sub">Synthesis &mdash; how do word families and prefixes connect?</div></div></div>
+    <div class="activity-body"><div class="video-wrap"><div class="video-wrap-header"><span style="font-size:20px;">&#x1F3AC;</span><div><div class="video-wrap-type">Morphology · Day 4</div><div class="video-wrap-title">Synthesis: Word Families + Prefixes</div></div></div><div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">&#x1F3AC;</div><div class="video-placeholder-text">Coming soon</div><div class="video-placeholder-id"><!-- slot: 14-4-morphology --></div></div></div></div>
+      <div class="callout callout-think"><span class="callout-icon">&#x1F914;</span><p>In your reading journal: explain how the morphology system you&rsquo;ve learned over six weeks works together. How do prefixes (trans-/inter-/sub-, dis-/un-/mis-, etc.) combine with roots (navig-, form-, press-, etc.) to produce word families? Give two examples using CMB unit vocabulary that show the whole system.</p></div>
+      <div class="socratic-box"><div class="socratic-label">&#x1F4A1; Synthesis challenge</div><p class="socratic-q">Can you create a word that combines a prefix from Week 13 (trans-, inter-, or sub-) with a root from Week 14 (navig- or inform-)? What would <em>trans-navigation</em> or <em>sub-inform</em> mean if they were real words? What does this tell you about how word-building works?</p></div>
+    </div></div>
+  <div class="activity bl-teal"><div class="activity-head"><div class="activity-num" style="background:#00796B;">2</div><div style="flex:1;"><div class="activity-title">&#x1F52D; Vocabulary SWYK: Choice Board</div><div class="activity-sub">Show What You Know &mdash; your way</div></div></div>
+    <div class="activity-body"><div class="video-wrap"><div class="video-wrap-header"><span style="font-size:20px;">&#x1F3AC;</span><div><div class="video-wrap-type">Vocabulary · Day 4</div><div class="video-wrap-title">Vocabulary Choice Board</div></div></div><div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">&#x1F3AC;</div><div class="video-placeholder-text">Coming soon</div><div class="video-placeholder-id"><!-- slot: 14-4-vocabulary --></div></div></div></div>
+      <div class="swyk"><div class="swyk-label">&#x1F52D; Show What You Know &middot; Vocabulary Choice Board</div>
+        <p>Choose one activity. Use all six vocabulary words: <strong>navigate, navigation, navigator, inform, information, informative</strong>.</p>
+        <div class="vocab-choice-grid" id="choiceGrid">
+          <div class="vocab-choice-card" onclick="selectVocabChoice(this,'A')"><div class="vocab-choice-num">Option A</div><div class="vocab-choice-title">&#x1F4CB; Nat&rsquo;s Biography Entry</div><div class="vocab-choice-desc">Write a 5&ndash;6 sentence encyclopedia entry about Nat Bowditch using all six words naturally. Write in third person as if for a reference book.</div></div>
+          <div class="vocab-choice-card" onclick="selectVocabChoice(this,'B')"><div class="vocab-choice-num">Option B</div><div class="vocab-choice-title">&#x1F4CA; Word Family Tree</div><div class="vocab-choice-desc">Draw or describe a word family tree showing how navigate and inform each branch into noun, verb, and adjective forms. Label each branch with the suffix and what it contributes.</div></div>
+          <div class="vocab-choice-card" onclick="selectVocabChoice(this,'C')"><div class="vocab-choice-num">Option C</div><div class="vocab-choice-title">&#x1F9E0; Before &amp; After</div><div class="vocab-choice-desc">Write two paragraphs: (1) how navigation worked BEFORE Nat&rsquo;s corrections, (2) how it worked AFTER. Use all six words across both paragraphs.</div></div>
+          <div class="vocab-choice-card" onclick="selectVocabChoice(this,'D')"><div class="vocab-choice-num">Option D</div><div class="vocab-choice-title">&#x270D;&#xFE0F; The Fog Scene</div><div class="vocab-choice-desc">Write a 5&ndash;6 sentence description of the Chapter 24 fog scene using all six vocabulary words. Stay in Nat&rsquo;s perspective.</div></div>
+        </div>
+        <div id="vocabChoiceSelected" style="font-size:13px;color:#C8962A;font-weight:700;margin:10px 0;display:none;"></div>
+        <div class="swyk"><div class="swyk-label">&#x1F52D; Complete Your Chosen Option</div>
+        <div class="textbox-prompt">Identify your option at the top. Complete it below.</div>
+        <textarea class="journal-box" id="journal-vocab" data-label="Vocabulary Choice Board SWYK: navigate/navigation/navigator/inform/information/informative" placeholder="I chose Option ___. [Complete your activity here...]" oninput="autoSave(this,'dot-vocab');gatherAnswers();"></textarea>
+        <div class="journal-label">&#x1F4D3; <span class="saved-dot" id="dot-vocab"></span></div></div>    </div></div>
+  <div class="activity bl-gold"><div class="activity-head"><div class="activity-num" style="background:#F9A825;color:#0E1C42;">3</div><div style="flex:1;"><div class="activity-title">&#x270F;&#xFE0F; Grammar: Conventions in Your Final Essay</div><div class="activity-sub">Last check before submission</div></div></div>
+    <div class="activity-body"><div class="video-wrap"><div class="video-wrap-header"><span style="font-size:20px;">&#x1F3AC;</span><div><div class="video-wrap-type">Grammar · Day 4</div><div class="video-wrap-title">Final Conventions Check</div></div></div><div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">&#x1F3AC;</div><div class="video-placeholder-text">Coming soon</div><div class="video-placeholder-id"><!-- slot: 14-4-grammar --></div></div></div></div>
+      <p>Before you submit your essay, do one final conventions pass. Check each item:</p>
+      <div class="dol-fix-sentence" style="line-height:2.4;">
+        <p>&#x2610; Every sentence begins with a capital letter and ends with punctuation.</p>
+        <p>&#x2610; <em>Carry On, Mr. Bowditch</em> is italicized every time it appears.</p>
+        <p>&#x2610; Chapter titles (e.g., &ldquo;Man Against the Fog&rdquo;) are in quotation marks.</p>
+        <p>&#x2610; The ship name <em>Putnam</em> (or any ship name) is italicized.</p>
+        <p>&#x2610; Works Cited: Latham, Jean Lee. <em>Carry On, Mr. Bowditch.</em> Houghton Mifflin, 1955.</p>
+        <p>&#x2610; No sentence fragments. Every &ldquo;sentence&rdquo; has a subject and a verb.</p>
+      </div>
+      <p style="font-size:13px;color:#7A88A8;font-style:italic;margin-top:10px;">Write in your reading journal: &ldquo;I checked ___ of 6 items. The one I had to fix was ___&rdquo;</p>
+    </div></div>
+  <div class="activity bl-navy"><div class="activity-head"><div class="activity-num" style="background:#0E3A5C;">4</div><div style="flex:1;"><div class="activity-title">&#x1F524; Spelling: Unit Synthesis</div><div class="activity-sub">What patterns will you remember?</div></div></div>
+    <div class="activity-body"><div class="video-wrap"><div class="video-wrap-header"><span style="font-size:20px;">&#x1F3AC;</span><div><div class="video-wrap-type">Spelling · Day 4</div><div class="video-wrap-title">Unit Spelling Synthesis</div></div></div><div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">&#x1F3AC;</div><div class="video-placeholder-text">Coming soon</div><div class="video-placeholder-id"><!-- slot: 14-4-spelling --></div></div></div></div>
+      <div class="callout callout-think"><span class="callout-icon">&#x270F;&#xFE0F;</span><p>In your reading journal: of the four spelling patterns studied this unit (schwa vowels, -ous/-ious/-eous, assimilation, word families), which one will you use most in your own writing? Why? Give two examples from your daily writing or other classes where this pattern appears.</p></div>
+    </div></div>
+  <div class="tab-next-wrap"><p class="tab-transition-voice">Last chapter awaits. Six weeks of reading, thinking, and writing come down to this.</p><button class="tab-next-btn" onclick="switchTab('reading')">Continue to &#x1F4D6; Reading &rarr;</button></div>
+</div><div class="tab-panel" id="tab-reading">
+<div class="tracker-card"><div class="tracker-header"><div class="tracker-header-icon">&#x1F5FA;&#xFE0F;</div><div><div class="tracker-header-label">Your Unit Journey</div><div class="tracker-header-title">Six Weeks with <em>Carry On, Mr. Bowditch</em></div></div></div><div class="umap-row"><div class="umap-stop umap-done"><div class="umap-circle">⛵</div><div class="umap-label">Week 9</div><div class="umap-sub">Chs. 1–4</div></div><div class="umap-connector"></div><div class="umap-stop umap-done"><div class="umap-circle">🌊</div><div class="umap-label">Week 10</div><div class="umap-sub">Chs. 5–8</div></div><div class="umap-connector"></div><div class="umap-stop umap-done"><div class="umap-circle">⚓</div><div class="umap-label">Week 11</div><div class="umap-sub">Chs. 9–12</div></div><div class="umap-connector"></div><div class="umap-stop umap-done"><div class="umap-circle">🌙</div><div class="umap-label">Week 12</div><div class="umap-sub">Chs. 13–16</div></div><div class="umap-connector"></div><div class="umap-stop umap-done"><div class="umap-circle">🧭</div><div class="umap-label">Week 13</div><div class="umap-sub">Chs. 17–20</div></div><div class="umap-connector"></div><div class="umap-stop umap-active"><div class="umap-circle">🔭</div><div class="umap-label">Week 14</div><div class="umap-sub">Chs. 21–24</div></div></div><div class="tracker-chapter-label">&#x1F4CD; You are here: <span style="color:#C8962A;font-weight:900;">&#x2605; UNIT COMPLETE</span> &mdash; Six Weeks with Nat Bowditch</div></div>
+<div class="video-wrap"><div class="video-wrap-header"><span style="font-size:20px;">&#x1F3AC;</span><div><div class="video-wrap-type">Reading · The Final Chapter</div><div class="video-wrap-title">Before You Read Chapter 24</div></div></div><div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">&#x1F3AC;</div><div class="video-placeholder-text">Coming soon</div><div class="video-placeholder-id"><!-- slot: 14-4-reading --></div></div></div></div>
+  <div class="activity bl-teal"><div class="activity-head"><div class="activity-num" style="background:#00796B;">&#x1F4D5;</div><div style="flex:1;"><div class="activity-title">Read: Chapter 24 &mdash; &ldquo;Man Against the Fog&rdquo;</div><div class="activity-sub">The fog cannot stop what mathematics has already solved</div></div></div>
+    <div class="activity-body">
+      <p>December 25, 1803. Salem Harbor. The fog is so thick no other captain would attempt the approach. The crew is silent, watching. Nat does not look up. He knows exactly where they are. He knows because he calculated it. The harbor mouth is exactly where his mathematics says it is &mdash; and it is.</p>
+      <p>This is the book&rsquo;s climax: not a battle, not a storm, but a navigation in zero visibility that proves, beyond any possible doubt, that Nat Bowditch&rsquo;s method works. Read it slowly. The fog is not just weather. It is everything that stands between understanding and confusion &mdash; and Nat&rsquo;s mathematics cuts through it.</p>
+      <div class="reading-links"><div class="reading-links-title">&#x1F4DA; Read or Listen</div><a href="#" class="reading-link"><span class="reading-link-icon">&#x1F4D6;</span><span>Read Chapter 24 in your novel</span></a></div>
+      <div class="pause-columns">
+        <div style="display:flex;flex-direction:column;"><div class="socratic-box" style="margin-bottom:0;"><div class="socratic-label">&#x23F8;&#xFE0F; Pause: The Fog</div><p class="socratic-q">What exactly does Nat do to navigate in the fog &mdash; what process does he use, step by step? And why is this moment, this exact scene, the perfect climax for this specific book?</p></div>
+          <textarea class="journal-box standalone" id="journal-pt1" placeholder="Nat navigates the fog by... Step by step: (1) ... (2) ... (3)... This is the perfect climax because the whole book has been building toward proving that..." oninput="autoSave(this,'dot-pt1');" style="margin-top:10px;min-height:70px;"></textarea><div class="journal-label">&#x1F4D3; <span class="saved-dot" id="dot-pt1"></span></div></div>
+        <div style="display:flex;flex-direction:column;"><div class="socratic-box" style="margin-bottom:0;"><div class="socratic-label">&#x1F4A1; What does the fog represent?</div><p class="socratic-q">The fog in Chapter 24 is both literal (real weather) and metaphorical (a symbol). What does it represent in the context of the whole book? What is the &ldquo;fog&rdquo; that Nat has been working to cut through for 24 chapters?</p></div>
+          <textarea class="journal-box standalone" id="journal-pt2" placeholder="Literally, the fog is December weather in Salem Harbor. Metaphorically, the fog represents... For 24 chapters, Nat has been fighting against the fog of... And now, in Chapter 24, his mathematics cuts through it by..." oninput="autoSave(this,'dot-pt2');" style="margin-top:10px;min-height:70px;"></textarea><div class="journal-label">&#x1F4D3; <span class="saved-dot" id="dot-pt2"></span></div></div>
+      </div>
+    </div></div>
+  <div class="tab-next-wrap"><p class="tab-transition-voice">You have finished the book. Now show everything you know.</p><button class="tab-next-btn" onclick="switchTab('assignment')">Continue to &#x1F4EC; Assignment &rarr;</button></div>
+</div><div class="tab-panel" id="tab-assignment">
+<div class="video-wrap"><div class="video-wrap-header"><span style="font-size:20px;">&#x1F3AC;</span><div><div class="video-wrap-type">Final Assignment</div><div class="video-wrap-title">Chapter 24 + Unit Complete</div></div></div><div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">&#x1F3AC;</div><div class="video-placeholder-text">Coming soon</div><div class="video-placeholder-id"><!-- slot: 14-4-assignment --></div></div></div></div>
+  <div style="background:linear-gradient(135deg,#0A2A4A,#0E3A5C);border-radius:12px;padding:24px;text-align:center;margin:20px 0;border:2px solid #C8962A;">
+    <div style="font-size:28px;margin-bottom:8px;">&#x1F52D; &#x2B50; &#x1F52D;</div>
+    <div style="font-size:20px;font-weight:900;color:#D4A843;margin-bottom:6px;">Unit Complete &mdash; Six Weeks with Nat Bowditch</div>
+    <div style="font-size:14px;color:rgba(255,255,255,.7);">Chapters 1&ndash;24 &middot; Weeks 9&ndash;14 &middot; <em>Carry On, Mr. Bowditch</em> by Jean Lee Latham</div>
+    <div style="font-size:13px;color:rgba(200,150,42,.8);margin-top:12px;font-style:italic;">&ldquo;It&rsquo;s a simple matter of mathematics.&rdquo; &mdash; Nat Bowditch</div>
+  </div>
+  <div class="callout callout-info" style="margin-bottom:20px;"><span class="callout-icon">&#x1F4EC;</span><p>Answer in complete sentences. For the whole-book question, use evidence from at least three chapters spanning the full six weeks.</p></div>
+  <div class="activity bl-teal"><div class="activity-head"><div class="activity-num" style="background:#00796B;">A</div><div style="flex:1;"><div class="activity-title">Part A: Chapter Thinking</div><div class="activity-sub">Two questions on Chapter 24 + one whole-book question</div></div></div>
+    <div class="activity-body">
+      <div class="q-block"><div class="q-text"><span class="q-num">1</span>Describe exactly how Nat navigates into Salem Harbor in the fog. What does he use, what process does he follow, and why is zero visibility not actually a problem for him? Connect his method to what he has been learning since Chapter 5.</div></div>
+      <div class="textbox-prompt">Be specific: what calculation does he use? Connect it to his earlier work.</div>
+      <textarea class="journal-box" id="journal-q1" data-label="Q1: How Nat navigates in the fog (Ch. 24)" placeholder="Nat navigates by... He uses... This works because... Since Chapter 5, he has been learning... so by Chapter 24, zero visibility is not a problem because..." oninput="autoSave(this,'dot-q1');gatherAnswers();"></textarea>
+      <div class="journal-label">&#x1F4D3; <span class="saved-dot" id="dot-q1"></span></div>
+      <div class="q-block" style="margin-top:18px;"><div class="q-text"><span class="q-num">2</span>The fog in Chapter 24 functions as both literal weather and a symbol. What does it represent? What has Nat been working to cut through for all 24 chapters &mdash; and how does navigating blind in December fog perfectly capture the book&rsquo;s central argument?</div></div>
+      <div class="textbox-prompt">Explain the fog as symbol. Connect it to the book's argument about mathematics.</div>
+      <textarea class="journal-box" id="journal-q2" data-label="Q2: The fog as symbol and the book's central argument" placeholder="Literally the fog is... Symbolically it represents... The book's central argument is that... The fog scene proves this because..." oninput="autoSave(this,'dot-q2');gatherAnswers();"></textarea>
+      <div class="journal-label">&#x1F4D3; <span class="saved-dot" id="dot-q2"></span></div>
+      <div class="q-block" style="margin-top:18px;"><div class="q-text"><span class="q-num">3</span>&#x1F4A1; <strong>Whole-Book Reflective Question:</strong> Trace ONE theme from <em>Carry On, Mr. Bowditch</em> across the entire book. Choose one of these: (a) &ldquo;Sail by ash breeze&rdquo; &mdash; what it means to keep working when conditions are against you. (b) &ldquo;An anchor to windward&rdquo; &mdash; preparing for difficulty before it arrives. (c) &ldquo;A simple matter of mathematics&rdquo; &mdash; that complex things become accessible when explained clearly. Trace your chosen theme through at least four chapters from at least three different weeks.</div></div>
+      <div class="textbox-prompt">Name your theme. Give evidence from 4+ chapters (3+ different weeks).</div>
+      <textarea class="journal-box" id="journal-q3" data-label="Q3: WHOLE-BOOK — Trace one theme across Chapters 1-24" placeholder="I chose theme: '___'. In Chapter ___ (Week 9), this theme appears when... In Chapter ___ (Week 11), it appears when... In Chapter ___ (Week 13), the theme deepens because... By Chapter 24, the theme reaches its full expression when..." oninput="autoSave(this,'dot-q3');gatherAnswers();"></textarea>
+      <div class="journal-label">&#x1F4D3; <span class="saved-dot" id="dot-q3"></span></div>
+    </div>
+  </div>
+  <div class="activity bl-gold" id="writers-workshop" style="margin-top:18px;">
+    <div class="activity-head" style="background:linear-gradient(135deg,#FFF8F0,#FFF3DC);border-bottom:2px solid #F5E6C8;">
+      <div class="activity-num" style="background:#C8962A;border-radius:10px;font-size:16px;">&#x270D;&#xFE0F;</div>
+      <div style="flex:1;"><div class="activity-title">Writer&rsquo;s Workshop &middot; Week 14 &middot; PUBLISH</div><div class="activity-sub">Plan your 2-minute presentation</div></div>
+    </div>
+    <div class="activity-body">
+      <div style="display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-bottom:12px;"><span style="background:#E8F1E8;color:#2D7A5A;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;">&#x2713; Research Claim</span><span style="background:#E8F1E8;color:#2D7A5A;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;">&#x2713; Plan</span><span style="background:#E8F1E8;color:#2D7A5A;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;">&#x2713; Draft</span><span style="background:#E8F1E8;color:#2D7A5A;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;">&#x2713; Add Craft</span><span style="background:#E8F1E8;color:#2D7A5A;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;">&#x2713; Revise &amp; Edit</span><span style="background:#C8962A;color:#fff;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;">&#x2605; Publish</span></div>
+      <div class="callout callout-info" style="margin:0 0 14px;padding:10px 14px;"><span class="callout-icon">&#x1F3AF;</span><p style="font-size:14px;"><strong>Today&rsquo;s focus:</strong> Your essay is submitted. Now you plan a short presentation sharing your argument. The presentation has 5 moves &mdash; each timed.</p></div>
+      <div class="key-concept" style="background:#FFFEF7;border-color:#F5E6C8;margin-bottom:14px;">
+        <div class="key-concept-label" style="color:#C8962A;">&#x1F440; Watch How &mdash; Alex finishes the essay</div>
+        <p style="font-size:14px;margin-bottom:10px;">Alex uses the 5-Move Presentation Map to turn the essay into a spoken argument.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div style="background:#fff;border:1px solid #F5E6C8;border-radius:6px;padding:10px;"><div style="font-size:11px;color:#C7627E;font-weight:700;letter-spacing:.5px;margin-bottom:4px;">BEFORE</div><div style="font-style:italic;font-size:13px;">Alex's first idea: I'll just read my essay out loud.</div></div>
+          <div style="background:#fff;border:1px solid #D4ECC8;border-radius:6px;padding:10px;"><div style="font-size:11px;color:#4A7C2E;font-weight:700;letter-spacing:.5px;margin-bottom:4px;">AFTER</div><div style="font-style:italic;font-size:13px;">Alex's 5-move plan: (1) Hook spoken aloud [20 sec]: 'A ship navigated blind into Salem Harbor on December 25, 1803...' (2) Claim [10 sec]: 'What made Nat Bowditch extraordinary was...' (3) Body 1 highlight [30 sec]: One piece of evidence from Body 1, paraphrased. (4) Body 2 highlight [30 sec]: One piece from Body 2, paraphrased. (5) Closing [30 sec]: Return to the fog, why it matters.</div></div>
+        </div>
+        <p style="margin-top:10px;font-size:13px;color:#3A4A6B;"><strong>Notice:</strong> Reading the essay aloud is NOT a presentation &mdash; it's a recitation. Alex's 5-move plan is spoken, paced, and SELECTED. You don't present every paragraph &mdash; you present the heart of your argument.</p>
+      </div>
+      <div class="key-concept" style="background:#EEF4FF;border-color:#C8D8F0;margin-bottom:14px;">
+        <div class="key-concept-label" style="color:#0E3A5C;">&#x1F4CB; Today&rsquo;s Tool: 5-Move Presentation Map (2 minutes)</div>
+        <p style="font-size:14px;margin-bottom:10px;">Plan all 5 moves with timing. You will speak, not read.</p>
+        <p style="font-size:13px;font-weight:700;color:#0E3A5C;margin-bottom:6px;">Alex&rsquo;s example (filled):</p>
+        <div style="display:grid;gap:6px;font-size:12px;"><div style="background:#fff;border:1px solid #C8D8F0;border-radius:6px;padding:8px;"><strong>Move 1 (20 sec) &mdash; Hook spoken:</strong> &ldquo;A ship navigated blind into Salem Harbor on December 25, 1803&hellip;&rdquo;</div><div style="background:#fff;border:1px solid #C8D8F0;border-radius:6px;padding:8px;"><strong>Move 2 (10 sec) &mdash; Claim:</strong> &ldquo;What made Nat Bowditch extraordinary was his belief that&hellip;&rdquo;</div><div style="background:#fff;border:1px solid #C8D8F0;border-radius:6px;padding:8px;"><strong>Move 3 (30 sec) &mdash; Body 1 highlight:</strong> One example from Body 1, paraphrased in 2&ndash;3 sentences.</div><div style="background:#fff;border:1px solid #C8D8F0;border-radius:6px;padding:8px;"><strong>Move 4 (30 sec) &mdash; Body 2 highlight:</strong> One example from Body 2, paraphrased.</div><div style="background:#fff;border:1px solid #C8D8F0;border-radius:6px;padding:8px;"><strong>Move 5 (30 sec) &mdash; Closing:</strong> Return to the fog scene. Why it matters.</div></div>
+        <p style="font-size:13px;font-weight:700;color:#0E3A5C;margin-top:12px;margin-bottom:6px;">Your turn &mdash; do the same in your reading journal:</p>
+        <div style="background:#FAFBFF;border:2px dashed #C8D8F0;border-radius:8px;padding:14px;font-size:13px;">Move 1 (hook, 20 sec): ____________________<br>Move 2 (claim, 10 sec): ____________________<br>Move 3 (Body 1 highlight, 30 sec): ____________________<br>Move 4 (Body 2 highlight, 30 sec): ____________________<br>Move 5 (closing, 30 sec): ____________________</div>
+      </div>
+      <div class="key-concept" style="background:#F0E8FF;border-color:#D8CCF0;margin-bottom:14px;">
+        <div class="key-concept-label" style="color:#6B4FB0;">&#x1FAB6; Sentence Frames You Can Borrow</div>
+        <ul style="margin:0 0 0 18px;font-size:14px;"><li style="margin-bottom:5px;">&ldquo;On December 25, 1803, a ship navigated blind into ___ guided only by ___.&rdquo;</li><li style="margin-bottom:5px;">&ldquo;What made Nat Bowditch extraordinary was ___.&rdquo;</li><li style="margin-bottom:5px;">&ldquo;I&rsquo;ll close with the question his story asks all of us: what do you do with knowledge?&rdquo;</li></ul>
+      </div>
+      <div class="callout callout-info" style="background:#E8F5E8;border-color:#A8D8A8;margin:0 0 10px;padding:10px 14px;"><span class="callout-icon">&#x270F;&#xFE0F;</span><p style="font-size:14px;"><strong>Now you try.</strong> Use what Alex showed you. Type below.</p></div>
+      <div class="textbox-prompt">Write your presentation hook &mdash; the first 20 seconds you will speak aloud. Make it memorable enough to pull your audience in before you mention Nat Bowditch&rsquo;s name.</div>
+      <textarea class="journal-box" id="journal-writing" data-label="Writer&apos;s Workshop: Publish (Week 14)" placeholder="My spoken hook (20 seconds): 'On December 25, 1803...' OR 'What would you do if you had to navigate blind...'" oninput="autoSave(this,&apos;dot-writing&apos;);gatherAnswers();"></textarea>
+      <div class="journal-label">&#x1F4D3; <span class="saved-dot" id="dot-writing"></span></div>
+    </div>
+  </div>
+<div class="gathered-card"><div class="gathered-header"><div class="gathered-header-icon">&#x1F4CB;</div><div><div class="gathered-header-label">All Your Work</div><div class="gathered-header-title">Review, Copy, or Download</div></div></div><div class="gathered-body"><p class="gathered-intro">Everything you typed is gathered here.</p><textarea class="gathered-output" id="gatheredOutput" readonly></textarea><div class="gathered-actions"><button class="gathered-btn gathered-btn-copy" onclick="copyToClipboard()">&#x1F4CB; Copy</button><button class="gathered-btn gathered-btn-pdf" onclick="downloadPDF()">&#x1F4C4; PDF</button></div><div class="gathered-copied" id="gatheredCopied">Copied!</div></div></div><button class="download-btn" onclick="downloadPDF()">&#x1F4E5; Download All My Work as PDF</button><div class="download-btn-sub">Opens a print-ready page &mdash; save or upload to Canvas</div>
+</div><div class="turn-in-card"><div class="turn-in-header"><div class="turn-in-header-icon">&#x1F4EC;</div><div><div class="turn-in-header-label">Ready to Submit?</div><div class="turn-in-header-title">Before You Turn In</div></div></div><div class="turn-in-body"><div class="turn-in-checklist"><div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I answered all 3 questions, including the Whole-Book Reflective Question.</div></div>
+<div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I completed the Vocabulary Choice Board SWYK in Word Study.</div></div>
+<div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I completed my presentation plan in Writer&rsquo;s Workshop.</div></div>
+<div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I submitted my complete essay via the Writing Workshop page.</div></div>
+<div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I copied this assignment to Canvas or downloaded the PDF.</div></div></div></div></div><div class="footer"><div class="footer-main"><span>Optima Academy Online</span> &middot; 5th Grade ELA &middot; Week 14 &middot; Lesson 14.4</div><div class="footer-sub"><em>Carry On, Mr. Bowditch</em> &mdash; Chapter 24 &bull; Man Against the Fog &middot; Unit Complete</div><div class="footer-copy">&copy; Optima Academy Online &middot; An Education Experience Company</div></div></div><script>function switchTab(id){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));var p2=document.getElementById('tab-'+id);if(p2)p2.classList.add('active');var b2=document.querySelector('.tab-btn[data-tab="'+id+'"]');if(b2){b2.classList.add('active','visited');}updateProgress();var intro=document.getElementById('introSection');if(intro){if(id==='warmup')intro.classList.remove('collapsed');else intro.classList.add('collapsed');}if(id==='assignment')gatherAnswers();try{document.getElementById('pageTop').scrollIntoView({behavior:'smooth',block:'start'});}catch(e){}document.documentElement.scrollTop=0;document.body.scrollTop=0;}
+function expandIntro(){document.getElementById('introSection').classList.remove('collapsed');}
+function updateProgress(){var t=document.querySelectorAll('.tab-btn').length;var v=document.querySelectorAll('.tab-btn.visited').length;var p=Math.round((v/t)*100);document.getElementById('progressFill').style.width=p+'%';document.getElementById('progressPct').textContent=p+'%';}
+(function(){var a=document.querySelector('.tab-btn.active');if(a)a.classList.add('visited');updateProgress();})();
+function autoSave(el,d){var dot=document.getElementById(d);if(dot)dot.classList.toggle('saved',el.value.trim().length>0);}
+function dolWordClick(el,msg){el.classList.toggle('tapped');document.getElementById('dolExplanation').textContent=el.classList.contains('tapped')?msg:'';}
+var _fDone=false;function checkFillIn(){var ok=true;document.querySelectorAll('.fillin-input').forEach(inp=>{if(inp.value.trim().toLowerCase()===inp.getAttribute('data-answer').toLowerCase()){inp.classList.add('correct');inp.classList.remove('wrong');inp.disabled=true;}else{inp.classList.add('wrong');inp.classList.remove('correct');ok=false;setTimeout(()=>inp.classList.remove('wrong'),600);}});if(ok){var fb=document.getElementById('fillinFeedback');if(fb)fb.classList.add('show');_fDone=true;}}
+var _mF=null,_mC=0,_mT=4,_mD=false;function matchClick(item){if(item.classList.contains('matched'))return;if(!_mF){_mF=item;item.classList.add('selected');return;}if(_mF===item){_mF.classList.remove('selected');_mF=null;return;}var k1=_mF.getAttribute('data-match'),k2=item.getAttribute('data-match');if(k1===k2&&_mF.classList.contains('is-word')!==item.classList.contains('is-word')){_mF.classList.remove('selected');_mF.classList.add('matched');item.classList.add('matched');_mC++;_mF=null;if(_mC>=_mT){var fb=document.getElementById('matchFeedback');if(fb)fb.classList.add('show');_mD=true;}}else{item.classList.add('wrong-flash');_mF.classList.add('wrong-flash');var a=_mF,b=item;setTimeout(()=>{a.classList.remove('wrong-flash','selected');b.classList.remove('wrong-flash');},500);_mF=null;}}
+var _sD=false;function spotterPick(word,sid){var s=document.getElementById(sid);if(!s||s.getAttribute('data-done')==='true')return;var r=document.getElementById(sid+'-r');if(word.getAttribute('data-correct')==='true'){word.classList.add('correct-reveal');if(r){r.textContent='\u2705 Correct!';r.className='spotter-result show win';}s.setAttribute('data-done','true');}else{word.classList.add('wrong-reveal');if(r){r.textContent='Look again.';r.className='spotter-result show miss';}setTimeout(()=>{word.classList.remove('wrong-reveal');if(r)r.classList.remove('show');},1500);}}
+var _ss=null,_sp=0,_st=6,_sd=false;function pickChip(chip){if(chip.classList.contains('placed'))return;if(_ss)_ss.style.outline='';_ss=chip;chip.style.outline='3px solid #C8962A';}
+function dropChip(col,colName){if(!_ss)return;var g=_ss.getAttribute('data-group');var clone=_ss.cloneNode(true);clone.style.outline='';clone.onclick=null;clone.style.cursor='default';if(g===colName){clone.classList.add('correct');_ss.classList.add('placed');col.appendChild(clone);_sp++;}else{clone.classList.add('wrong');col.appendChild(clone);setTimeout(()=>col.removeChild(clone),600);}_ss.style.outline='';_ss=null;if(_sp>=_st){var sc=document.getElementById('sortScore');if(sc){sc.textContent='\u2728 All sorted!';sc.classList.add('show');}}}
+function selectVocabChoice(card,opt){document.querySelectorAll('.vocab-choice-card').forEach(c=>c.classList.remove('selected'));card.classList.add('selected');var sel=document.getElementById('vocabChoiceSelected');if(sel){sel.textContent='You chose Option '+opt+'. Complete it below.';sel.style.display='block';}}
+function oddOne(btn,gid,ok){var g=document.getElementById(gid);if(!g||g.getAttribute('data-done')==='true')return;if(ok){btn.classList.add('correct');g.setAttribute('data-done','true');var m=document.getElementById(gid+'-msg');if(m)m.classList.add('show');}else{btn.classList.add('wrong');setTimeout(()=>btn.classList.remove('wrong'),600);}}
+var _cc=0,_cd=false;function choiceBtn(btn,correct){var row=btn.closest('.choice-item');if(!row||row.getAttribute('data-done')==='true')return;if(correct){btn.classList.add('correct');row.setAttribute('data-done','true');_cc++;var msg=row.querySelector('.choice-score');if(msg){msg.textContent='Correct!';msg.classList.add('show');}}else{btn.classList.add('wrong');setTimeout(()=>btn.classList.remove('wrong'),700);}}
+function toggleCheck(item){item.classList.toggle('checked');item.querySelector('.turn-in-check').textContent=item.classList.contains('checked')?'\u2713':'';var all=[...item.closest('.turn-in-checklist').querySelectorAll('.turn-in-item')];if(all.every(x=>x.classList.contains('checked'))&&all.length>0)fireConfetti();}
+function fireConfetti(){var cv=document.getElementById('confettiCanvas');if(!cv)return;var ctx=cv.getContext('2d');cv.width=window.innerWidth;cv.height=window.innerHeight;var cols=['#0E3A5C','#C8962A','#52B788','#7B5EA7','#D4A843'];var parts=Array.from({length:160},()=>({x:Math.random()*cv.width,y:-30-Math.random()*100,vx:(Math.random()-.5)*7,vy:Math.random()*5+3,r:Math.random()*7+3,c:cols[~~(Math.random()*cols.length)],rot:Math.random()*6.28,vr:(Math.random()-.5)*.2}));var fr=0;(function anim(){ctx.clearRect(0,0,cv.width,cv.height);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.08;p.rot+=p.vr;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.c;ctx.fillRect(-p.r,-p.r,p.r*2,p.r*2);ctx.restore();});if(++fr<240)requestAnimationFrame(anim);else ctx.clearRect(0,0,cv.width,cv.height);})();}
+function copyToClipboard(){gatherAnswers();var t=document.getElementById('gatheredOutput').value;if(navigator.clipboard){navigator.clipboard.writeText(t).then(showCopied).catch(function(){fbC(t);});}else fbC(t);}
+function fbC(t){var ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0;';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);showCopied();}
+function showCopied(){var m=document.getElementById('gatheredCopied');if(m){m.classList.add('show');setTimeout(function(){m.classList.remove('show');},2500);}}
+function downloadPDF(){gatherAnswers();var t=document.getElementById('gatheredOutput').value;var win=window.open('','_blank');if(win){win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Georgia,serif;max-width:700px;margin:40px auto;padding:0 20px;line-height:1.7;}pre{white-space:pre-wrap;font-size:14px;}@media print{body{margin:20px;}}</style></head><body><pre>'+t.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</pre></body></html>');win.document.close();setTimeout(function(){win.print();},400);}}
+(function(){var btn=document.getElementById('backToTop');if(!btn)return;btn.addEventListener('click',function(){document.documentElement.scrollTop=0;document.body.scrollTop=0;});window.addEventListener('scroll',function(){btn.classList.toggle('show',window.scrollY>400);});})();function gatherAnswers(){var o='LESSON 14.4 \u2014 CARRY ON, MR. BOWDITCH\n';o+='\u2550'.repeat(44)+'\n\n';var sw=document.getElementById('journal-vocab');if(sw){o+='WORD STUDY SWYK (Vocabulary Choice Board)\n'+'\u2500'.repeat(36)+'\n\n';o+=sw.getAttribute('data-label')+'\n'+(sw.value.trim()||'(no answer)')+'\n\n';}o+='CHAPTER THINKING\n'+'\u2500'.repeat(36)+'\n';['journal-q1','journal-q2','journal-q3'].forEach(function(id){var el=document.getElementById(id);if(!el)return;o+='\n'+el.getAttribute('data-label')+'\n'+(el.value.trim()||'(no answer)')+'\n';});o+='\nWRITING CONNECTION\n'+'\u2500'.repeat(36)+'\n';var w=document.getElementById('journal-writing');if(w){o+='\n'+w.getAttribute('data-label')+'\n'+(w.value.trim()||'(no answer)')+'\n';}var g=document.getElementById('gatheredOutput');if(g)g.value=o;}</script></body></html>

@@ -1,0 +1,459 @@
+<!-- Lesson 7 Check-In — Johnny Tremain -->
+<!-- Week 7, Chapters 5–8, Weekly Check-In -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optima Academy Online — Week 7 Check-In: Johnny Tremain</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:system-ui,-apple-system,sans-serif;background:#F0F2F8;color:#0E1C42;line-height:1.6;-webkit-font-smoothing:antialiased;}
+.page-wrap{max-width:920px;margin:0 auto;background:#fff;box-shadow:0 0 40px rgba(14,28,66,.08);}
+.header{background:linear-gradient(135deg,#8B2500 0%,#A83820 60%,#6B1A00 100%);border-bottom:6px solid #D4A843;padding:20px 28px 18px;}
+.header-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.header-logo{width:52px;height:52px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.header-logo img{width:40px;height:40px;border-radius:50%;object-fit:cover;}
+.header-org{font-size:22px;color:#fff;font-weight:800;}
+.header-sub{font-size:11px;color:#D4A843;letter-spacing:.5px;}
+.header-title{font-family:Georgia,serif;font-size:28px;color:#fff;font-weight:700;margin-bottom:10px;}
+.header-title em{color:#D4A843;font-style:italic;}
+.header-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,168,67,.15);border:1.5px solid rgba(212,168,67,.4);border-radius:28px;padding:6px 16px;}
+.header-badge-icon{font-size:22px;}
+.header-badge-text{font-size:18px;color:#fff;font-weight:800;}
+.content{padding:28px;}
+.intro{background:linear-gradient(135deg,#FFF8F0 0%,#FFF3DC 100%);border:2px solid #F5E6C8;border-radius:18px;padding:22px 24px;margin-bottom:28px;}
+.intro p{font-size:17px;color:#5A4A3A;line-height:1.75;margin:0;}
+.total-bar{background:linear-gradient(135deg,#8B2500,#6B1A00);border-radius:18px;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.total-label{font-size:14px;color:#D4A843;text-transform:uppercase;letter-spacing:1px;font-weight:800;}
+.total-value{font-size:24px;color:#fff;font-weight:800;}
+.section{margin-bottom:28px;}
+.section-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:10px;border-bottom:3px solid #E2E8F4;}
+.section-icon{width:42px;height:42px;border-radius:14px;color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.section-icon.morph{background:#7B5EA7;}
+.section-icon.grammar{background:#8B2500;}
+.section-icon.spelling{background:#00796B;}
+.section-icon.reading{background:#C7922C;}
+.section-icon.writing{background:#52B788;}
+.section-title{font-size:20px;color:#0E1C42;font-weight:800;}
+.section-pts{font-size:12px;color:#7A88A8;font-weight:700;}
+.question{background:#fff;border:2px solid #E2E8F4;border-radius:16px;padding:20px 22px;margin-bottom:16px;box-shadow:0 2px 8px rgba(14,28,66,.03);}
+.q-number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#0E1C42;color:#fff;font-size:13px;font-weight:800;margin-right:10px;flex-shrink:0;}
+.q-label{font-size:11px;color:#7A88A8;text-transform:uppercase;letter-spacing:.8px;font-weight:700;margin-bottom:8px;}
+.q-text{font-size:17px;color:#0E1C42;line-height:1.7;margin-bottom:12px;font-weight:600;}
+.options{list-style:none;margin:0;padding:0;}
+.options li{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;margin-bottom:6px;border:2px solid #E2E8F4;border-radius:12px;font-size:16px;color:#3A4A6B;line-height:1.6;}
+.options li:last-child{margin-bottom:0;}
+.opt-letter{width:26px;height:26px;border-radius:50%;background:#E2E8F4;color:#0E1C42;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.excerpt{background:#F8F6F0;border-left:4px solid #8B2500;border-radius:0 12px 12px 0;padding:16px 20px;margin-bottom:14px;font-family:Georgia,serif;font-size:16px;color:#3A4A6B;line-height:1.75;font-style:italic;}
+.response-box{width:100%;min-height:80px;border:2px solid #E2E8F4;border-radius:12px;padding:14px 16px;font-family:system-ui,sans-serif;font-size:16px;color:#0E1C42;line-height:1.6;resize:vertical;background:#FAFBFE;}
+.response-box:focus{outline:none;border-color:#8B2500;box-shadow:0 0 0 3px rgba(139,37,0,.12);}
+.response-box.short{min-height:50px;}
+.pts{display:inline-flex;align-items:center;gap:4px;background:#FFF3DC;border:1.5px solid #F5E6C8;border-radius:20px;padding:3px 10px;font-size:12px;color:#8B6914;font-weight:800;margin-left:8px;}
+.hint{font-size:14px;color:#7A88A8;font-style:italic;margin-top:8px;}
+.footer{background:#0E1C42;padding:16px 28px;text-align:center;}
+.footer p{font-size:12px;color:rgba(255,255,255,.4);margin:0;}
+@media(max-width:600px){.content{padding:20px 16px;}.question{padding:16px;}}
+
+/* ─── GATHERED ANSWERS ─── */
+.gathered-card {
+  background:#fff; border:2px solid #E2E8F4; border-radius:18px;
+  overflow:hidden; box-shadow:0 2px 10px rgba(14,28,66,.04); margin-top:28px;
+}
+.gathered-header {
+  display:flex; align-items:center; gap:14px;
+  background:linear-gradient(135deg,#8B2500,#6B1A00);
+  padding:16px 22px; border-bottom:2px solid rgba(212,168,67,.3);
+}
+.gathered-header-icon { font-size:28px; line-height:1; }
+.gathered-header-label {
+  font-size:11px; color:#D4A843; font-weight:800;
+  text-transform:uppercase; letter-spacing:1px; margin-bottom:2px;
+}
+.gathered-header-title { font-family:Georgia,serif; font-size:20px; color:#fff; font-weight:700; }
+.gathered-body { padding:18px 22px 20px; }
+.gathered-intro { font-size:15px; color:#3A4A6B; margin-bottom:14px; line-height:1.55; }
+.gathered-output {
+  width:100%; min-height:280px; padding:16px 18px;
+  border:2px solid #E2E8F4; border-radius:12px;
+  font-family:system-ui,sans-serif; font-size:14px; color:#0E1C42;
+  line-height:1.65; background:#FAFBFF; resize:vertical; white-space:pre-wrap;
+}
+.gathered-actions { display:flex; gap:12px; margin-top:14px; flex-wrap:wrap; }
+.gathered-btn {
+  flex:1; min-width:200px; display:flex; align-items:center;
+  justify-content:center; gap:8px; padding:14px 20px;
+  border:none; border-radius:14px; font-size:15px; font-weight:800;
+  cursor:pointer; transition:transform .2s,box-shadow .2s;
+}
+.gathered-btn:hover { transform:translateY(-2px); }
+.gathered-btn-copy {
+  background:linear-gradient(135deg,#D4A843,#B8922A); color:#0E1C42;
+  box-shadow:0 4px 14px rgba(212,168,67,.25);
+}
+.gathered-btn-pdf {
+  background:linear-gradient(135deg,#8B2500,#6B1A00); color:#fff;
+  border:2px solid #D4A843; box-shadow:0 4px 14px rgba(139,37,0,.25);
+}
+.gathered-copied {
+  text-align:center; font-size:14px; font-weight:700;
+  color:#34B76F; margin-top:8px; display:none;
+}
+.gathered-copied.show { display:block; }
+
+/* ─── MC OPTION CLICK STATE ─── */
+.options li { cursor:pointer; transition:background .15s,border-color .15s; }
+.options li:hover { background:#FFF8F0; border-color:#D4A843; }
+.options li.selected { background:#FFF3DC; border-color:#C7922C; }
+.options li.selected .opt-letter { background:#8B2500; color:#fff; }
+
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="header">
+  <div class="header-brand">
+    <div class="header-logo">
+      <img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" />
+    </div>
+    <div>
+      <div class="header-org">Optima Academy Online</div>
+      <div class="header-sub">5th Grade ELA</div>
+    </div>
+  </div>
+  <div class="header-title"><em>Johnny Tremain</em></div>
+  <div class="header-badge">
+    <span class="header-badge-icon">⚒️</span>
+    <span class="header-badge-text">Week 7 &middot; Check-In</span>
+  </div>
+</div>
+
+<div class="content">
+  <div class="intro">
+    <p>This check-in covers Chapters 5&ndash;8 of <em>Johnny Tremain</em>&mdash;irregular plural nouns, the prefix <strong>con-/com-</strong>, plural spelling rules, and how Johnny&rsquo;s world transforms as Boston becomes a city at war. Take your time and use evidence from the novel.</p>
+  </div>
+
+  <div class="total-bar">
+    <div class="total-label">Total Points</div>
+    <div class="total-value">14 points</div>
+  </div>
+
+  <!-- SECTION 1: GRAMMAR -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon grammar">📝</div>
+      <div>
+        <div class="section-title">Grammar: Irregular Plural Nouns</div>
+        <div class="section-pts">3 points</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-label">Identification <span class="pts">1 pt</span></div>
+      <div class="q-text"><span class="q-number">1</span>Which sentence uses the correct irregular plural form?</div>
+      <ul class="options" data-qid="mcq1">
+        <li onclick="selectOption(this)" data-qid="mcq1"><span class="opt-letter">A</span>The mans of Boston gathered silently at Griffin&rsquo;s Wharf.</li>
+        <li onclick="selectOption(this)" data-qid="mcq1"><span class="opt-letter">B</span>The men of Boston gathered silently at Griffin&rsquo;s Wharf.</li>
+        <li onclick="selectOption(this)" data-qid="mcq1"><span class="opt-letter">C</span>The mens of Boston gathered silently at Griffin&rsquo;s Wharf.</li>
+        <li onclick="selectOption(this)" data-qid="mcq1"><span class="opt-letter">D</span>The menses of Boston gathered silently at Griffin&rsquo;s Wharf.</li>
+      </ul>
+    </div>
+
+    <div class="question">
+      <div class="q-label">Identification <span class="pts">1 pt</span></div>
+      <div class="q-text"><span class="q-number">2</span>Read the sentence. Which underlined word uses the correct irregular plural?</div>
+      <div class="excerpt">The <u>childs</u> of Boston watched as <u>women</u> and <u>mans</u> stood silently on the wharf.</div>
+      <ul class="options" data-qid="mcq2">
+        <li onclick="selectOption(this)" data-qid="mcq2"><span class="opt-letter">A</span>childs</li>
+        <li onclick="selectOption(this)" data-qid="mcq2"><span class="opt-letter">B</span>women</li>
+        <li onclick="selectOption(this)" data-qid="mcq2"><span class="opt-letter">C</span>mans</li>
+        <li onclick="selectOption(this)" data-qid="mcq2"><span class="opt-letter">D</span>None of the underlined words are correct.</li>
+      </ul>
+    </div>
+
+    <div class="question">
+      <div class="q-label">Application <span class="pts">1 pt</span></div>
+      <div class="q-text"><span class="q-number">3</span>Rewrite this sentence using the correct plural forms for all irregular nouns.</div>
+      <div class="excerpt">The womans and childs of the town watched as mans in disguise boarded the Dartmouth.</div>
+      <textarea id="resp1" oninput="gatherAnswers()" data-label="Q1 Written Response" class="response-box short" placeholder="Rewrite with correct irregular plurals..."></textarea>
+    </div>
+  </div>
+
+  <!-- SECTION 2: MORPHOLOGY -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon morph">🔬</div>
+      <div>
+        <div class="section-title">Morphology: Prefix con-/com-</div>
+        <div class="section-pts">2 points</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-label">Match Meaning <span class="pts">1 pt</span></div>
+      <div class="q-text"><span class="q-number">4</span>The prefix <strong>con-/com-</strong> means &ldquo;together&rdquo; or &ldquo;with.&rdquo; Match each word to its meaning.</div>
+      <div class="excerpt" style="font-style:normal;font-family:system-ui,sans-serif;">
+        <strong>Words:</strong> convene &nbsp; compose &nbsp; conflict &nbsp; compress &nbsp; connect<br><br>
+        <strong>A.</strong> to squeeze or press things together &rarr; <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
+        <strong>B.</strong> to link or join things &rarr; <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
+        <strong>C.</strong> a clash or struggle between opposing forces &rarr; <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
+        <strong>D.</strong> to come together for a meeting &rarr; <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
+        <strong>E.</strong> to put parts together to create a whole &rarr; <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
+      </div>
+      <textarea id="resp2" oninput="gatherAnswers()" data-label="Q2 Written Response" class="response-box short" placeholder="Write each letter and the matching word (e.g., A = compress)..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="q-label">Use It <span class="pts">1 pt</span></div>
+      <div class="q-text"><span class="q-number">5</span>Choose one word from the list above. Write a sentence that shows you understand its meaning. Try to connect it to Chapters 5&ndash;8 of <em>Johnny Tremain</em>.</div>
+      <textarea id="resp3" oninput="gatherAnswers()" data-label="Q3 Written Response" class="response-box" placeholder="My word: ___. Sentence: ..."></textarea>
+    </div>
+  </div>
+
+  <!-- SECTION 3: SPELLING -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon spelling">🔤</div>
+      <div>
+        <div class="section-title">Spelling: Plural Rules</div>
+        <div class="section-pts">3 points</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-label">Apply the Rule <span class="pts">1 pt</span></div>
+      <div class="q-text"><span class="q-number">6</span>Which is the correct plural of the word <strong>colony</strong>?</div>
+      <ul class="options" data-qid="mcq3">
+        <li onclick="selectOption(this)" data-qid="mcq3"><span class="opt-letter">A</span>colonys</li>
+        <li onclick="selectOption(this)" data-qid="mcq3"><span class="opt-letter">B</span>colonies</li>
+        <li onclick="selectOption(this)" data-qid="mcq3"><span class="opt-letter">C</span>colonyes</li>
+        <li onclick="selectOption(this)" data-qid="mcq3"><span class="opt-letter">D</span>colones</li>
+      </ul>
+    </div>
+
+    <div class="question">
+      <div class="q-label">Apply the Rule <span class="pts">1 pt</span></div>
+      <div class="q-text"><span class="q-number">7</span>Which is the correct plural of <strong>liberty</strong>?</div>
+      <ul class="options" data-qid="mcq4">
+        <li onclick="selectOption(this)" data-qid="mcq4"><span class="opt-letter">A</span>libertys</li>
+        <li onclick="selectOption(this)" data-qid="mcq4"><span class="opt-letter">B</span>liberties</li>
+        <li onclick="selectOption(this)" data-qid="mcq4"><span class="opt-letter">C</span>libertyes</li>
+        <li onclick="selectOption(this)" data-qid="mcq4"><span class="opt-letter">D</span>libertees</li>
+      </ul>
+    </div>
+
+    <div class="question">
+      <div class="q-label">Apply the Rule <span class="pts">1 pt</span></div>
+      <div class="q-text"><span class="q-number">8</span>Write the correct plural of each word and name the rule used: <strong>army, church, ship</strong>.</div>
+      <div class="hint">Rules: add -s / add -es / change y to ies</div>
+      <textarea id="resp4" oninput="gatherAnswers()" data-label="Q4 Written Response" class="response-box" placeholder="army → ___ (rule: ___) | church → ___ (rule: ___) | ship → ___ (rule: ___)"></textarea>
+    </div>
+  </div>
+
+  <!-- SECTION 4: READING -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon reading">📖</div>
+      <div>
+        <div class="section-title">Reading Comprehension: Chapters 5&ndash;8</div>
+        <div class="section-pts">4 points</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-label">Key Event <span class="pts">1 pt</span></div>
+      <div class="q-text"><span class="q-number">9</span>Why does Johnny try to sell his silver cup back to Merchant Lyte in Chapter 5&mdash;and what happens when he does?</div>
+      <ul class="options" data-qid="mcq5">
+        <li onclick="selectOption(this)" data-qid="mcq5"><span class="opt-letter">A</span>Johnny needs money for clothes; Lyte pays full price because the cup completes his set.</li>
+        <li onclick="selectOption(this)" data-qid="mcq5"><span class="opt-letter">B</span>Johnny needs money; Lyte refuses, calling it stolen property and pocketing the cup himself.</li>
+        <li onclick="selectOption(this)" data-qid="mcq5"><span class="opt-letter">C</span>Johnny wants to prove the cup is his; Lyte has him arrested again on the spot.</li>
+        <li onclick="selectOption(this)" data-qid="mcq5"><span class="opt-letter">D</span>Johnny wants to start fresh; Lyte agrees to buy the cup and apologizes for the trial.</li>
+      </ul>
+    </div>
+
+    <div class="question">
+      <div class="q-label">Character Analysis <span class="pts">1 pt</span></div>
+      <div class="q-text"><span class="q-number">10</span>What is Rab&rsquo;s response when the Port Act closes Boston Harbor and people are being thrown out of work? What does his reaction tell you about his character?</div>
+      <textarea id="resp5" oninput="gatherAnswers()" data-label="Q5 Written Response" class="response-box" placeholder="Rab says ___. This tells me he is the kind of person who..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="q-label">Inference <span class="pts">1 pt</span></div>
+      <div class="q-text"><span class="q-number">11</span>What does the Boston Tea Party (Chapter 6) reveal about how ordinary people feel about the conflict with Britain?</div>
+      <ul class="options" data-qid="mcq6">
+        <li onclick="selectOption(this)" data-qid="mcq6"><span class="opt-letter">A</span>Most people are afraid and wish the Sons of Liberty would stop before Britain retaliates.</li>
+        <li onclick="selectOption(this)" data-qid="mcq6"><span class="opt-letter">B</span>Most people watch in silence, unsure of who is right.</li>
+        <li onclick="selectOption(this)" data-qid="mcq6"><span class="opt-letter">C</span>The crowd at Griffin&rsquo;s Wharf understands and silently approves of what the &ldquo;Mohawks&rdquo; are doing.</li>
+        <li onclick="selectOption(this)" data-qid="mcq6"><span class="opt-letter">D</span>The people are horrified that tea worth so much money is being destroyed.</li>
+      </ul>
+    </div>
+
+    <div class="question">
+      <div class="q-label">Theme / Big Picture <span class="pts">1 pt</span></div>
+      <div class="q-text"><span class="q-number">12</span>By the end of Chapter 8, Johnny has changed from the boy we met in Chapter 1. Describe one specific way he has changed, using a detail from Chapters 5&ndash;8.</div>
+      <div class="hint">Think about: what he reads, how he rides, what work he does, how he sees Boston</div>
+      <textarea id="resp6" oninput="gatherAnswers()" data-label="Q6 Written Response" class="response-box" placeholder="One way Johnny has changed is ___. In Chapter ___, we see this when..."></textarea>
+    </div>
+  </div>
+
+  <!-- SECTION 5: WRITING -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-icon writing">✍️</div>
+      <div>
+        <div class="section-title">Writing: Argument Structure</div>
+        <div class="section-pts">2 points</div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-label">Identify the Best Introduction <span class="pts">1 pt</span></div>
+      <div class="q-text"><span class="q-number">13</span>Which of the following is the strongest argument essay introduction?</div>
+      <ul class="options" data-qid="mcq7">
+        <li onclick="selectOption(this)" data-qid="mcq7"><span class="opt-letter">A</span>This essay is about Johnny Tremain and how he changes in the novel.</li>
+        <li onclick="selectOption(this)" data-qid="mcq7"><span class="opt-letter">B</span>Johnny Tremain lives in Boston in 1773. He works at a printing shop after his accident.</li>
+        <li onclick="selectOption(this)" data-qid="mcq7"><span class="opt-letter">C</span>When a silversmith&rsquo;s accident destroys everything Johnny Tremain thought he was, he has to discover who he will become instead. By joining the Sons of Liberty, he exchanges a future built on craft for one built on courage.</li>
+        <li onclick="selectOption(this)" data-qid="mcq7"><span class="opt-letter">D</span>I think Johnny Tremain is brave because he does a lot of dangerous things throughout the novel.</li>
+      </ul>
+    </div>
+
+    <div class="question">
+      <div class="q-label">Write a Body Paragraph <span class="pts">1 pt</span></div>
+      <div class="q-text"><span class="q-number">14</span>Write one body paragraph for an argument essay about Johnny Tremain. Your paragraph must include: a reason, a piece of evidence from Chapters 5&ndash;8, and an explanation of how the evidence proves the reason.</div>
+      <div class="hint">Reminder: Reason = why your claim is true. Evidence = what happens in the book. Explanation = how the evidence connects to the reason.</div>
+      <textarea id="resp7" oninput="gatherAnswers()" data-label="Q7 Written Response" class="response-box" style="min-height:120px;" placeholder="One reason ____ is ____. In Chapter ___, Forbes shows ____. This proves ____..."></textarea>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Gathered Answers -->
+  <div class="gathered-card">
+    <div class="gathered-header">
+      <div class="gathered-header-icon">&#x1F4CB;</div>
+      <div>
+        <div class="gathered-header-label">Submit to Canvas</div>
+        <div class="gathered-header-title">Download Your Answers</div>
+      </div>
+    </div>
+    <div class="gathered-body">
+      <p class="gathered-intro">When you finish, all your written answers will appear in the box below. You can <strong>copy</strong> them to paste into Canvas, or <strong>download as a PDF</strong> and upload the file to the Canvas assignment.</p>
+      <textarea class="gathered-output" id="gatheredOutput" readonly placeholder="Your answers will appear here as you type them above..."></textarea>
+      <div class="gathered-actions">
+        <button class="gathered-btn gathered-btn-copy" onclick="copyGathered()">&#x1F4CB; Copy to Clipboard</button>
+        <button class="gathered-btn gathered-btn-pdf" onclick="downloadPDF()">&#x1F4C4; Download as PDF</button>
+      </div>
+      <div class="gathered-copied" id="gatheredCopied">&#x2705; Copied to clipboard!</div>
+    </div>
+  </div>
+
+<div class="footer">
+  <p>Optima Academy Online &bull; 5th Grade ELA &bull; Week 7 Check-In &bull; <em>Johnny Tremain</em></p>
+</div>
+
+</div>
+
+<script>
+/* ─── Gathered Answers ─── */
+function gatherAnswers() {
+  var ids = ["resp1", "resp2", "resp3", "resp4", "resp5", "resp6", "resp7"];
+  var mcGroups = [{"id":"mcq1","label":"Q1: Multiple Choice"}, {"id":"mcq2","label":"Q2: Multiple Choice"}, {"id":"mcq3","label":"Q3: Multiple Choice"}, {"id":"mcq4","label":"Q4: Multiple Choice"}, {"id":"mcq5","label":"Q5: Multiple Choice"}, {"id":"mcq6","label":"Q6: Multiple Choice"}, {"id":"mcq7","label":"Q7: Multiple Choice"}];
+  var lines = ['Week 7 Check-In — Johnny Tremain (Ch. 5–8)', '================================================', ''];
+  lines.push('WRITTEN RESPONSES');
+  lines.push('--------------------------------');
+  ids.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var lbl = el.getAttribute('data-label') || id;
+    lines.push('');
+    lines.push(lbl + ':');
+    lines.push(el.value.trim() || '(no answer)');
+  });
+  lines.push('');
+  lines.push('MULTIPLE CHOICE SELECTIONS');
+  lines.push('--------------------------------');
+  mcGroups.forEach(function(q) {
+    var sel = document.querySelector('[data-qid="' + q.id + '"].selected');
+    var letter = sel ? sel.querySelector('.opt-letter').textContent.trim() : '?';
+    lines.push('');
+    lines.push(q.label + ': ' + letter);
+  });
+  var el = document.getElementById('gatheredOutput');
+  if (el) el.value = lines.join('\n');
+}
+
+function selectOption(li) {
+  var ul = li.parentElement;
+  ul.querySelectorAll('li').forEach(function(x) { x.classList.remove('selected'); });
+  li.classList.add('selected');
+  gatherAnswers();
+}
+
+function copyGathered() {
+  var el = document.getElementById('gatheredOutput');
+  if (!el) return;
+  el.select();
+  try { document.execCommand('copy'); } catch(e) { navigator.clipboard.writeText(el.value); }
+  var note = document.getElementById('gatheredCopied');
+  if (note) {
+    note.classList.add('show');
+    setTimeout(function() { note.classList.remove('show'); }, 2500);
+  }
+}
+
+function downloadPDF() {
+  gatherAnswers();
+  var ids = ["resp1", "resp2", "resp3", "resp4", "resp5", "resp6", "resp7"];
+  var mcGroups = [{"id":"mcq1","label":"Q1: Multiple Choice"}, {"id":"mcq2","label":"Q2: Multiple Choice"}, {"id":"mcq3","label":"Q3: Multiple Choice"}, {"id":"mcq4","label":"Q4: Multiple Choice"}, {"id":"mcq5","label":"Q5: Multiple Choice"}, {"id":"mcq6","label":"Q6: Multiple Choice"}, {"id":"mcq7","label":"Q7: Multiple Choice"}];
+
+  var css = [
+    'body{font-family:Georgia,serif;max-width:680px;margin:36px auto;padding:0 24px;color:#111;line-height:1.75;}',
+    'h1{font-size:20px;border-bottom:3px solid #8B2500;padding-bottom:8px;margin-bottom:4px;}',
+    'h2{font-size:12px;color:#888;margin-bottom:24px;font-weight:normal;}',
+    '.sec{margin-top:22px;padding-top:14px;border-top:2px solid #eee;}',
+    '.sec-title{font-size:13px;font-weight:800;color:#8B2500;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}',
+    '.item{margin-top:14px;}',
+    '.item-label{font-size:11px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}',
+    '.item-ans{font-size:14px;padding:8px 12px;background:#f8f8f8;border-left:3px solid #8B2500;white-space:pre-wrap;min-height:28px;}',
+    '.empty{color:#bbb;font-style:italic;}',
+    '@media print{@page{margin:1.2cm;} body{margin:0;}}'
+  ].join('');
+
+  var body = '<h1>&#x1F4CB; Week 7 Check-In</h1>';
+  body += '<h2>Student: __________________________ &nbsp;&nbsp; Date: __________</h2>';
+  body += '<div class="sec"><div class="sec-title">Written Responses</div>';
+  ids.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var lbl = el.getAttribute('data-label') || id;
+    var val = el.value.trim();
+    body += '<div class="item"><div class="item-label">' + lbl + '</div>';
+    body += val
+      ? '<div class="item-ans">' + val.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>'
+      : '<div class="item-ans empty">(no answer written)</div>';
+    body += '</div>';
+  });
+  body += '</div>';
+  body += '<div class="sec"><div class="sec-title">Multiple Choice Selections</div>';
+  mcGroups.forEach(function(q) {
+    var sel = document.querySelector('[data-qid="' + q.id + '"].selected');
+    var letter = sel ? sel.querySelector('.opt-letter').textContent.trim() : null;
+    body += '<div class="item"><div class="item-label">' + q.label + '</div>';
+    body += letter
+      ? '<div class="item-ans">Selected: <strong>' + letter + '</strong></div>'
+      : '<div class="item-ans empty">(not selected)</div>';
+    body += '</div>';
+  });
+  body += '</div>';
+
+  var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Week 7 Check-In</title><style>' + css + '</style></head><body>' + body + '</body></html>';
+  var win = window.open('', '_blank');
+  if (!win) { alert('Please allow pop-ups to download your PDF.'); return; }
+  win.document.write(html);
+  win.document.close();
+  setTimeout(function() { win.print(); }, 500);
+}
+</script>
+</body>
+</html>

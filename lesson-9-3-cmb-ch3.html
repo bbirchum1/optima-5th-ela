@@ -1,0 +1,1606 @@
+<!-- Lesson 9.3 — Carry On, Mr. Bowditch, Chapter 3 -->
+<!-- Week 9, Day 3 (Use day) — Grammar: Active/Passive Voice use arc; Morphology: naut/nav/port use; Spelling: Vowel Teams SWYK (graded); WGRD on Tab 3 (no Poetry Corner) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optima Academy Online — Lesson 9.3: Carry On, Mr. Bowditch (Ch. 3)</title>
+<style>
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:system-ui,-apple-system,sans-serif;background:#F0F2F8;color:#0E1C42;line-height:1.6;-webkit-font-smoothing:antialiased;}
+.page-wrap{max-width:920px;margin:0 auto;background:#fff;box-shadow:0 0 40px rgba(14,28,66,.08);}
+
+/* ═══════════ PROGRESS BAR ═══════════ */
+.progress-wrap{position:sticky;top:0;z-index:200;background:#0E1C42;padding:8px 20px 10px;display:flex;align-items:center;gap:14px;}
+.progress-label{font-size:12px;color:#F9A825;font-weight:800;text-transform:uppercase;letter-spacing:.8px;white-space:nowrap;}
+.progress-track{flex:1;height:10px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden;}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#F9A825,#C8962A);border-radius:10px;transition:width .4s ease;}
+.progress-pct{font-size:13px;color:#F9A825;font-weight:800;min-width:36px;text-align:right;}
+
+/* ═══════════ HEADER ═══════════ */
+.header{background:linear-gradient(135deg,#0A2A4A 0%,#0E3A5C 60%,#14507A 100%);border-bottom:6px solid #C8962A;padding:20px 28px 18px;position:relative;overflow:hidden;}
+.header::after{content:'';position:absolute;bottom:6px;left:0;right:0;height:3px;background:linear-gradient(90deg,#C8962A,#F9A825,#C8962A);}
+.header-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.header-logo{width:52px;height:52px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+.header-logo img{width:48px;height:38px;}
+.header-org{font-size:22px;color:#fff;font-weight:800;line-height:1.15;}
+.header-sub{font-size:11px;color:#C8962A;letter-spacing:.5px;}
+.header-title{font-family:Georgia,serif;font-size:28px;color:#fff;font-weight:700;line-height:1.2;margin-bottom:10px;}
+.header-title em{color:#F9A825;font-style:italic;}
+.header-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,150,42,.15);border:1.5px solid rgba(200,150,42,.4);border-radius:28px;padding:6px 16px;}
+.header-badge-icon{font-size:22px;}
+.header-badge-text{font-size:18px;color:#fff;font-weight:800;}
+
+/* ═══════════ HERO BANNER ═══════════ */
+.hero-visual{background:linear-gradient(180deg,#020A18 0%,#061428 60%,#0D2240 100%);padding:0;position:relative;overflow:hidden;border-bottom:3px solid #C8962A;}
+.hero-visual svg{display:block;width:100%;height:auto;}
+
+/* ═══════════ INFO STRIP ═══════════ */
+.info-strip{display:flex;flex-wrap:wrap;background:#fff;border-bottom:2px solid #E2E8F4;}
+.info-cell{flex:1;min-width:150px;padding:12px 16px;border-right:1px solid #E2E8F4;display:flex;align-items:center;gap:10px;}
+.info-cell:last-child{border-right:none;}
+.info-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.info-label{font-size:10px;color:#7A88A8;text-transform:uppercase;letter-spacing:.5px;font-weight:700;}
+.info-value{font-size:16px;color:#0E1C42;font-weight:800;line-height:1.2;}
+.info-detail{font-size:11px;color:#3A4A6B;line-height:1.3;}
+
+/* ═══════════ QUOTE STRIP ═══════════ */
+.quote-strip{background:linear-gradient(135deg,#FFF8F0 0%,#FFF3DC 100%);border-bottom:2px solid #F5E6C8;padding:14px 28px;text-align:center;}
+.quote-strip-text{font-family:Georgia,serif;font-size:16px;font-style:italic;color:#5A4A3A;line-height:1.6;}
+.quote-strip-attr{font-size:11px;color:#7A88A8;font-weight:700;margin-top:4px;text-transform:uppercase;letter-spacing:.5px;}
+
+/* ═══════════ INTRO COLLAPSIBLE ═══════════ */
+.intro-section{transition:max-height .35s ease,padding .35s ease,opacity .25s ease;overflow:hidden;}
+.intro-section.collapsed .intro-content{display:none;}
+.intro-collapsed-bar{display:none;align-items:center;gap:12px;padding:10px 28px;background:#FFF8E8;border-bottom:2px solid #F5E6C8;cursor:pointer;transition:background .15s;}
+.intro-collapsed-bar:hover{background:#FFF8E8;}
+.intro-section.collapsed .intro-collapsed-bar{display:flex;}
+.intro-collapsed-icon{font-size:18px;}
+.intro-collapsed-text{font-size:14px;color:#3A2A10;font-weight:700;flex:1;}
+.intro-collapsed-toggle{font-size:12px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:.5px;}
+
+/* ═══════════ INTRO 2-COL ═══════════ */
+.intro-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px 28px 4px;}
+.intro-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);}
+.intro-card-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:2px solid;}
+.intro-card-head-icon{width:40px;height:40px;border-radius:50%;color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.intro-card-head-label{font-size:10px;color:#7A88A8;text-transform:uppercase;letter-spacing:.8px;font-weight:700;}
+.intro-card-head-title{font-size:18px;color:#0E1C42;font-weight:800;line-height:1.2;}
+.intro-card-body{padding:14px 18px;}
+.intro-card-body p{font-size:15px;color:#3A4A6B;line-height:1.65;margin-bottom:8px;}
+.intro-card-body p:last-child{margin-bottom:0;}
+.obj-line{display:flex;align-items:flex-start;gap:8px;font-size:15px;color:#0E1C42;line-height:1.55;margin-bottom:8px;}
+.obj-line:last-child{margin-bottom:0;}
+.obj-icon{flex-shrink:0;font-size:17px;}
+.theme-question .intro-card-head{background:#FFF3DC;border-color:#F5E6C8;}
+.theme-question .intro-card-head-icon{background:#F9A825;}
+.theme-objectives .intro-card-head{background:#E0F2F1;border-color:#B2DFDB;}
+.theme-objectives .intro-card-head-icon{background:#00695C;}
+
+/* ═══════════ TODAY'S PATH ═══════════ */
+.todays-path{display:flex;align-items:center;justify-content:center;gap:6px;padding:12px 28px;flex-wrap:wrap;}
+.path-pill{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;color:#fff;white-space:nowrap;}
+.path-pill.p-warmup{background:#52B788;}
+.path-pill.p-words{background:#F9A825;color:#0E1C42;}
+.path-pill.p-reading{background:#00796B;}
+.path-pill.p-assign{background:#7B5EA7;}
+.path-arrow{font-size:16px;color:#B0B8CC;}
+
+/* ═══════════ NEED STRIP ═══════════ */
+.need-strip{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:12px 28px 18px;}
+.need-strip-label{font-size:13px;color:#3A4A6B;font-weight:700;white-space:nowrap;}
+.need-chip{display:inline-flex;align-items:center;gap:5px;background:#E0F2F1;border:1.5px solid #B2DFDB;border-radius:20px;padding:5px 12px;font-size:13px;color:#0E1C42;font-weight:700;}
+
+/* ═══════════ TAB BAR ═══════════ */
+.tab-bar{position:sticky;top:38px;z-index:100;background:#fff;border-bottom:3px solid #E2E8F4;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{flex:1;min-width:130px;padding:12px 8px 11px;background:transparent;border:none;border-bottom:4px solid transparent;font-family:system-ui,sans-serif;font-size:13px;font-weight:700;color:#7A88A8;cursor:pointer;transition:all .2s;white-space:nowrap;line-height:1.3;text-align:center;}
+.tab-btn:hover{color:#0E1C42;background:#EEF4FF;}
+.tab-btn.active{color:#0E1C42;border-bottom-color:#C8962A;background:#fff;}
+.tab-btn .tab-check{display:none;font-size:12px;color:#34B76F;margin-left:4px;font-weight:800;}
+.tab-btn.visited .tab-check{display:inline;}
+.tab-panel{display:none;padding:24px 28px 36px;}
+.tab-panel.active{display:block;}
+
+/* ═══════════ VIDEO WRAP ═══════════ */
+.video-wrap{border-radius:18px;overflow:hidden;border:2px solid #E2E8F4;box-shadow:0 4px 20px rgba(14,28,66,.08);background:#000;margin:0 0 22px;}
+.video-wrap-header{display:flex;align-items:center;gap:12px;padding:12px 18px;background:linear-gradient(135deg,#0A2A4A,#0E3A5C);border-bottom:2px solid rgba(200,150,42,.25);}
+.video-wrap-type{font-size:10px;color:#00897B;text-transform:uppercase;letter-spacing:1.5px;font-weight:800;margin-bottom:2px;}
+.video-wrap-title{font-size:16px;color:#fff;font-weight:800;line-height:1.2;}
+.video-ratio{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}
+.video-ratio iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.video-placeholder{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#0E1C42,#1A2D5A);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;}
+.video-placeholder-icon{font-size:44px;margin-bottom:10px;opacity:.55;}
+.video-placeholder-text{font-size:14px;color:rgba(255,255,255,.55);font-weight:600;line-height:1.5;}
+.video-placeholder-id{font-size:11px;color:rgba(200,150,42,.5);font-family:monospace;margin-top:6px;letter-spacing:.5px;}
+
+/* ═══════════ ACTIVITY CARDS ═══════════ */
+.activity{background:#fff;border:2px solid #E2E8F4;border-radius:18px;margin-bottom:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);}
+.activity.bl-sage{border-left:6px solid #52B788;}
+.activity.bl-gold{border-left:6px solid #C8962A;}
+.activity.bl-teal{border-left:6px solid #00796B;}
+.activity.bl-plum{border-left:6px solid #7B5EA7;}
+.activity.bl-navy{border-left:6px solid #0E3A5C;}
+.activity-head{display:flex;align-items:center;gap:12px;padding:14px 20px 14px 18px;border-bottom:1.5px solid #E2E8F4;}
+.activity-num{width:38px;height:38px;border-radius:14px;color:#fff;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.activity-title{font-size:19px;color:#0E1C42;font-weight:800;line-height:1.2;}
+.activity-sub{font-size:12px;color:#7A88A8;}
+.activity-body{padding:18px 22px;}
+.activity-body p{font-size:17px;color:#3A4A6B;line-height:1.75;margin-bottom:12px;}
+.activity-body p:last-child{margin-bottom:0;}
+
+/* ═══════════ CALLOUTS ═══════════ */
+.callout{border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}
+.callout:last-child{margin-bottom:0;}
+.callout-icon{font-size:28px;flex-shrink:0;margin-top:2px;}
+.callout p{font-size:16px;color:#0E1C42;line-height:1.65;margin:0;}
+.callout-info{background:#EEF4FF;border:2px solid #C8D8F0;}
+.callout-think{background:#FFF3DC;border:2px solid #F5E6C8;}
+.callout-tip{background:#E8F5E9;border:2px solid #C8E6C9;}
+.callout-vocab{background:#F3E5F5;border:2px solid #E1BEE7;}
+.callout-submit{background:#FCE4EC;border:2px solid #F8BBD0;}
+
+/* ═══════════ SOCRATIC BOX ═══════════ */
+.socratic-box{background:linear-gradient(135deg,#F3E5F5 0%,#EDE7F6 100%);border:2px solid #D1C4E9;border-radius:14px;padding:16px 18px;margin-bottom:14px;}
+.socratic-box:last-child{margin-bottom:0;}
+.socratic-label{font-size:12px;color:#7B5EA7;text-transform:uppercase;letter-spacing:.5px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.socratic-q{font-size:16px;color:#0E1C42;line-height:1.7;font-style:italic;margin-bottom:8px;}
+.socratic-q:last-child{margin-bottom:0;}
+.socratic-q strong{font-style:normal;color:#0E1C42;}
+
+/* ═══════════ DOL COMPONENTS ═══════════ */
+.dol-model-sentence{background:#fff;border:1.5px solid #E2E8F4;border-left:4px solid #C8962A;border-radius:10px;padding:14px 18px;font-family:Georgia,serif;font-size:17px;color:#0E1C42;line-height:1.7;margin-bottom:8px;cursor:default;}
+.dol-highlight-word{padding:2px 4px;border-radius:4px;cursor:pointer;transition:background .2s,color .2s;}
+.dol-highlight-word:hover{background:#FFF8E8;}
+.dol-highlight-word.tapped{background:#FFF3CD;color:#7A5500;}
+.dol-explanation{font-size:14px;color:#C8962A;font-style:italic;padding:6px 12px;min-height:28px;margin-bottom:10px;}
+.dol-fix-sentence{background:#FFF8E1;border:1.5px solid #FFE082;border-left:4px solid #F9A825;border-radius:10px;padding:14px 18px;font-family:Georgia,serif;font-size:17px;color:#0E1C42;line-height:1.7;margin-bottom:10px;}
+.dol-check-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,#7B5EA7,#9575CD);color:#fff;border:none;border-radius:20px;font-family:system-ui,sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px;transition:transform .15s;}
+.dol-check-btn:hover{transform:translateY(-2px);}
+.dol-answer{display:none;margin-top:10px;padding:12px 16px;background:#E8F5E9;border:2px solid #C8E6C9;border-left:4px solid #4CAF50;border-radius:10px;font-size:15px;color:#0E1C42;line-height:1.65;}
+.dol-answer.show{display:block;}
+
+/* ═══════════ KEY CONCEPT ═══════════ */
+.key-concept{background:#FFF3DC;border:2px solid #F5E6C8;border-radius:14px;padding:16px 18px;margin-bottom:14px;}
+.key-concept:last-child{margin-bottom:0;}
+.key-concept-label{font-size:12px;color:#F9A825;text-transform:uppercase;letter-spacing:.5px;font-weight:800;margin-bottom:8px;}
+.key-concept p{font-size:15px;color:#0E1C42;line-height:1.7;margin-bottom:6px;}
+
+/* ═══════════ VOCABULARY FLIP CARDS ═══════════ */
+.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+.flip-card{perspective:800px;height:175px;cursor:pointer;}
+.flip-card-inner{position:relative;width:100%;height:100%;transition:transform .5s ease;transform-style:preserve-3d;}
+.flip-card.flipped .flip-card-inner{transform:rotateY(180deg);}
+.flip-card-front,.flip-card-back{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 16px;text-align:center;border:2px solid #E2E8F4;box-shadow:0 2px 10px rgba(14,28,66,.06);}
+.flip-card-front{background:#fff;border-top:5px solid #C8962A;}
+.flip-card-front .fc-emoji{font-size:28px;margin-bottom:6px;}
+.flip-card-front .fc-word{font-family:Georgia,serif;font-size:17px;font-weight:700;color:#0E1C42;margin-bottom:4px;}
+.flip-card-front .fc-tap{font-size:11px;color:#7A88A8;font-weight:600;letter-spacing:.3px;}
+.flip-card-back{background:linear-gradient(145deg,#0A2A4A,#0E3A5C);border-color:#0E1C42;transform:rotateY(180deg);}
+.flip-card-back .fc-def{font-size:13.5px;color:#fff;line-height:1.5;font-weight:600;}
+.flip-card-back .fc-word-back{font-size:10px;color:#C8962A;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:6px;}
+.fc-color-1 .flip-card-front{border-top-color:#C8962A;}
+.fc-color-2 .flip-card-front{border-top-color:#52B788;}
+.fc-color-3 .flip-card-front{border-top-color:#7B5EA7;}
+.fc-color-4 .flip-card-front{border-top-color:#52B788;}
+.fc-color-5 .flip-card-front{border-top-color:#E57373;}
+.fc-color-6 .flip-card-front{border-top-color:#0E1C42;}
+
+/* ═══════════ STORY JOURNEY TRACKER ═══════════ */
+.tracker-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);margin-bottom:22px;}
+.tracker-header{display:flex;align-items:center;gap:10px;padding:12px 20px;background:linear-gradient(135deg,#004D40 0%,#00695C 100%);border-bottom:2px solid #00796B;}
+.tracker-header-icon{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tracker-header-label{font-size:10px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.8px;font-weight:700;}
+.tracker-header-title{font-size:17px;color:#fff;font-weight:800;line-height:1.2;}
+.scene-wrap{width:100%;position:relative;height:210px;overflow:hidden;border-bottom:3px solid #8b6f47;background:linear-gradient(180deg,#c2ddf0 0%,#d4c9a8 30%,#c4a56a 50%,#8b7340 58%,#6b5a30 65%,#5a4a28 100%);user-select:none;}
+.cloud{position:absolute;background:rgba(255,255,255,.55);border-radius:50%;filter:blur(2px);}
+.hills-far{position:absolute;bottom:60px;left:0;right:0;height:80px;background:radial-gradient(ellipse 220px 60px at 10% 100%,#8abb6d 70%,transparent 71%),radial-gradient(ellipse 300px 70px at 30% 100%,#79ad58 70%,transparent 71%),radial-gradient(ellipse 250px 55px at 55% 100%,#8abb6d 70%,transparent 71%),radial-gradient(ellipse 280px 65px at 78% 100%,#6fa04a 70%,transparent 71%),radial-gradient(ellipse 200px 50px at 95% 100%,#8abb6d 70%,transparent 71%);}
+.path-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+.tree,.house,.flower,.landmark{position:absolute;pointer-events:none;z-index:1;filter:drop-shadow(0 2px 2px rgba(0,0,0,.15));}
+.flower{filter:none;font-size:12px;z-index:2;}
+.node{position:absolute;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;z-index:5;border:3px solid #f5f0e6;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.18),inset 0 -2px 0 rgba(0,0,0,.05);}
+.node.done{background:#00695C;border-color:#F9A825;box-shadow:0 0 0 2px #00695C,0 2px 8px rgba(0,105,92,.45);color:#fff;}
+.node.active{background:#F9A825;border-color:#FFF3DC;box-shadow:0 0 0 3px #F9A825,0 0 14px rgba(249,168,37,.5);transform:scale(1.15);color:#0E1C42;}
+.node.upcoming{opacity:.55;}
+.char-token{position:absolute;font-size:26px;z-index:20;pointer-events:none;filter:drop-shadow(0 3px 5px rgba(0,0,0,.3));animation:hop 2s ease-in-out infinite;}
+@keyframes hop{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-5px) rotate(3deg);}}
+.title-plaque{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:rgba(253,248,240,.92);border:2px solid #c4a882;border-radius:8px;padding:3px 18px 4px;z-index:15;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.1);white-space:nowrap;}
+.title-plaque h1{font-family:Georgia,serif;font-size:14px;font-weight:700;color:#004D40;line-height:1.2;}
+.title-plaque h1 em{color:#F9A825;font-style:italic;}
+.tracker-chapter-label{text-align:center;padding:10px 16px;font-size:13px;color:#7A88A8;font-weight:600;background:#FAFBFF;border-top:1px solid #E2E8F4;}
+.tracker-chapter-label strong{color:#F9A825;}
+
+/* ═══════════ OPEN BOOK CARD ═══════════ */
+.open-book-wrap{position:relative;margin-bottom:22px;padding:10px 6px 6px;}
+.open-book-cover{position:absolute;top:0;left:2px;right:2px;bottom:0;background:linear-gradient(145deg,#2A4278,#3B5998,#4A69A8);border-radius:6px 20px 20px 6px;box-shadow:0 4px 20px rgba(59,89,152,.2);}
+.open-book-spine{position:absolute;top:0;left:50%;transform:translateX(-50%);width:22px;height:100%;background:linear-gradient(90deg,#1E3060,#2A4278,#1E3060);border-radius:4px;z-index:1;box-shadow:inset 0 0 6px rgba(0,0,0,.2);}
+.open-book-pages-3{position:absolute;top:3px;left:14px;right:14px;bottom:3px;background:#E8E0D4;border-radius:3px 12px 12px 3px;z-index:2;}
+.open-book-pages-2{position:absolute;top:5px;left:16px;right:16px;bottom:4px;background:#F0E8DC;border-radius:3px 10px 10px 3px;z-index:3;}
+.open-book-pages-1{position:absolute;top:7px;left:18px;right:18px;bottom:5px;background:#F5EEE4;border-radius:3px 8px 8px 3px;z-index:4;}
+.open-book{position:relative;background:linear-gradient(170deg,#FFFDF8 0%,#FFF8F0 40%,#FFFDF8 100%);border:none;border-radius:3px 6px 6px 3px;padding:0;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:160px;z-index:5;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.open-book::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.04) 20%,rgba(0,0,0,.07) 40%,rgba(90,70,50,.10) 50%,rgba(0,0,0,.07) 60%,rgba(0,0,0,.04) 80%,transparent 100%);z-index:6;pointer-events:none;}
+.open-book::after{content:'';position:absolute;top:8px;bottom:8px;right:0;width:4px;background:repeating-linear-gradient(180deg,transparent 0px,transparent 3px,rgba(200,185,165,.3) 3px,rgba(200,185,165,.3) 4px);border-radius:0 4px 4px 0;z-index:6;pointer-events:none;}
+.open-book-left{display:flex;align-items:center;justify-content:center;padding:24px;opacity:.3;position:relative;}
+.open-book-left::before{content:'';position:absolute;top:8px;bottom:8px;left:0;width:4px;background:repeating-linear-gradient(180deg,transparent 0px,transparent 3px,rgba(200,185,165,.3) 3px,rgba(200,185,165,.3) 4px);border-radius:4px 0 0 4px;}
+.open-book-left-deco{font-size:48px;filter:grayscale(30%);}
+.open-book-right{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:24px 28px 24px 20px;}
+.open-book-title{font-family:Georgia,serif;font-size:22px;font-weight:700;color:#0E1C42;margin-bottom:4px;}
+.open-book-title em{color:#C8962A;}
+.open-book-chapter{font-family:Georgia,serif;font-size:16px;color:#5A4A3A;font-style:italic;margin-bottom:14px;}
+.open-book-prompt{font-size:14px;color:#7A88A8;font-weight:600;}
+
+/* ═══════════ READING LINKS ═══════════ */
+.reading-links{background:#EEF4FF;border:2px solid #C8D8F0;border-radius:14px;padding:16px 18px;margin-bottom:16px;}
+.reading-links-title{font-size:14px;color:#C8962A;font-weight:800;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;}
+.reading-link{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border:1.5px solid #C8D8F0;border-radius:10px;margin-bottom:8px;font-size:15px;color:#0E1C42;font-weight:600;text-decoration:none;transition:background .15s,border-color .15s;}
+.reading-link:last-child{margin-bottom:0;}
+.reading-link:hover{background:#EEF4FF;border-color:#C8962A;}
+.reading-link-icon{font-size:20px;}
+
+/* ═══════════ PAUSE & THINK ═══════════ */
+.pause-columns{display:grid;grid-template-columns:1fr;gap:16px;margin:14px 0;}
+
+/* ═══════════ ASSIGNMENT QUESTIONS ═══════════ */
+.q-block{background:#FAFBFF;border:2px solid #E2E8F4;border-radius:14px;padding:14px 18px;margin-bottom:12px;}
+.q-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#C8962A;color:#fff;font-weight:800;font-size:14px;margin-right:8px;vertical-align:middle;}
+.q-text{font-size:16px;color:#0E1C42;line-height:1.65;margin-bottom:4px;}
+
+/* ═══════════ TEXTBOX PROMPT ═══════════ */
+.textbox-prompt{background:linear-gradient(135deg,#C8962A,#D4A843);color:#fff;font-size:14px;font-weight:700;padding:10px 16px;border-radius:10px 10px 0 0;margin-top:10px;line-height:1.5;}
+
+/* ═══════════ JOURNAL TEXTBOX ═══════════ */
+.journal-box{width:100%;min-height:70px;padding:12px 14px;border:2px solid #E2E8F4;border-radius:0 0 12px 12px;font-family:system-ui,sans-serif;font-size:15px;color:#0E1C42;line-height:1.6;resize:vertical;background:#FAFBFF;transition:border-color .2s,box-shadow .2s;}
+.journal-box:focus{outline:none;border-color:#C8962A;box-shadow:0 0 0 3px rgba(200,150,42,.15);background:#fff;}
+.journal-box::placeholder{color:#B0B8CC;font-style:italic;}
+.journal-box.standalone{border-radius:12px;margin-top:10px;}
+.journal-label{font-size:12px;color:#7A88A8;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:12px;display:flex;align-items:center;gap:6px;}
+.journal-label .saved-dot{width:8px;height:8px;border-radius:50%;background:#B0B8CC;transition:background .3s;}
+.journal-label .saved-dot.saved{background:#34B76F;}
+
+/* ═══════════ SHOW WHAT YOU KNOW ═══════════ */
+.swyk{background:linear-gradient(135deg,#FFF8F0 0%,#FFF3DC 100%);border:2px solid #F5E6C8;border-left:6px solid #C8962A;border-radius:14px;padding:16px 18px;margin-top:16px;}
+.swyk-label{font-size:12px;color:#C8962A;text-transform:uppercase;letter-spacing:.8px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.swyk-prompt{font-size:15px;color:#0E1C42;line-height:1.6;margin-bottom:8px;}
+
+/* ═══════════ FILL-IN-BLANK GAME ═══════════ */
+.fillin-game{margin:14px 0;}
+.fillin-item{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#fff;border:2px solid #E2E8F4;border-radius:12px;margin-bottom:10px;font-size:16px;color:#0E1C42;flex-wrap:wrap;}
+.fillin-input{display:inline-block;width:120px;padding:4px 10px;border:2px dashed #7B5EA7;border-radius:8px;font-family:Georgia,serif;font-size:15px;font-weight:700;color:#7B5EA7;text-align:center;background:#FAFBFF;outline:none;transition:border-color .2s,background .2s;}
+.fillin-input:focus{border-color:#C8962A;background:#fff;}
+.fillin-input.correct{border-color:#4CAF50;background:#E8F5E9;color:#1B5E20;border-style:solid;}
+.fillin-input.wrong{border-color:#E57373;background:#FFEBEE;animation:shake .4s ease;}
+.fillin-check-btn{display:block;margin:14px auto 0;padding:10px 24px;background:linear-gradient(135deg,#7B5EA7,#9575CD);color:#fff;border:none;border-radius:24px;font-family:system-ui,sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:transform .2s;}
+.fillin-check-btn:hover{transform:translateY(-2px);}
+.fillin-feedback{text-align:center;padding:10px;font-size:15px;font-weight:700;color:#4CAF50;display:none;}
+.fillin-feedback.show{display:block;}
+
+/* ═══════════ VOCAB MATCH GAME ═══════════ */
+.match-game{margin:14px 0;}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.match-item{padding:12px 14px;background:#fff;border:2px solid #E2E8F4;border-radius:12px;font-size:14px;color:#0E1C42;font-weight:600;cursor:pointer;text-align:center;line-height:1.5;transition:background .15s,border-color .2s,transform .15s;user-select:none;}
+.match-item:hover{transform:translateY(-1px);border-color:#C8962A;}
+.match-item.selected{background:#FFF8E8;border-color:#C8962A;box-shadow:0 0 0 3px rgba(200,150,42,.2);}
+.match-item.matched{background:#E8F5E9;border-color:#4CAF50;pointer-events:none;opacity:.8;}
+.match-item.wrong-flash{background:#FFEBEE;border-color:#E57373;animation:shake .4s ease;}
+.match-item.is-word{font-weight:800;font-family:Georgia,serif;font-size:16px;}
+.match-feedback{text-align:center;padding:10px;font-size:15px;font-weight:700;color:#4CAF50;display:none;}
+.match-feedback.show{display:block;}
+
+/* ═══════════ WORD SORT GAME ═══════════ */
+.sort-game{margin:14px 0;}
+.sort-bank{display:flex;flex-wrap:wrap;gap:8px;padding:14px;background:#FAFBFF;border:2px dashed #C8D8F0;border-radius:14px;margin-bottom:14px;min-height:52px;justify-content:center;}
+.sort-chip{display:inline-flex;align-items:center;padding:8px 16px;background:#fff;border:2px solid #E2E8F4;border-radius:24px;font-size:15px;font-weight:700;color:#0E1C42;cursor:grab;user-select:none;transition:transform .15s,box-shadow .15s,background .2s,border-color .2s;}
+.sort-chip:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(14,28,66,.12);}
+.sort-chip.placed{opacity:.4;pointer-events:none;}
+.sort-chip.correct{background:#E8F5E9;border-color:#4CAF50;color:#1B5E20;}
+.sort-chip.wrong{background:#FFEBEE;border-color:#E57373;color:#B71C1C;animation:shake .4s ease;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.sort-columns{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.sort-col{background:#fff;border:2px solid #E2E8F4;border-radius:14px;overflow:hidden;min-height:160px;}
+.sort-col-header{padding:10px 14px;font-size:15px;font-weight:800;color:#fff;text-align:center;}
+.sort-col-drop{padding:12px;display:flex;flex-direction:column;gap:8px;min-height:120px;}
+.sort-col-drop .sort-chip{cursor:pointer;}
+.sort-col-drop .sort-chip:hover{transform:none;box-shadow:none;}
+.sort-score{text-align:center;padding:10px;font-size:14px;font-weight:700;color:#4CAF50;display:none;}
+.sort-score.show{display:block;}
+
+/* ═══════════ GRAMMAR SPOTTER GAME ═══════════ */
+.spotter-game{margin:14px 0;}
+.spotter-sentence{background:#fff;border:2px solid #E2E8F4;border-radius:12px;padding:14px 16px;margin-bottom:10px;line-height:1.8;font-size:16px;color:#0E1C42;}
+.spotter-word{display:inline;padding:2px 6px;border-radius:6px;cursor:pointer;transition:background .15s,color .15s;border:2px solid transparent;}
+.spotter-word:hover{background:#FFF8E8;border-color:#C8962A;}
+.spotter-word.correct-reveal{background:#E8F5E9;border-color:#4CAF50;color:#1B5E20;font-weight:700;}
+.spotter-word.wrong-reveal{background:#FFEBEE;border-color:#E57373;text-decoration:line-through;}
+.spotter-result{font-size:14px;font-weight:700;padding:8px 14px;border-radius:10px;margin-top:6px;display:none;}
+.spotter-result.show{display:block;}
+.spotter-result.win{background:#E8F5E9;color:#1B5E20;}
+.spotter-result.miss{background:#FFF3DC;color:#E65100;}
+
+/* ═══════════ GATHERED ANSWERS ═══════════ */
+.gathered-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);margin-top:22px;}
+.gathered-header{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#0A2A4A,#0E3A5C);padding:16px 22px;border-bottom:2px solid rgba(200,150,42,.25);}
+.gathered-header-icon{font-size:28px;line-height:1;}
+.gathered-header-label{font-size:11px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+.gathered-header-title{font-family:Georgia,serif;font-size:20px;color:#fff;font-weight:700;}
+.gathered-body{padding:18px 22px 20px;}
+.gathered-intro{font-size:15px;color:#3A4A6B;margin-bottom:14px;line-height:1.55;}
+.gathered-output{width:100%;min-height:300px;padding:16px 18px;border:2px solid #E2E8F4;border-radius:12px;font-family:system-ui,sans-serif;font-size:14px;color:#0E1C42;line-height:1.65;background:#FAFBFF;resize:vertical;white-space:pre-wrap;}
+.gathered-actions{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
+.gathered-btn{flex:1;min-width:200px;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border:none;border-radius:14px;font-family:system-ui,sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:transform .2s,box-shadow .2s;}
+.gathered-btn:hover{transform:translateY(-2px);}
+.gathered-btn-copy{background:linear-gradient(135deg,#0E3A5C,#1A4A6C);color:#fff;box-shadow:0 4px 14px rgba(14,58,92,.25);}
+.gathered-btn-pdf{background:linear-gradient(135deg,#0A2A4A,#0E3A5C);color:#fff;border:2px solid #C8962A;box-shadow:0 4px 14px rgba(14,28,66,.25);}
+.gathered-copied{text-align:center;font-size:14px;font-weight:700;color:#4CAF50;margin-top:8px;display:none;}
+.gathered-copied.show{display:block;}
+
+/* ═══════════ TURN-IN CHECKLIST ═══════════ */
+.turn-in-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);margin-top:18px;}
+.turn-in-header{display:flex;align-items:center;gap:14px;background:#EEF4FF;padding:18px 22px;border-bottom:2px solid #C8D8F0;}
+.turn-in-header-icon{font-size:36px;line-height:1;flex-shrink:0;}
+.turn-in-header-label{font-size:11px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+.turn-in-header-title{font-family:Georgia,serif;font-size:22px;color:#0E1C42;font-weight:700;line-height:1.15;}
+.turn-in-body{padding:18px 22px 20px;}
+.turn-in-intro{font-size:15px;color:#3A4A6B;margin-bottom:16px;line-height:1.55;}
+.turn-in-checklist{display:flex;flex-direction:column;gap:10px;}
+.turn-in-item{display:flex;align-items:center;gap:14px;padding:12px 16px;background:#FAFBFF;border:1.5px solid #E2E8F4;border-radius:12px;cursor:pointer;transition:background .2s,border-color .2s;}
+.turn-in-item:hover{background:#EEF4FF;border-color:#C8D8F0;}
+.turn-in-item.checked{background:#FFF8E8;border-color:#F5E6C8;}
+.turn-in-item .turn-in-check{width:26px;height:26px;border-radius:8px;border:2px solid #C8D8F0;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;line-height:1;transition:background .2s,border-color .2s;}
+.turn-in-item.checked .turn-in-check{background:#4CAF50;border-color:#4CAF50;color:#fff;}
+.turn-in-item-text{font-size:15px;color:#0E1C42;font-weight:600;line-height:1.55;flex:1;}
+.turn-in-item.checked .turn-in-item-text{color:#3A4A6B;}
+
+/* ═══════════ TAB TRANSITION ═══════════ */
+.tab-next-wrap{text-align:center;padding:24px 0 8px;}
+.tab-transition-voice{font-family:Georgia,serif;font-size:15px;font-style:italic;color:#5A4A3A;margin-bottom:12px;line-height:1.6;}
+.tab-next-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;background:linear-gradient(135deg,#0E3A5C,#1A4A6C);color:#fff;border:none;border-radius:28px;font-family:system-ui,sans-serif;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(14,58,92,.3);transition:transform .2s,box-shadow .2s;}
+.tab-next-btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(14,58,92,.4);}
+
+/* ═══════════ BACK TO TOP ═══════════ */
+.back-to-top{position:fixed;bottom:28px;right:28px;height:44px;padding:0 18px 0 14px;border-radius:22px;background:linear-gradient(135deg,#0E3A5C,#1A4A6C);color:#fff;border:2px solid #C8962A;font-size:14px;font-weight:800;font-family:system-ui,sans-serif;cursor:pointer;box-shadow:0 4px 18px rgba(0,105,92,.35);display:flex;align-items:center;gap:6px;opacity:0;visibility:hidden;transform:translateY(20px);transition:opacity .3s,visibility .3s,transform .3s,box-shadow .2s;z-index:500;letter-spacing:.3px;}
+.back-to-top.show{opacity:1;visibility:visible;transform:translateY(0);}
+.back-to-top:hover{box-shadow:0 6px 24px rgba(200,150,42,.4);transform:translateY(-3px);}
+
+/* ═══════════ DOWNLOAD BUTTON ═══════════ */
+.download-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px 24px;background:linear-gradient(135deg,#0E1C42,#1A2D5A);color:#fff;border:2px solid #C8962A;border-radius:16px;font-family:system-ui,sans-serif;font-size:17px;font-weight:800;cursor:pointer;margin-top:18px;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(14,28,66,.25);}
+.download-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(14,28,66,.35);}
+.download-btn-sub{font-size:12px;color:rgba(255,255,255,.6);font-weight:600;text-align:center;margin-top:6px;}
+
+/* ═══════════ CONFETTI ═══════════ */
+#confettiCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10000;}
+
+/* ═══════════ FOOTER ═══════════ */
+.footer{background:#0A2A4A;border-top:4px solid #C8962A;padding:18px 28px;text-align:center;}
+.footer-main{font-size:14px;color:#fff;margin-bottom:4px;}
+.footer-main span{color:#C8962A;font-weight:700;}
+.footer-sub{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:2px;}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.3);}
+
+/* ═══════════ DISCOVERY REVEAL ═══════════ */
+.reveal-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,#0E3A5C,#1A4A6C);color:#fff;border:none;border-radius:20px;font-family:system-ui,sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px;transition:transform .15s;}
+.reveal-btn:hover{transform:translateY(-2px);}
+.reveal-content{display:none;margin-top:10px;padding:12px 16px;background:#E8F5E9;border:2px solid #C8E6C9;border-left:4px solid #4CAF50;border-radius:10px;font-size:15px;color:#0E1C42;line-height:1.65;}
+.reveal-content.show{display:block;}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:620px){
+  .intro-2col{grid-template-columns:1fr;}
+  .vocab-grid{grid-template-columns:1fr;}
+  .flip-card{height:165px;}
+  .header-title{font-size:22px;}
+  .tab-btn{min-width:100px;font-size:11px;padding:10px 6px 9px;}
+  .todays-path{gap:4px;}
+  .path-pill{font-size:11px;padding:5px 10px;}
+  .sort-columns{grid-template-columns:1fr;}
+  .match-grid{grid-template-columns:1fr;}
+  .pause-columns{grid-template-columns:1fr;}
+}
+
+/* ═══════════ CMB-SPECIFIC ADDITIONS ═══════════ */
+/* Extra bl- colors for CMB lessons */
+.activity.bl-copper{border-left:6px solid #C8962A;}
+
+/* WGRD block */
+.wgrd-block{background:linear-gradient(135deg,#EEF4FF 0%,#E8F0FA 100%);border:2px solid #C8D8F0;border-left:5px solid #7B5EA7;border-radius:14px;padding:18px 20px;margin-bottom:20px;}
+.wgrd-label{font-size:11px;color:#7B5EA7;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;}
+.wgrd-strategy{font-size:17px;color:#0E1C42;font-weight:800;margin-bottom:8px;line-height:1.3;}
+.wgrd-body{font-size:15px;color:#3A4A6B;line-height:1.7;}
+
+/* Story Journey Tracker */
+.tracker-card{background:linear-gradient(135deg,#061A30,#0A2A4A);border-radius:18px;overflow:hidden;margin-bottom:22px;box-shadow:0 4px 20px rgba(6,26,48,.3);}
+.tracker-header{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid rgba(200,150,42,.2);}
+.tracker-header-icon{font-size:30px;}
+.tracker-header-label{font-size:11px;color:#C8962A;text-transform:uppercase;letter-spacing:.8px;font-weight:700;}
+.tracker-header-title{font-size:17px;color:#fff;font-weight:800;}
+.tracker-header-title em{color:#C8962A;}
+.tracker-scene{position:relative;height:180px;overflow:hidden;}
+.tracker-path-svg{position:absolute;top:0;left:0;width:100%;height:100%;}
+.landmark{position:absolute;opacity:.4;z-index:1;}
+.node{position:absolute;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;z-index:3;border:2px solid transparent;}
+.node.done{background:rgba(200,150,42,.2);border-color:rgba(200,150,42,.4);opacity:.6;}
+.node.active{background:rgba(200,150,42,.4);border-color:#C8962A;opacity:1;box-shadow:0 0 12px rgba(200,150,42,.5);}
+.node.upcoming{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.15);opacity:.4;}
+.char-token{position:absolute;font-size:26px;z-index:5;transition:all .6s ease;filter:drop-shadow(0 2px 6px rgba(200,150,42,.8));}
+.tracker-chapter-label{padding:10px 20px;background:rgba(200,150,42,.08);font-size:13px;color:#C8962A;font-weight:700;border-top:1px solid rgba(200,150,42,.2);}
+
+/* Open Book (CMB navy cover) */
+.open-book-wrap{margin-bottom:22px;}
+.open-book{display:flex;border-radius:16px;overflow:hidden;box-shadow:0 6px 30px rgba(10,42,74,.25);border:2px solid rgba(200,150,42,.4);}
+.book-spine{width:22px;background:linear-gradient(180deg,#030E1C,#061A30);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.book-spine-text{font-size:8px;color:rgba(200,150,42,.6);letter-spacing:2px;text-transform:uppercase;writing-mode:vertical-lr;transform:rotate(180deg);}
+.book-page{flex:1;background:#FFFEF8;padding:20px 22px;}
+.book-page-left{flex:1;background:linear-gradient(145deg,#061A30,#0A2A4A,#0E3A5C);padding:20px 22px;border-right:2px solid rgba(200,150,42,.25);}
+.book-page-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.book-page-left .book-page-label{color:#C8962A;}
+.book-page .book-page-label{color:#7A88A8;}
+.book-page-title{font-family:Georgia,serif;font-size:17px;font-weight:700;margin-bottom:10px;line-height:1.3;}
+.book-page-left .book-page-title{color:#fff;}
+.book-page .book-page-title{color:#0E1C42;}
+.book-page-body{font-size:14px;line-height:1.7;}
+.book-page-left .book-page-body{color:rgba(255,255,255,.75);}
+.book-page .book-page-body{color:#3A4A6B;}
+.book-page-link{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:#0E3A5C;color:#fff;border:none;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;margin-top:12px;}
+
+/* Poetry block */
+.poetry-block{background:linear-gradient(135deg,#F0F5FF 0%,#E8F0FA 100%);border:2px solid #C8D8F0;border-left:5px solid #0E3A5C;border-radius:12px;padding:20px 24px;margin:14px 0;}
+.poetry-label{font-size:11px;color:#0E3A5C;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;}
+.poetry-title{font-family:Georgia,serif;font-size:14px;font-weight:700;color:#0E1C42;margin-bottom:2px;}
+.poetry-author{font-size:12px;color:#7A88A8;margin-bottom:14px;}
+.poetry-lines{font-family:Georgia,serif;font-size:16px;color:#1A3A5C;line-height:2.1;}
+
+/* RWM block */
+.rwm-block{background:linear-gradient(135deg,#FFF8F0,#FFF0E0);border:2px solid #FFD0A0;border-left:5px solid #C8962A;border-radius:14px;padding:18px 20px;margin-top:8px;}
+.rwm-label{font-size:11px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
+.rwm-sentence{font-family:Georgia,serif;font-size:17px;color:#1A2A4A;line-height:1.7;padding:12px 16px;background:rgba(255,255,255,.6);border-radius:8px;margin-bottom:14px;border-left:4px solid #C8962A;}
+.rwm-step{margin-bottom:12px;}
+.rwm-step-label{font-size:12px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;}
+.rwm-frame{font-family:Georgia,serif;font-size:15px;color:#1A2A4A;background:rgba(255,255,255,.8);border-radius:8px;padding:10px 14px;margin-top:8px;border:1.5px dashed #C8962A;line-height:1.8;}
+
+/* Pause card */
+.pause-card{background:#FFF8E1;border:2px solid #FFE082;border-radius:14px;padding:18px 20px;margin-bottom:16px;}
+.pause-label{font-size:11px;color:#E65100;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
+.pause-q{font-size:15px;color:#1A2A4A;line-height:1.7;font-style:italic;margin-bottom:12px;}
+
+/* Vocab choice grid (Day 4) */
+.vocab-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;}
+.vocab-choice-card{border:2.5px solid #E2E8F4;border-radius:16px;padding:14px 16px;background:#FAFBFF;cursor:pointer;transition:all .2s;text-align:left;}
+.vocab-choice-card:hover{border-color:#C8962A;background:#FFF8E8;}
+.vocab-choice-card.selected{border-color:#C8962A;background:#FFF3D0;box-shadow:0 0 0 3px rgba(200,150,42,.15);}
+.vocab-choice-num{font-size:11px;color:#7A88A8;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.vocab-choice-title{font-size:14px;color:#0E1C42;font-weight:800;margin-bottom:4px;}
+.vocab-choice-desc{font-size:13px;color:#3A4A6B;line-height:1.5;}
+
+/* Choice game (use-it activities) */
+.choice-game{display:flex;flex-direction:column;gap:14px;margin:14px 0;}
+.choice-item{background:#FAFBFF;border:2px solid #E2E8F4;border-radius:12px;padding:14px 16px;}
+.choice-item.done{background:#F0FFF4;border-color:#C8E6C9;}
+.choice-prompt{font-size:16px;color:#0E1C42;line-height:1.6;margin-bottom:10px;}
+.choice-blank{display:inline-block;min-width:100px;border-bottom:2px solid #C8962A;padding:0 4px;color:#C8962A;font-style:italic;}
+.choice-row{display:flex;gap:8px;flex-wrap:wrap;}
+.choice-btn{padding:8px 16px;border:2px solid #E2E8F4;border-radius:24px;background:#fff;font-family:system-ui,sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;}
+.choice-btn:hover{border-color:#C8962A;background:#FFF8E8;}
+.choice-btn.correct{background:#C8E6C9;border-color:#4CAF50;color:#1B5E20;cursor:default;}
+.choice-btn.wrong{background:#FFCDD2;border-color:#EF9A9A;color:#B71C1C;opacity:.6;cursor:default;}
+.choice-score{font-size:14px;color:#3A4A6B;margin-top:8px;display:none;}
+.choice-score.show{display:block;}
+
+/* Odd One Out / Root Detective (Day 4 Word Study) */
+.root-det-group,.odd-group,.wins-group{background:#FAFBFF;border:2px solid #E2E8F4;border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+.root-det-group.done,.odd-group.done,.wins-group.done{background:#F0FFF4;border-color:#C8E6C9;}
+.root-det-word{font-family:Georgia,serif;font-size:20px;font-weight:800;color:#0E1C42;margin-bottom:10px;}
+.root-det-row,.odd-row,.wins-options{display:flex;gap:10px;flex-wrap:wrap;}
+.wins-options{flex-direction:column;}
+.root-det-btn,.odd-btn{padding:8px 18px;border:2px solid #E2E8F4;border-radius:22px;background:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;}
+.wins-btn{padding:10px 16px;border:2px solid #E2E8F4;border-radius:10px;background:#fff;font-size:14px;font-weight:600;cursor:pointer;text-align:left;line-height:1.5;transition:all .15s;}
+.root-det-btn:hover,.odd-btn:hover,.wins-btn:hover{border-color:#C8962A;background:#FFF8E8;}
+.root-det-btn.correct,.odd-btn.correct,.wins-btn.correct{background:#C8E6C9;border-color:#4CAF50;color:#1B5E20;}
+.root-det-btn.wrong,.odd-btn.wrong,.wins-btn.wrong{background:#FFCDD2;border-color:#EF9A9A;color:#B71C1C;opacity:.6;}
+.root-det-msg,.odd-msg,.wins-msg{font-size:14px;margin-top:8px;display:none;line-height:1.5;}
+.root-det-msg.show,.odd-msg.show,.wins-msg.show{display:block;color:#1B5E20;}
+
+/* DOP model (DOL) fix sentence */
+.dol-model-sentence{background:#fff;border:1.5px solid #E2E8F4;border-left:4px solid #C8962A;border-radius:10px;padding:14px 18px;font-family:Georgia,serif;font-size:17px;color:#0E1C42;line-height:1.7;margin-bottom:8px;cursor:default;}
+.dol-fix-sentence{background:#FFF8E1;border:1.5px solid #FFE082;border-left:4px solid #F9A825;border-radius:10px;padding:14px 18px;font-family:Georgia,serif;font-size:17px;color:#0E1C42;line-height:1.7;margin-bottom:10px;}
+
+</style>
+</head>
+<body>
+<canvas id="confettiCanvas"></canvas>
+<div id="pageTop"></div>
+<div class="page-wrap">
+
+<!-- ═══════════ PROGRESS BAR ═══════════ -->
+<div class="progress-wrap">
+  <div class="progress-label">🔤 Day 3 of 4</div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-pct" id="progressPct">0%</div>
+</div>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<div class="header">
+  <div class="header-brand">
+    <div class="header-logo"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy"></div>
+    <div>
+      <div class="header-org">Optima Academy Online</div>
+      <div class="header-sub">5th Grade ELA &middot; Week 9</div>
+    </div>
+  </div>
+  <div class="header-title">Lesson 9.3 &mdash; <em>Carry On, Mr. Bowditch</em></div>
+  <div class="header-badge">
+    <span class="header-badge-icon">📜</span>
+    <span class="header-badge-text">Ch. 3 &middot; Word from the Pilgrim</span>
+  </div>
+</div>
+
+<!-- ═══════════ HERO BANNER ═══════════ -->
+<div class="hero-visual">
+<svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyG3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#010810"/>
+      <stop offset="55%" stop-color="#061428"/>
+      <stop offset="100%" stop-color="#0B1E38"/>
+    </linearGradient>
+    <linearGradient id="waterG3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#071428"/>
+      <stop offset="100%" stop-color="#020810"/>
+    </linearGradient>
+    <radialGradient id="moonGlow3" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F5ECD0" stop-opacity="0.35"/>
+      <stop offset="55%" stop-color="#F5ECD0" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#F5ECD0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="moonPath3" cx="50%" cy="0%" r="100%" fx="50%" fy="0%">
+      <stop offset="0%" stop-color="#E8D590" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#E8D590" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="dockG3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E0E06"/>
+      <stop offset="100%" stop-color="#0E0804"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="900" height="280" fill="url(#skyG3)"/>
+
+  <!-- Stars -->
+  <g fill="#E0D8C0" opacity="0.75">
+    <circle cx="38" cy="18" r="1.2"/><circle cx="72" cy="30" r="0.8"/><circle cx="110" cy="12" r="1.4"/>
+    <circle cx="165" cy="25" r="0.7"/><circle cx="220" cy="8" r="1.0"/><circle cx="280" cy="22" r="0.9"/>
+    <circle cx="340" cy="14" r="1.3"/><circle cx="390" cy="30" r="0.7"/><circle cx="445" cy="10" r="1.1"/>
+    <circle cx="510" cy="20" r="0.8"/><circle cx="570" cy="8" r="1.2"/><circle cx="625" cy="28" r="0.9"/>
+    <circle cx="690" cy="15" r="1.0"/><circle cx="750" cy="22" r="0.7"/><circle cx="800" cy="10" r="1.3"/>
+    <circle cx="850" cy="26" r="0.8"/><circle cx="880" cy="14" r="1.1"/><circle cx="320" cy="40" r="0.6"/>
+    <circle cx="460" cy="38" r="0.6"/><circle cx="600" cy="44" r="0.5"/><circle cx="740" cy="36" r="0.7"/>
+  </g>
+
+  <!-- Moon glow halo -->
+  <ellipse cx="155" cy="58" rx="65" ry="65" fill="url(#moonGlow3)"/>
+  <!-- Moon -->
+  <circle cx="155" cy="58" r="26" fill="#F0E8C5"/>
+  <!-- Moon surface detail -->
+  <circle cx="147" cy="50" r="4" fill="#E3D9B5" opacity="0.55"/>
+  <circle cx="163" cy="65" r="3" fill="#E3D9B5" opacity="0.45"/>
+  <circle cx="155" cy="56" r="2" fill="#E3D9B5" opacity="0.35"/>
+
+  <!-- Ship masts background (ghostly, left side) -->
+  <g stroke="#1A3050" stroke-width="1.5" opacity="0.35">
+    <line x1="95" y1="168" x2="95" y2="85"/>
+    <line x1="95" y1="112" x2="65" y2="130"/>
+    <line x1="95" y1="112" x2="125" y2="130"/>
+    <line x1="95" y1="95" x2="72" y2="108"/>
+    <line x1="130" y1="168" x2="130" y2="98"/>
+    <line x1="130" y1="118" x2="108" y2="135"/>
+  </g>
+  <!-- Ship masts background (right side) -->
+  <g stroke="#1A3050" stroke-width="1.5" opacity="0.25">
+    <line x1="790" y1="168" x2="790" y2="78"/>
+    <line x1="790" y1="108" x2="755" y2="128"/>
+    <line x1="790" y1="108" x2="825" y2="128"/>
+    <line x1="815" y1="168" x2="815" y2="102"/>
+  </g>
+
+  <!-- Fog/mist at horizon -->
+  <rect x="0" y="158" width="900" height="14" fill="#0A1A30" opacity="0.65"/>
+
+  <!-- Water -->
+  <rect x="0" y="168" width="900" height="112" fill="url(#waterG3)"/>
+
+  <!-- Moonlight column on water -->
+  <ellipse cx="155" cy="210" rx="28" ry="60" fill="url(#moonPath3)" opacity="0.9"/>
+
+  <!-- Water ripple lines -->
+  <g stroke="#1A3050" stroke-width="0.8" opacity="0.35">
+    <ellipse cx="155" cy="175" rx="35" ry="5" fill="none"/>
+    <ellipse cx="155" cy="182" rx="50" ry="6" fill="none"/>
+    <ellipse cx="155" cy="191" rx="65" ry="7" fill="none"/>
+    <ellipse cx="300" cy="200" rx="40" ry="5" fill="none"/>
+    <ellipse cx="600" cy="195" rx="45" ry="5" fill="none"/>
+  </g>
+
+  <!-- Dock (foreground, full width) -->
+  <rect x="0" y="218" width="900" height="62" fill="url(#dockG3)"/>
+  <!-- Dock top edge (darker) -->
+  <rect x="0" y="215" width="900" height="5" fill="#0C0602"/>
+  <!-- Dock plank lines -->
+  <g stroke="#0C0602" stroke-width="0.8" opacity="0.6">
+    <line x1="0" y1="228" x2="900" y2="228"/>
+    <line x1="0" y1="240" x2="900" y2="240"/>
+    <line x1="0" y1="252" x2="900" y2="252"/>
+    <line x1="0" y1="264" x2="900" y2="264"/>
+    <line x1="0" y1="276" x2="900" y2="276"/>
+  </g>
+  <!-- Vertical board joins -->
+  <g stroke="#0C0602" stroke-width="1.5" opacity="0.5">
+    <line x1="160" y1="215" x2="160" y2="280"/>
+    <line x1="320" y1="215" x2="320" y2="280"/>
+    <line x1="480" y1="215" x2="480" y2="280"/>
+    <line x1="640" y1="215" x2="640" y2="280"/>
+    <line x1="800" y1="215" x2="800" y2="280"/>
+  </g>
+
+  <!-- Dock pilings at water's edge -->
+  <rect x="260" y="168" width="11" height="52" rx="2" fill="#120806"/>
+  <rect x="490" y="168" width="11" height="52" rx="2" fill="#120806"/>
+  <rect x="680" y="168" width="11" height="52" rx="2" fill="#120806"/>
+  <!-- Piling reflections in water -->
+  <rect x="261" y="194" width="9" height="30" rx="1" fill="#1A1208" opacity="0.3"/>
+  <rect x="491" y="194" width="9" height="30" rx="1" fill="#1A1208" opacity="0.3"/>
+
+  <!-- Nat's silhouette (center-right of dock, standing at the edge) -->
+  <g fill="#020810">
+    <!-- Legs -->
+    <rect x="489" y="192" width="7" height="27" rx="1.5"/>
+    <rect x="500" y="192" width="7" height="27" rx="1.5"/>
+    <!-- Body -->
+    <rect x="485" y="170" width="21" height="24" rx="3"/>
+    <!-- Head -->
+    <circle cx="496" cy="163" r="8"/>
+    <!-- Right arm raised toward water, releasing paper -->
+    <line x1="496" y1="180" x2="522" y2="160" stroke="#020810" stroke-width="5" stroke-linecap="round"/>
+    <!-- Left arm slightly bent down -->
+    <line x1="494" y1="181" x2="476" y2="195" stroke="#020810" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Paper pieces (torn expectation slip, falling to water) -->
+  <!-- Large piece near the hand -->
+  <g transform="translate(522,155) rotate(-28)">
+    <rect x="-6" y="-4" width="12" height="8" rx="1.5" fill="#F2EDD8" opacity="0.92"/>
+  </g>
+  <!-- Mid-fall pieces -->
+  <g transform="translate(536,163) rotate(18)">
+    <rect x="-4" y="-3" width="9" height="6" rx="1" fill="#EDE5CC" opacity="0.82"/>
+  </g>
+  <g transform="translate(530,172) rotate(-22)">
+    <rect x="-5" y="-2.5" width="10" height="6" rx="1" fill="#F2EDD8" opacity="0.78"/>
+  </g>
+  <g transform="translate(544,181) rotate(40)">
+    <rect x="-3" y="-3" width="7" height="5" rx="1" fill="#EDE5CC" opacity="0.70"/>
+  </g>
+  <g transform="translate(551,193) rotate(-12)">
+    <rect x="-4" y="-2" width="8" height="5" rx="1" fill="#F2EDD8" opacity="0.62"/>
+  </g>
+  <!-- Pieces near water surface -->
+  <g transform="translate(558,205) rotate(8)">
+    <rect x="-3.5" y="-2" width="8" height="4.5" rx="1" fill="#E8E0C8" opacity="0.48"/>
+  </g>
+  <g transform="translate(538,170) rotate(-38)">
+    <rect x="-3" y="-2" width="7" height="4" rx="1" fill="#EDE5CC" opacity="0.74"/>
+  </g>
+
+  <!-- Text labels -->
+  <text x="240" y="95" fill="#C8962A" font-family="Georgia,serif" font-size="12" font-weight="bold" opacity="0.9">Lesson 9.3</text>
+  <text x="240" y="114" fill="#F0EBD8" font-family="Georgia,serif" font-size="17" font-weight="bold">Chapter 3: &ldquo;Word from the Pilgrim&rdquo;</text>
+  <text x="240" y="138" fill="#8AAAC0" font-family="Georgia,serif" font-size="12" font-style="italic">He was saying good-by to a lot of things.</text>
+</svg>
+</div><!-- /hero-visual -->
+
+<!-- ═══════════ INFO STRIP ═══════════ -->
+<div class="info-strip">
+  <div class="info-cell">
+    <div class="info-icon" style="background:#EEF4FF;">📅</div>
+    <div><div class="info-label">Week &amp; Day</div><div class="info-value">Week 9 &middot; Day 3</div><div class="info-detail">Use Arc</div></div>
+  </div>
+  <div class="info-cell">
+    <div class="info-icon" style="background:#FFF8E1;">📖</div>
+    <div><div class="info-label">Reading</div><div class="info-value">Chapter 3</div><div class="info-detail">Word from the Pilgrim</div></div>
+  </div>
+  <div class="info-cell">
+    <div class="info-icon" style="background:#E0F2F1;">🔤</div>
+    <div><div class="info-label">Spelling Focus</div><div class="info-value">Vowel Teams</div><div class="info-detail">AI &amp; A&ndash;E in action</div></div>
+  </div>
+  <div class="info-cell">
+    <div class="info-icon" style="background:#EDE7F6;">✏️</div>
+    <div><div class="info-label">Grammar</div><div class="info-value">Active Voice</div><div class="info-detail">Put it to work</div></div>
+  </div>
+</div>
+
+<!-- ═══════════ QUOTE STRIP ═══════════ -->
+<div class="quote-strip">
+  <div class="quote-strip-text">&ldquo;Two plus two is four. Always. Nobody&rsquo;s going to shake you when you say that.&rdquo;</div>
+  <div class="quote-strip-attr">&mdash; Dr. Stearns to Nat &middot; Chapter 3</div>
+</div>
+
+<!-- ═══════════ INTRO (collapsible) ═══════════ -->
+<div class="intro-section" id="introSection">
+  <div class="intro-content">
+    <div class="intro-2col">
+      <div class="intro-card theme-question">
+        <div class="intro-card-head">
+          <div class="intro-card-head-icon">🧭</div>
+          <div><div class="intro-card-head-label">Big Question</div><div class="intro-card-head-title">What do you hold onto when everything else changes?</div></div>
+        </div>
+        <div class="intro-card-body">
+          <p>Chapter 3 brings Nat face to face with real loss. But there&rsquo;s something he holds onto &mdash; something nobody can take away. Today you&rsquo;ll use what you&rsquo;ve learned this week and watch Nat do the same.</p>
+        </div>
+      </div>
+      <div class="intro-card theme-objectives">
+        <div class="intro-card-head">
+          <div class="intro-card-head-icon">🎯</div>
+          <div><div class="intro-card-head-label">Today&rsquo;s Objectives</div><div class="intro-card-head-title">I Can&hellip;</div></div>
+        </div>
+        <div class="intro-card-body">
+          <div class="obj-line"><span class="obj-icon">🔑</span><span><strong>Word Study:</strong> I will <em>use</em> the roots naut/nav/port and our vocabulary words in context.</span></div>
+          <div class="obj-line"><span class="obj-icon">✏️</span><span><strong>Grammar:</strong> I will <em>use</em> active voice when writing and recognizing sentences.</span></div>
+          <div class="obj-line"><span class="obj-icon">🔤</span><span><strong>Spelling:</strong> I will <em>use</em> the long /ā/ patterns (AI and A&ndash;E) to write words correctly.</span></div>
+          <div class="obj-line"><span class="obj-icon">📖</span><span><strong>Reading:</strong> I will notice how Nat responds to hardship in Chapter 3.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="todays-path">
+      <span class="path-pill p-warmup">☀️ Warm-Up &amp; DOL</span>
+      <span class="path-arrow">→</span>
+      <span class="path-pill p-words">🔤 Word Study</span>
+      <span class="path-arrow">→</span>
+      <span class="path-pill p-reading">📖 Read Ch. 3</span>
+      <span class="path-arrow">→</span>
+      <span class="path-pill p-assign">📬 Assignment</span>
+    </div>
+    <div class="need-strip">
+      <span class="need-strip-label">You&rsquo;ll need:</span>
+      <span class="need-chip">📓 Reading Journal</span>
+      <span class="need-chip">✏️ Pencil</span>
+      <span class="need-chip">📕 Your Novel</span>
+    </div>
+  </div>
+  <div class="intro-collapsed-bar" onclick="document.getElementById('introSection').classList.remove('collapsed')">
+    <span class="intro-collapsed-icon">📋</span>
+    <span class="intro-collapsed-text">Lesson 9.3 &mdash; Ch. 3: Word from the Pilgrim</span>
+    <span class="intro-collapsed-toggle">▼ Expand</span>
+  </div>
+</div>
+
+<!-- ═══════════ TAB BAR ═══════════ -->
+<div class="tab-bar" id="tabBar">
+  <button class="tab-btn active" id="btn-warmup" onclick="switchTab('warmup')">☀️ Warm-Up<span class="tab-check">✓</span></button>
+  <button class="tab-btn" id="btn-words" onclick="switchTab('words')">🔤 Word Study<span class="tab-check">✓</span></button>
+  <button class="tab-btn" id="btn-reading" onclick="switchTab('reading')">📖 Read Ch. 3<span class="tab-check">✓</span></button>
+  <button class="tab-btn" id="btn-assignment" onclick="switchTab('assignment')">📬 Assignment<span class="tab-check">✓</span></button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- TAB 1: WARM-UP -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="tab-panel active" id="tab-warmup">
+
+  <!-- Welcome Video -->
+  <div class="video-wrap">
+    <div class="video-wrap-header"><span style="font-size:20px;">🎬</span><div><div class="video-wrap-type">Welcome &middot; Day 3 of 4</div><div class="video-wrap-title">Welcome to Lesson 9.3!</div></div></div>
+    <div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">🎬</div><div class="video-placeholder-text">Teacher welcome video coming soon</div><div class="video-placeholder-id"><!-- slot: 9-3-welcome --></div></div></div>
+  </div>
+
+  <!-- DOL -->
+  <div class="activity bl-navy" style="margin-top:6px;">
+    <div class="activity-head"><div class="activity-num" style="background:#00796B;">📝</div><div style="flex:1;"><div class="activity-title">Daily Oral Language</div><div class="activity-sub">Study the model &mdash; then fix the sentence below</div></div></div>
+    <div class="activity-body">
+      <p>Read the model sentence carefully. Tap the underlined words to find out why each one is capitalized or punctuated the way it is.</p>
+
+      <div class="dol-model-sentence" id="dolModel">
+        <span class="dol-highlight-word" onclick="dolWordClick(this,'&ldquo;Dr.&rdquo; is a title that comes before a name. Titles before names are always capitalized, and &ldquo;Dr.&rdquo; also gets a period because it is an abbreviation.')">Dr.</span> <span class="dol-highlight-word" onclick="dolWordClick(this,'&ldquo;Stearns&rdquo; is a person&rsquo;s last name &mdash; a proper noun. Last names are always capitalized.')">Stearns</span> visited the <span class="dol-highlight-word" onclick="dolWordClick(this,'&ldquo;Bowditch&rdquo; is the family&rsquo;s name &mdash; a proper noun. Family names and last names always get a capital letter.')">Bowditch</span> family to share important news.
+      </div>
+      <div class="dol-explanation" id="dolExplanation"></div>
+
+      <p style="margin-top:14px;"><strong>Now fix this sentence.</strong> Find every mistake and write the corrected version in your reading journal.</p>
+      <div class="dol-fix-sentence">
+        the news about tom perry made nat very sad
+      </div>
+
+      <button class="dol-check-btn" onclick="document.getElementById('dolAns').classList.toggle('show')">🔍 Check My Work</button>
+      <div class="dol-answer" id="dolAns">
+        <strong>Corrected:</strong> The news about Tom Perry made Nat very sad.<br><br>
+        <strong>What needed fixing:</strong>
+        <ul style="margin-top:8px;padding-left:20px;line-height:2;">
+          <li><em>the</em> → <strong>The</strong> &mdash; every sentence starts with a capital letter</li>
+          <li><em>tom</em> → <strong>Tom</strong> &mdash; first name, proper noun</li>
+          <li><em>perry</em> → <strong>Perry</strong> &mdash; last name, proper noun</li>
+          <li><em>nat</em> → <strong>Nat</strong> &mdash; first name (nickname for Nathaniel), proper noun</li>
+        </ul>
+      </div>
+
+      <!-- DOL Feedback Video -->
+      <div class="video-wrap" style="margin-top:14px;">
+        <div class="video-wrap-header"><span style="font-size:20px;">🎬</span><div><div class="video-wrap-type">Feedback &middot; Check Your Work</div><div class="video-wrap-title">DOL Walk-Through</div></div></div>
+        <div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">🎬</div><div class="video-placeholder-text">Watch after you try the sentences</div><div class="video-placeholder-id"><!-- slot: 9-3-dol-feedback --></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No WGRD on Tab 1 (Day 3 — WGRD moves to Reading tab) -->
+  <!-- No Poetry Corner on Day 3 (D3 = DOL only) -->
+
+  <!-- Transition -->
+  <div class="tab-bridge">
+    <div class="tab-bridge-text">Nat knows that two plus two is always four. Today you&rsquo;ll prove the same thing &mdash; that you know how to use what you&rsquo;ve learned. Head to Word Study.</div>
+    <button class="tab-bridge-btn" onclick="switchTab('words')">Go to Word Study &rarr;</button>
+  </div>
+
+</div><!-- /tab-warmup -->
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- TAB 2: WORD STUDY -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-words">
+
+  <!-- Morphology: Use arc (Day 3) -->
+  <div class="activity bl-plum">
+    <div class="activity-head"><div class="activity-num" style="background:#7B5EA7;">1</div><div style="flex:1;"><div class="activity-title">🌱 Morphology: Roots <em>naut / nav</em> and <em>port</em> in Action</div><div class="activity-sub">Use it &mdash; choose the right root word for each sentence</div></div></div>
+    <div class="activity-body">
+
+      <div class="video-wrap" style="margin-bottom:14px;">
+        <div class="video-wrap-header"><span style="font-size:20px;">🌱</span><div><div class="video-wrap-type">Morphology &middot; Day 3</div><div class="video-wrap-title">Using Root Words in Context</div></div></div>
+        <div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">🌱</div><div class="video-placeholder-text">Teacher reviews how to use root words to find the right word</div><div class="video-placeholder-id"><!-- slot: 9-3-morphology --></div></div></div>
+      </div>
+
+      <p>You&rsquo;ve learned the roots <strong>naut / nav</strong> (ship, sailor, guide) and <strong>port</strong> (carry). Now put them to work. Read each sentence below and click the word that best fits the blank. Think about which root it contains and what the sentence needs.</p>
+
+      <div class="choice-game" id="morphUseGame">
+
+        <div class="choice-item" id="mu1">
+          <div class="choice-prompt">Captain Bowditch was a skilled <span class="choice-blank">_____________</span> who could read the stars to find his position at sea.</div>
+          <div class="choice-row">
+            <button class="choice-btn" onclick="morphUseClick(this,'mu1',true)">navigator</button>
+            <button class="choice-btn" onclick="morphUseClick(this,'mu1',false)">narrator</button>
+            <button class="choice-btn" onclick="morphUseClick(this,'mu1',false)">transporter</button>
+          </div>
+          <div class="choice-score" id="mu1-msg"></div>
+        </div>
+
+        <div class="choice-item" id="mu2">
+          <div class="choice-prompt">The ship had to <span class="choice-blank">_____________</span> carefully around the dangerous rocks near the harbor mouth.</div>
+          <div class="choice-row">
+            <button class="choice-btn" onclick="morphUseClick(this,'mu2',false)">narrate</button>
+            <button class="choice-btn" onclick="morphUseClick(this,'mu2',true)">navigate</button>
+            <button class="choice-btn" onclick="morphUseClick(this,'mu2',false)">negotiate</button>
+          </div>
+          <div class="choice-score" id="mu2-msg"></div>
+        </div>
+
+        <div class="choice-item" id="mu3">
+          <div class="choice-prompt">The dock workers used a cart to <span class="choice-blank">_____________</span> the heavy barrels from the ship to the chandlery.</div>
+          <div class="choice-row">
+            <button class="choice-btn" onclick="morphUseClick(this,'mu3',false)">translate</button>
+            <button class="choice-btn" onclick="morphUseClick(this,'mu3',false)">negotiate</button>
+            <button class="choice-btn" onclick="morphUseClick(this,'mu3',true)">transport</button>
+          </div>
+          <div class="choice-score" id="mu3-msg"></div>
+        </div>
+
+        <div class="choice-item" id="mu4">
+          <div class="choice-prompt">Nat read every <span class="choice-blank">_____________</span> chart he could find &mdash; maps of the ocean floor, the tides, and the currents.</div>
+          <div class="choice-row">
+            <button class="choice-btn" onclick="morphUseClick(this,'mu4',true)">nautical</button>
+            <button class="choice-btn" onclick="morphUseClick(this,'mu4',false)">natural</button>
+            <button class="choice-btn" onclick="morphUseClick(this,'mu4',false)">national</button>
+          </div>
+          <div class="choice-score" id="mu4-msg"></div>
+        </div>
+
+      </div>
+      <div class="choice-score" id="morphUseFinal" style="font-size:15px;padding:12px;background:#E8F5E9;border:2px solid #C8E6C9;border-radius:10px;display:none;">
+        ✅ Well done! You used all four root words correctly. <em>nav-</em> = guide, <em>naut-</em> = sailor/sea, <em>port-</em> = carry.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Vocabulary: Use It (Day 3 rotation) -->
+  <div class="activity bl-teal">
+    <div class="activity-head"><div class="activity-num" style="background:#00796B;">2</div><div style="flex:1;"><div class="activity-title">🔎 Vocabulary: Words in the World</div><div class="activity-sub">Use it &mdash; match the right word to each sentence</div></div></div>
+    <div class="activity-body">
+
+      <div class="video-wrap" style="margin-bottom:14px;">
+        <div class="video-wrap-header"><span style="font-size:20px;">🔎</span><div><div class="video-wrap-type">Vocabulary &middot; Day 3</div><div class="video-wrap-title">Using Vocabulary Words in Context</div></div></div>
+        <div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">🔎</div><div class="video-placeholder-text">Teacher walks through how to use context clues to choose the right word</div><div class="video-placeholder-id"><!-- slot: 9-3-vocabulary --></div></div></div>
+      </div>
+
+      <p>Choose the word from our unit vocabulary that best completes each sentence. Think about what the sentence is describing &mdash; then find the word whose meaning fits exactly.</p>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">📚</span>
+        <p><strong>Word bank:</strong> privateer &nbsp;&bull;&nbsp; chandlery &nbsp;&bull;&nbsp; wharf &nbsp;&bull;&nbsp; cooperage &nbsp;&bull;&nbsp; expectation &nbsp;&bull;&nbsp; indenture</p>
+      </div>
+
+      <div class="choice-game" id="vocabUseGame">
+
+        <div class="choice-item" id="vu1">
+          <div class="choice-prompt">Ships tied up at the <span class="choice-blank">_____________</span> each morning to unload barrels of salt fish and bales of rope.</div>
+          <div class="choice-row">
+            <button class="choice-btn" onclick="vocabUseClick(this,'vu1',false)">chandlery</button>
+            <button class="choice-btn" onclick="vocabUseClick(this,'vu1',true)">wharf</button>
+            <button class="choice-btn" onclick="vocabUseClick(this,'vu1',false)">cooperage</button>
+          </div>
+          <div class="choice-score" id="vu1-msg"></div>
+        </div>
+
+        <div class="choice-item" id="vu2">
+          <div class="choice-prompt">At the <span class="choice-blank">_____________</span>, sailors could buy candles, tar, and rope &mdash; everything a ship needed to sail.</div>
+          <div class="choice-row">
+            <button class="choice-btn" onclick="vocabUseClick(this,'vu2',true)">chandlery</button>
+            <button class="choice-btn" onclick="vocabUseClick(this,'vu2',false)">cooperage</button>
+            <button class="choice-btn" onclick="vocabUseClick(this,'vu2',false)">privateer</button>
+          </div>
+          <div class="choice-score" id="vu2-msg"></div>
+        </div>
+
+        <div class="choice-item" id="vu3">
+          <div class="choice-prompt">Nat signed the <span class="choice-blank">_____________</span> that bound him to work at Ropes &amp; Hodges for nine years &mdash; a legal agreement he could not break.</div>
+          <div class="choice-row">
+            <button class="choice-btn" onclick="vocabUseClick(this,'vu3',false)">expectation</button>
+            <button class="choice-btn" onclick="vocabUseClick(this,'vu3',false)">privateer</button>
+            <button class="choice-btn" onclick="vocabUseClick(this,'vu3',true)">indenture</button>
+          </div>
+          <div class="choice-score" id="vu3-msg"></div>
+        </div>
+
+        <div class="choice-item" id="vu4">
+          <div class="choice-prompt">Tom Perry sailed on a <span class="choice-blank">_____________</span> &mdash; a privately owned ship carrying a government license to attack enemy vessels during wartime.</div>
+          <div class="choice-row">
+            <button class="choice-btn" onclick="vocabUseClick(this,'vu4',true)">privateer</button>
+            <button class="choice-btn" onclick="vocabUseClick(this,'vu4',false)">indenture</button>
+            <button class="choice-btn" onclick="vocabUseClick(this,'vu4',false)">expectation</button>
+          </div>
+          <div class="choice-score" id="vu4-msg"></div>
+        </div>
+
+      </div>
+      <div class="choice-score" id="vocabUseFinal" style="font-size:15px;padding:12px;background:#E8F5E9;border:2px solid #C8E6C9;border-radius:10px;display:none;">
+        ✅ You know these words cold. Carrying them into Chapter 3 will help you understand what Nat&rsquo;s world looks like.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Grammar: Use arc (Day 3) -->
+  <div class="activity bl-gold">
+    <div class="activity-head"><div class="activity-num" style="background:#F9A825;color:#0E1C42;">3</div><div style="flex:1;"><div class="activity-title">✏️ Grammar: Picking the Active Voice</div><div class="activity-sub">Use it &mdash; recognize which sentence uses active voice</div></div></div>
+    <div class="activity-body">
+
+      <div class="video-wrap" style="margin-bottom:14px;">
+        <div class="video-wrap-header"><span style="font-size:20px;">✏️</span><div><div class="video-wrap-type">Grammar &middot; Day 3</div><div class="video-wrap-title">Choosing Active Voice</div></div></div>
+        <div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">✏️</div><div class="video-placeholder-text">Teacher models how to spot active vs. passive voice</div><div class="video-placeholder-id"><!-- slot: 9-3-grammar --></div></div></div>
+      </div>
+
+      <div class="key-concept">
+        <div class="key-concept-label">🔑 Quick Reminder</div>
+        <p><strong>Active voice:</strong> The subject does the action. &ldquo;Nat solved the problem.&rdquo;<br>
+        <strong>Passive voice:</strong> The subject receives the action (often includes <em>was/were/by</em>). &ldquo;The problem was solved by Nat.&rdquo;</p>
+      </div>
+
+      <p>Each item below shows a passive sentence. Two versions are offered &mdash; click the one that rewrites it in active voice.</p>
+
+      <div class="choice-game" id="gramVoiceGame">
+
+        <div class="choice-item" id="gv1">
+          <div class="choice-prompt" style="font-style:italic;color:#7A88A8;">Passive: &ldquo;The arithmetic problem was solved by Nat in a matter of seconds.&rdquo;</div>
+          <p style="font-size:14px;color:#3A4A6B;margin:6px 0 10px;">Which version is active?</p>
+          <div class="choice-row">
+            <button class="choice-btn" onclick="gramVoiceClick(this,'gv1',true)">Nat solved the arithmetic problem in a matter of seconds.</button>
+            <button class="choice-btn" onclick="gramVoiceClick(this,'gv1',false)">The problem, in seconds, was what Nat solved.</button>
+          </div>
+          <div class="choice-score" id="gv1-msg"></div>
+        </div>
+
+        <div class="choice-item" id="gv2">
+          <div class="choice-prompt" style="font-style:italic;color:#7A88A8;">Passive: &ldquo;Important news was brought to the Bowditch family by Dr. Stearns.&rdquo;</div>
+          <p style="font-size:14px;color:#3A4A6B;margin:6px 0 10px;">Which version is active?</p>
+          <div class="choice-row">
+            <button class="choice-btn" onclick="gramVoiceClick(this,'gv2',false)">The family was told the news by someone who visited them.</button>
+            <button class="choice-btn" onclick="gramVoiceClick(this,'gv2',true)">Dr. Stearns brought important news to the Bowditch family.</button>
+          </div>
+          <div class="choice-score" id="gv2-msg"></div>
+        </div>
+
+        <div class="choice-item" id="gv3">
+          <div class="choice-prompt" style="font-style:italic;color:#7A88A8;">Passive: &ldquo;The pieces of the expectation slip were scattered on the water by Nat.&rdquo;</div>
+          <p style="font-size:14px;color:#3A4A6B;margin:6px 0 10px;">Which version is active?</p>
+          <div class="choice-row">
+            <button class="choice-btn" onclick="gramVoiceClick(this,'gv3',true)">Nat scattered the pieces of the expectation slip on the water.</button>
+            <button class="choice-btn" onclick="gramVoiceClick(this,'gv3',false)">The water was where the pieces were scattered by Nat.</button>
+          </div>
+          <div class="choice-score" id="gv3-msg"></div>
+        </div>
+
+      </div>
+      <div class="choice-score" id="gramVoiceFinal" style="font-size:15px;padding:12px;background:#E8F5E9;border:2px solid #C8E6C9;border-radius:10px;display:none;">
+        ✅ You can spot active voice in the wild now. Strong writers always put the doer first.
+      </div>
+
+      <!-- No SWYK textbox here — SWYK rotates to Spelling on Day 3 -->
+
+    </div>
+  </div>
+
+  <!-- Spelling: New word sort + SWYK textbox (Day 3) -->
+  <div class="activity bl-navy">
+    <div class="activity-head"><div class="activity-num" style="background:#0E3A5C;">4</div><div style="flex:1;"><div class="activity-title">🔤 Spelling: Sort New Words &amp; Show What You Know</div><div class="activity-sub">Use it &mdash; sort eight new words, then write your own</div></div></div>
+    <div class="activity-body">
+
+      <div class="video-wrap" style="margin-bottom:14px;">
+        <div class="video-wrap-header"><span style="font-size:20px;">🔤</span><div><div class="video-wrap-type">Spelling &middot; Day 3</div><div class="video-wrap-title">The AI and A&ndash;E Patterns: New Words</div></div></div>
+        <div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">🔤</div><div class="video-placeholder-text">Teacher introduces Day 3 spelling words and the SWYK task</div><div class="video-placeholder-id"><!-- slot: 9-3-spelling --></div></div></div>
+      </div>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p>Remember the rule: both <strong>AI</strong> (two vowels side by side) and <strong>A&ndash;E</strong> (vowel &rarr; consonant &rarr; silent e) make the long /ā/ sound. Sort the new words below using that pattern.</p>
+      </div>
+
+      <p>Click a word from the bank, then click the correct column to place it.</p>
+
+      <div class="sort-bank" id="sortBank">
+        <span class="sort-chip" data-group="A" onclick="pickSortChip(this)">wait</span>
+        <span class="sort-chip" data-group="B" onclick="pickSortChip(this)">shake</span>
+        <span class="sort-chip" data-group="A" onclick="pickSortChip(this)">bait</span>
+        <span class="sort-chip" data-group="B" onclick="pickSortChip(this)">gave</span>
+        <span class="sort-chip" data-group="A" onclick="pickSortChip(this)">rain</span>
+        <span class="sort-chip" data-group="B" onclick="pickSortChip(this)">pale</span>
+        <span class="sort-chip" data-group="A" onclick="pickSortChip(this)">hail</span>
+        <span class="sort-chip" data-group="B" onclick="pickSortChip(this)">came</span>
+      </div>
+
+      <div class="sort-columns">
+        <div>
+          <div class="sort-col-header" style="background:#0E3A5C;">Group A &mdash; AI pattern</div>
+          <div class="sort-col-drop" id="colA" onclick="dropSortChip(this,'A')"></div>
+        </div>
+        <div>
+          <div class="sort-col-header" style="background:#C8962A;">Group B &mdash; A&ndash;E pattern</div>
+          <div class="sort-col-drop" id="colB" onclick="dropSortChip(this,'B')"></div>
+        </div>
+      </div>
+      <div class="sort-score" id="sortScore"></div>
+
+      <!-- SWYK Spelling — Day 3 rotation (graded) -->
+      <div class="swyk-section" style="margin-top:20px;">
+        <div class="swyk-label">⭐ Show What You Know &mdash; Spelling</div>
+        <div class="swyk-prompt">Write two sentences about something Nat experiences in Chapter 3. Use at least one <strong>AI word</strong> from our list (wait, bait, rain, hail, sail, claim, train, or main) in your first sentence. Use at least one <strong>A&ndash;E word</strong> (shake, gave, pale, came, brave, gale, trade, or name) in your second sentence.</div>
+        <div class="textbox-prompt">Your first sentence uses an AI word. Your second sentence uses an A&ndash;E word. Both connect to Chapter 3.</div>
+        <textarea class="journal-box" id="journal-spelling" data-label="Spelling SWYK: Using AI and A–E Words in Context (Ch. 3)"
+          placeholder="Nat had to wait for news about Tom Perry... / When Dr. Stearns came to the door, Nat turned pale..."
+          oninput="autoSave(this,'dot-spelling');gatherAnswers();"></textarea>
+        <div class="journal-label">📓 <span class="saved-dot" id="dot-spelling"></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Transition -->
+  <div class="tab-bridge">
+    <div class="tab-bridge-text">You&rsquo;ve used your word knowledge like a real scholar. Now it&rsquo;s time to open the book and watch Nat face one of the hardest moments in the story so far.</div>
+    <button class="tab-bridge-btn" onclick="switchTab('reading')">Read Chapter 3 &rarr;</button>
+  </div>
+
+</div><!-- /tab-words -->
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- TAB 3: READING -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-reading">
+
+  <!-- WGRD — Day 3, Tab 3 -->
+  <div class="wgrd-block">
+    <div class="wgrd-label">📚 What Good Readers Do</div>
+    <div class="wgrd-strategy">Notice what a character reaches for when things fall apart.</div>
+    <div class="wgrd-body">Good readers watch how a character responds to hardship &mdash; not just what happens to them, but what they do. In Chapter 3, Nat faces a real loss. Something he was counting on disappears. As you read, carry this question with you: <strong>what does Nat reach for when the world goes sideways?</strong> Watch for the moment the answer becomes clear.</div>
+  </div>
+
+  <!-- Reading Video -->
+  <div class="video-wrap" style="margin-bottom:18px;">
+    <div class="video-wrap-header"><span style="font-size:20px;">📖</span><div><div class="video-wrap-type">Reading &middot; Chapter Introduction</div><div class="video-wrap-title">Before You Read Chapter 3</div></div></div>
+    <div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">📖</div><div class="video-placeholder-text">Teacher introduces Chapter 3 and what to watch for</div><div class="video-placeholder-id"><!-- slot: 9-3-reading --></div></div></div>
+  </div>
+
+  <!-- Story Journey Tracker -->
+  <div class="tracker-card">
+    <div class="tracker-header"><div class="tracker-header-icon">⛵</div><div><div class="tracker-header-label">Your Story Journey</div><div class="tracker-header-title">Nat&rsquo;s Path Through <em>Carry On, Mr. Bowditch</em></div></div></div>
+    <div class="tracker-scene" id="scene">
+      <svg class="tracker-path-svg" viewBox="0 0 900 160" preserveAspectRatio="none">
+        <path d="M 45 128 Q 120 95 165 113 Q 240 138 275 126 Q 360 105 385 116 Q 460 138 495 128 Q 570 108 610 118 Q 675 138 720 126 Q 785 108 815 116 Q 865 128 900 118"
+          fill="none" stroke="rgba(200,150,42,0.55)" stroke-width="3" stroke-dasharray="6 4"/>
+      </svg>
+      <div class="landmark" style="left:2%;top:118px;font-size:22px;">⛵</div>
+      <div class="landmark" style="left:13%;top:105px;font-size:17px;">📜</div>
+      <div class="landmark" style="left:25%;top:118px;font-size:17px;">📚</div>
+      <div class="landmark" style="left:37%;top:108px;font-size:17px;">🔭</div>
+      <div class="landmark" style="left:49%;top:120px;font-size:16px;">🌊</div>
+      <div class="landmark" style="left:60%;top:110px;font-size:17px;">🗺️</div>
+      <div class="landmark" style="left:71%;top:118px;font-size:16px;">⚓</div>
+      <div class="landmark" style="left:80%;top:108px;font-size:17px;">🌙</div>
+      <div class="landmark" style="left:89%;top:118px;font-size:16px;">🧭</div>
+      <div class="landmark" style="left:96%;top:110px;font-size:17px;">🌫️</div>
+      <div class="char-token" id="charToken">🧭</div>
+    </div>
+    <div class="tracker-chapter-label">📍 You are here: <strong>Chapter 3 &mdash; Word from the Pilgrim</strong></div>
+  </div>
+
+  <!-- Open Book Card -->
+  <div class="open-book-wrap">
+    <div class="open-book">
+      <div class="book-spine"><div class="book-spine-text">Carry On, Mr. Bowditch</div></div>
+      <div class="book-page book-page-left">
+        <div class="book-page-label">Chapter 3</div>
+        <div class="book-page-title">&ldquo;Word from the Pilgrim&rdquo;</div>
+        <div class="book-page-body">Nat starts school &mdash; and surprises everyone. Then Dr. Stearns arrives with news that changes everything. At the end, Nat stands at the water with something small in his hands.</div>
+      </div>
+      <div class="book-page">
+        <div class="book-page-label">Read It</div>
+        <div class="book-page-title">Open your novel to Chapter 3.</div>
+        <div class="book-page-body">Use the stopping points below as you read. You don&rsquo;t need to finish the whole chapter before responding &mdash; stop when each prompt asks you to.</div>
+        <a class="book-page-link" href="https://www.mathfiction.net/files/JeanLeeLatham-CarryOnMrBowditch.pdf" target="_blank">📄 Open PDF Version</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pause & Think #1 -->
+  <div class="pause-think">
+    <div class="pause-think-label">⏸️ Pause &amp; Think — Stop 1</div>
+    <div class="pause-think-q">Master Watson tells Nat the arithmetic problem is too hard for a boy his age. What does Nat do? What does his response tell you about how he thinks about learning and difficulty?</div>
+    <div class="textbox-prompt">What happens? What does it reveal? Write 1–2 sentences in your journal.</div>
+    <textarea class="journal-box" id="journal-pt1" placeholder="When Master Watson said the problem was too hard, Nat..."
+      style="min-height:70px;" oninput="autoSave(this,'dot-pt1');"></textarea>
+    <div class="journal-label">📓 <span class="saved-dot" id="dot-pt1"></span> Just for your notes &mdash; not collected</div>
+  </div>
+
+  <!-- Pause & Think #2 -->
+  <div class="pause-think">
+    <div class="pause-think-label">⏸️ Pause &amp; Think — Stop 2</div>
+    <div class="pause-think-q">At the end of Chapter 3, the narrator says: &ldquo;He was saying good-by to a lot of things.&rdquo; What do you think Nat is saying goodbye to? And what is he holding onto?</div>
+    <div class="textbox-prompt">Think beyond just the expectation slip. What else might Nat be letting go of — and what stays with him? Write 2–3 sentences.</div>
+    <textarea class="journal-box" id="journal-pt2" placeholder="I think Nat is saying goodbye to..."
+      style="min-height:80px;" oninput="autoSave(this,'dot-pt2');"></textarea>
+    <div class="journal-label">📓 <span class="saved-dot" id="dot-pt2"></span> Just for your notes &mdash; not collected</div>
+  </div>
+
+  <!-- Transition -->
+  <div class="tab-bridge">
+    <div class="tab-bridge-text">Nat knows what he can hold onto. Now it&rsquo;s your turn to show what you noticed. Head to the Assignment.</div>
+    <button class="tab-bridge-btn" onclick="switchTab('assignment')">Go to Assignment &rarr;</button>
+  </div>
+
+</div><!-- /tab-reading -->
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- TAB 4: ASSIGNMENT -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-assignment">
+
+  <!-- Assignment intro video -->
+  <div class="video-wrap" style="margin-bottom:18px;">
+    <div class="video-wrap-header"><span style="font-size:20px;">📬</span><div><div class="video-wrap-type">Assignment &middot; Lesson 9.3</div><div class="video-wrap-title">What to Do Here</div></div></div>
+    <div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">📬</div><div class="video-placeholder-text">Teacher walks through the assignment expectations</div><div class="video-placeholder-id"><!-- slot: 9-3-assignment --></div></div></div>
+  </div>
+
+  <p style="font-size:16px;color:#3A4A6B;line-height:1.7;margin-bottom:20px;">This is the part you submit. Answer each question in complete sentences, using evidence from Chapter 3. Scroll down to review, copy, or download your work when you&rsquo;re done.</p>
+
+  <!-- Part A: 3 Comprehension Questions -->
+  <div class="activity bl-teal">
+    <div class="activity-head"><div class="activity-num" style="background:#00796B;">A</div><div style="flex:1;"><div class="activity-title">Part A: Chapter Thinking</div><div class="activity-sub">Answer in complete sentences. Use evidence from Chapter 3.</div></div></div>
+    <div class="activity-body">
+
+      <div class="textbox-prompt"><strong>Q1.</strong> When Master Watson dismisses Nat, saying the arithmetic problem is too hard, what does Nat do next? What does his response reveal about how he approaches learning?</div>
+      <textarea class="journal-box" id="journal-q1" data-label="Q1: What Nat does when Watson dismisses him, and what it reveals about him"
+        placeholder="When Master Watson said the problem was too hard, Nat... This shows that Nat..."
+        oninput="autoSave(this,'dot-q1');gatherAnswers();"></textarea>
+      <div class="journal-label">📓 <span class="saved-dot" id="dot-q1"></span></div>
+
+      <div style="margin-top:16px;"></div>
+
+      <div class="textbox-prompt"><strong>Q2.</strong> Dr. Stearns tells Nat: &ldquo;Two plus two is four. Always. Nobody&rsquo;s going to shake you when you say that.&rdquo; What does Dr. Stearns mean? Why do you think he gives Nat this particular lesson on this particular day?</div>
+      <textarea class="journal-box" id="journal-q2" data-label="Q2: What Dr. Stearns means by 'Two plus two is four' and why he says it then"
+        placeholder="Dr. Stearns means that... He says this because..."
+        oninput="autoSave(this,'dot-q2');gatherAnswers();"></textarea>
+      <div class="journal-label">📓 <span class="saved-dot" id="dot-q2"></span></div>
+
+      <div style="margin-top:16px;"></div>
+
+      <div class="textbox-prompt"><strong>Q3.</strong> At the end of Chapter 3, Nat tears the expectation slip and lets the pieces fall into the water. The narrator says he is &ldquo;saying good-by to a lot of things.&rdquo; What is Nat letting go of &mdash; and what does he hold onto?</div>
+      <textarea class="journal-box" id="journal-q3" data-label="Q3: What Nat is saying goodbye to and what he holds onto at the end of Ch. 3"
+        placeholder="Nat is letting go of... But he is holding onto..."
+        oninput="autoSave(this,'dot-q3');gatherAnswers();"></textarea>
+      <div class="journal-label">📓 <span class="saved-dot" id="dot-q3"></span></div>
+
+    </div>
+  </div>
+
+  <!-- Part B: Spelling SWYK check-in (textbox is in Word Study) -->
+  <div class="activity bl-navy">
+    <div class="activity-head"><div class="activity-num" style="background:#0E3A5C;">B</div><div style="flex:1;"><div class="activity-title">Part B: Word Study Check-In</div><div class="activity-sub">Your Spelling Show What You Know from the Word Study tab</div></div></div>
+    <div class="activity-body">
+      <p>Your spelling sentences are already saved from the Word Study tab. They will appear in your gathered answers below along with your comprehension responses.</p>
+    </div>
+  </div>
+
+  <!-- Part C: RWM -->
+    <div class="callout callout-submit" style="margin-bottom:18px;"><span class="callout-icon">&#x1F4D3;</span><p><strong>Reading Journal Reminder:</strong> Before submitting, make sure you completed this week&rsquo;s Read &bull; Write &bull; Make It Yours exercise in your <strong>reading journal</strong>. That work is collected in person or photographed and submitted separately.</p></div>
+
+  <!-- Part D: Writing Connection -->
+    <!-- Part C: Writer's Workshop -->
+  <div class="activity bl-gold" id="writers-workshop" style="margin-top:18px;">
+    <div class="activity-head" style="background:linear-gradient(135deg,#FFF8F0,#FFF3DC);border-bottom:2px solid #F5E6C8;">
+      <div class="activity-num" style="background:#C8962A;border-radius:10px;font-size:16px;">&#x270D;&#xFE0F;</div>
+      <div style="flex:1;">
+        <div class="activity-title">Writer&rsquo;s Workshop &middot; Week 9 &middot; RESEARCH CLAIM</div>
+        <div class="activity-sub">Identify your evidence categories</div>
+      </div>
+    </div>
+    <div class="activity-body">
+      <div style="display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-bottom:12px;"><span style="background:#C8962A;color:#fff;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;">&#x2605; Research Claim</span><span style="background:#EEF4FF;color:#7A88A8;padding:4px 10px;border-radius:6px;font-size:11px;">&#x25CB; Plan</span><span style="background:#EEF4FF;color:#7A88A8;padding:4px 10px;border-radius:6px;font-size:11px;">&#x25CB; Draft</span><span style="background:#EEF4FF;color:#7A88A8;padding:4px 10px;border-radius:6px;font-size:11px;">&#x25CB; Add Craft</span><span style="background:#EEF4FF;color:#7A88A8;padding:4px 10px;border-radius:6px;font-size:11px;">&#x25CB; Revise & Edit</span><span style="background:#EEF4FF;color:#7A88A8;padding:4px 10px;border-radius:6px;font-size:11px;">&#x25CB; Publish</span></div>
+      <div class="callout callout-info" style="margin:0 0 14px;padding:10px 14px;"><span class="callout-icon">&#x1F3AF;</span><p style="font-size:14px;"><strong>Today&rsquo;s focus:</strong> Before you can write body sections, you need to know what KINDS of evidence you&rsquo;re looking for. Today you map your evidence buckets.</p></div>
+      <div class="key-concept" style="background:#FFFEF7;border-color:#F5E6C8;margin-bottom:14px;">
+        <div class="key-concept-label" style="color:#C8962A;">&#x1F440; Watch How &mdash; Meet Alex, our example writer</div>
+        <p style="font-size:14px;margin-bottom:10px;">Alex thinks about what categories of evidence will appear in the book.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div style="background:#fff;border:1px solid #F5E6C8;border-radius:6px;padding:10px;">
+            <div style="font-size:11px;color:#C7627E;font-weight:700;letter-spacing:.5px;margin-bottom:4px;">BEFORE</div>
+            <div style="font-style:italic;font-size:13px;">Alex&rsquo;s first thought: I&rsquo;ll just find examples of Nat being smart.</div>
+          </div>
+          <div style="background:#fff;border:1px solid #D4ECC8;border-radius:6px;padding:10px;">
+            <div style="font-size:11px;color:#4A7C2E;font-weight:700;letter-spacing:.5px;margin-bottom:4px;">AFTER</div>
+            <div style="font-style:italic;font-size:13px;">Alex&rsquo;s evidence categories: (1) How he learned despite obstacles &mdash; chandlery years, self-education. (2) What he discovered and corrected &mdash; Moore&rsquo;s Navigator errors. (3) How his work helped others &mdash; teaching sailors, the American Practical Navigator.</div>
+          </div>
+        </div>
+        <p style="margin-top:10px;font-size:13px;color:#3A4A6B;"><strong>Notice:</strong> &ldquo;Examples of Nat being smart&rdquo; is too vague to organize an essay. Alex&rsquo;s three categories give the essay structure BEFORE any drafting happens. Each category becomes a body section.</p>
+      </div>
+      <div class="key-concept" style="background:#EEF4FF;border-color:#C8D8F0;margin-bottom:14px;">
+        <div class="key-concept-label" style="color:#0E3A5C;">&#x1F4CB; Today&rsquo;s Tool: Evidence Categories</div>
+        <p style="font-size:14px;margin-bottom:10px;">Map out 2&ndash;3 categories your evidence will fall into. Each category will become a body section.</p>
+        <p style="font-size:13px;font-weight:700;color:#0E3A5C;margin-bottom:6px;">Alex&rsquo;s example (filled):</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:12px;"><div style="background:#fff;border-radius:6px;padding:10px;border:1px solid #C8D8F0;"><strong style="color:#0E3A5C;">Category 1</strong><br>How he learned despite obstacles<br><em style="color:#7A88A8;">Chs. 5&ndash;8 mainly</em></div><div style="background:#fff;border-radius:6px;padding:10px;border:1px solid #C8D8F0;"><strong style="color:#0E3A5C;">Category 2</strong><br>What he discovered and corrected<br><em style="color:#7A88A8;">Chs. 13&ndash;16 mainly</em></div><div style="background:#fff;border-radius:6px;padding:10px;border:1px solid #C8D8F0;"><strong style="color:#0E3A5C;">Category 3</strong><br>How his work transformed navigation<br><em style="color:#7A88A8;">Chs. 16&ndash;24 mainly</em></div></div>
+        <p style="font-size:13px;font-weight:700;color:#0E3A5C;margin-top:12px;margin-bottom:6px;">Your turn &mdash; do the same in your reading journal:</p>
+        <div style="background:#FAFBFF;border:2px dashed #C8D8F0;border-radius:8px;padding:14px;font-size:13px;">My Category 1: ____________________<br>Where I expect to find evidence: Chapters ___<br>My Category 2: ____________________<br>Where I expect to find evidence: Chapters ___</div>
+      </div>
+      <div class="key-concept" style="background:#F0E8FF;border-color:#D8CCF0;margin-bottom:14px;">
+        <div class="key-concept-label" style="color:#6B4FB0;">&#x1FAB6; Sentence Frames You Can Borrow</div>
+        <ul style="margin:0 0 0 18px;font-size:14px;"><li style="margin-bottom:5px;">&ldquo;One quality that supports my claim is ___.&rdquo;</li><li style="margin-bottom:5px;">&ldquo;Evidence for this appears in chapters ___ when Nat ___.&rdquo;</li><li style="margin-bottom:5px;">&ldquo;A second type of evidence comes from ___...&rdquo;</li></ul>
+      </div>
+      <div class="callout callout-info" style="background:#E8F5E8;border-color:#A8D8A8;margin:0 0 10px;padding:10px 14px;"><span class="callout-icon">&#x270F;&#xFE0F;</span><p style="font-size:14px;"><strong>Now you try.</strong> Use what Alex showed you. Borrow a sentence frame if you want. Type below.</p></div>
+      <div class="textbox-prompt">Name 2 evidence categories your essay will use. For each one, name the chapters where you expect to find the strongest evidence.</div>
+      <textarea class="journal-box" id="journal-writing" data-label="Writer&apos;s Workshop: Research Claim (Week 9)" placeholder="My first evidence category is... I expect to find it in chapters... My second category is..." oninput="autoSave(this,&apos;dot-writing&apos;);gatherAnswers();"></textarea>
+      <div class="journal-label">&#x1F4D3; <span class="saved-dot" id="dot-writing"></span></div>
+    </div>
+  </div>
+
+  <!-- Gathered Answers -->
+  <div class="gathered-card">
+    <div class="gathered-header">
+      <div class="gathered-header-icon">📋</div>
+      <div>
+        <div class="gathered-header-label">All Your Work</div>
+        <div class="gathered-header-title">Review, Copy, or Download</div>
+      </div>
+    </div>
+    <div class="gathered-body">
+      <p class="gathered-intro">Everything you typed across the lesson is gathered here. Review your answers, then copy to paste into Canvas or download as a PDF.</p>
+      <textarea class="gathered-output" id="gatheredOutput" readonly></textarea>
+      <div class="gathered-actions">
+        <button class="gathered-btn gathered-btn-copy" onclick="copyToClipboard()">📋 Copy to Clipboard</button>
+        <button class="gathered-btn gathered-btn-pdf" onclick="downloadPDF()">📄 Download as PDF</button>
+      </div>
+      <div class="gathered-copied" id="gatheredCopied">Copied to clipboard!</div>
+    </div>
+  </div>
+
+  <button class="download-btn" onclick="downloadPDF()">
+    <span>📥</span>
+    Download All My Work
+  </button>
+  <div class="download-btn-sub">Opens a print-ready page with all your answers and activity results</div>
+
+  <!-- Turn-In Checklist -->
+  <div class="turn-in-card">
+    <div class="turn-in-header"><div class="turn-in-header-icon">📬</div><div><div class="turn-in-header-label">Ready to Submit?</div><div class="turn-in-header-title">Before You Turn In</div></div></div>
+    <div class="turn-in-body">
+      <p class="turn-in-intro">Check off each item as you finish.</p>
+      <div class="turn-in-checklist" id="checklist">
+        <div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I answered all 3 comprehension questions with evidence from Chapter 3.</div></div>
+        <div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I completed the Spelling Show What You Know (two sentences using AI and A&ndash;E words) in Word Study.</div></div>
+        <div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I wrote my Read &bull; Write &bull; Make It Yours sentence about Dr. Stearns in my reading journal.</div></div>
+        <div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I wrote my Writing Connection explaining how Nat shows perseverance in Chapter 3.</div></div>
+        <div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I copied my work to Canvas <strong>or</strong> downloaded the PDF.</div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tab-assignment -->
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<div class="footer">
+  <div class="footer-main"><span>Optima Academy Online</span> &middot; 5th Grade ELA &middot; Week 9 &middot; Lesson 9.3</div>
+</div>
+
+</div><!-- /page-wrap -->
+
+<button id="backToTop" title="Back to top">↑</button>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- JAVASCRIPT -->
+<!-- ══════════════════════════════════════════════════════ -->
+<script>
+
+/* ───── TAB SWITCHING ───── */
+function switchTab(tabId){
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+  var panel=document.getElementById('tab-'+tabId);
+  var btn=document.getElementById('btn-'+tabId);
+  if(panel)panel.classList.add('active');
+  if(btn){btn.classList.add('active');btn.classList.add('visited');}
+  updateProgress();
+  if(tabId==='assignment'){gatherAnswers();}
+  document.getElementById('introSection').classList.add('collapsed');
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.documentElement.scrollTop=0;
+  document.body.scrollTop=0;
+}
+
+/* ───── PROGRESS BAR ───── */
+function updateProgress(){
+  var visited=document.querySelectorAll('.tab-btn.visited').length;
+  var total=document.querySelectorAll('.tab-btn').length;
+  var pct=Math.round((visited/total)*100);
+  var fill=document.getElementById('progressFill');
+  var pctEl=document.getElementById('progressPct');
+  if(fill)fill.style.width=pct+'%';
+  if(pctEl)pctEl.textContent=pct+'%';
+}
+
+/* ───── TAB BAR POSITION (progress-bar-aware) ───── */
+(function(){
+  var pw=document.getElementById('progressFill');
+  var tb=document.getElementById('tabBar');
+  if(tb){
+    var progH=document.querySelector('.progress-wrap');
+    if(progH){tb.style.top=progH.offsetHeight+'px';}
+  }
+})();
+
+/* ───── AUTO-SAVE (visual indicator) ───── */
+function autoSave(el,dotId){
+  var dot=document.getElementById(dotId);
+  if(dot){dot.classList.add('active');}
+}
+
+/* ───── DOL CLICKABLE WORDS ───── */
+var dolExplEl=document.getElementById('dolExplanation');
+function dolWordClick(el,msg){
+  document.querySelectorAll('.dol-highlight-word').forEach(function(w){w.classList.remove('tapped');});
+  el.classList.add('tapped');
+  if(dolExplEl)dolExplEl.textContent=msg;
+}
+
+/* ───── MORPHOLOGY USE-IT GAME ───── */
+var morphUseAnswered=0;var morphUseTotal=4;var _morphUseDone=false;
+function morphUseClick(btn,itemId,correct){
+  var item=document.getElementById(itemId);
+  if(!item||item.classList.contains('done'))return;
+  var msg=document.getElementById(itemId+'-msg');
+  if(correct){
+    btn.classList.add('correct');
+    item.classList.add('done');
+    if(msg){msg.textContent='✅ Correct! '+getRootNote(itemId);msg.classList.add('show');}
+    morphUseAnswered++;
+    if(morphUseAnswered>=morphUseTotal){
+      _morphUseDone=true;
+      var final=document.getElementById('morphUseFinal');
+      if(final){final.style.display='block';}
+      gatherAnswers();
+    }
+  } else {
+    btn.classList.add('wrong');
+    btn.disabled=true;
+    if(msg){msg.textContent='Not quite — look for the root that fits the sentence meaning.';msg.classList.add('show');}
+  }
+}
+function getRootNote(id){
+  var notes={mu1:'The root nav- means guide or sail — a navigator guides a ship.',mu2:'Navigate uses nav- (guide). The ship guides itself around the rocks.',mu3:'Transport uses port- (carry). To transport is to carry something from one place to another.',mu4:'Nautical uses naut- (sailor/sea). A nautical chart is a chart of the sea.'};
+  return notes[id]||'';
+}
+
+/* ───── VOCABULARY USE-IT GAME ───── */
+var vocabUseAnswered=0;var vocabUseTotal=4;var _vocabUseDone=false;
+function vocabUseClick(btn,itemId,correct){
+  var item=document.getElementById(itemId);
+  if(!item||item.classList.contains('done'))return;
+  var msg=document.getElementById(itemId+'-msg');
+  if(correct){
+    btn.classList.add('correct');
+    item.classList.add('done');
+    if(msg){msg.textContent='✅ Correct!';msg.classList.add('show');}
+    vocabUseAnswered++;
+    if(vocabUseAnswered>=vocabUseTotal){
+      _vocabUseDone=true;
+      var final=document.getElementById('vocabUseFinal');
+      if(final){final.style.display='block';}
+      gatherAnswers();
+    }
+  } else {
+    btn.classList.add('wrong');
+    btn.disabled=true;
+    if(msg){msg.textContent='That word doesn\'t fit here — think about what the sentence is describing.';msg.classList.add('show');}
+  }
+}
+
+/* ───── GRAMMAR VOICE PRACTICE GAME ───── */
+var gramVoiceAnswered=0;var gramVoiceTotal=3;var _gramVoiceDone=false;
+function gramVoiceClick(btn,itemId,correct){
+  var item=document.getElementById(itemId);
+  if(!item||item.classList.contains('done'))return;
+  var msg=document.getElementById(itemId+'-msg');
+  if(correct){
+    btn.classList.add('correct');
+    item.classList.add('done');
+    if(msg){msg.textContent='✅ Correct — the doer comes first, and the verb follows directly.';msg.classList.add('show');}
+    gramVoiceAnswered++;
+    if(gramVoiceAnswered>=gramVoiceTotal){
+      _gramVoiceDone=true;
+      var final=document.getElementById('gramVoiceFinal');
+      if(final){final.style.display='block';}
+      gatherAnswers();
+    }
+  } else {
+    btn.classList.add('wrong');
+    btn.disabled=true;
+    if(msg){msg.textContent='Look again — does the doer come first, with the action following directly?';msg.classList.add('show');}
+  }
+}
+
+/* ───── SPELLING WORD SORT ───── */
+window._sortDone=false;
+var sortSelected=null;var sortPlaced=0;var sortTotal=8;
+
+function pickSortChip(chip){
+  if(chip.classList.contains('placed'))return;
+  if(sortSelected)sortSelected.style.outline='';
+  sortSelected=chip;
+  chip.style.outline='3px solid #C8962A';
+}
+function dropSortChip(col,colGroup){
+  if(!sortSelected)return;
+  var correctGroup=sortSelected.getAttribute('data-group');
+  var clone=sortSelected.cloneNode(true);
+  clone.onclick=null;
+  if(correctGroup===colGroup){
+    clone.classList.add('correct');sortSelected.classList.add('placed');col.appendChild(clone);sortPlaced++;
+  } else {
+    clone.classList.add('wrong');col.appendChild(clone);
+    setTimeout(function(){if(clone.parentNode)clone.parentNode.removeChild(clone);},600);
+  }
+  sortSelected.style.outline='';sortSelected=null;
+  if(sortPlaced>=sortTotal){
+    var sc=document.getElementById('sortScore');
+    if(sc){sc.textContent='✅ All sorted correctly! AI words have two vowels side by side. A–E words have a vowel, consonant, and silent e.';sc.classList.add('show');}
+    window._sortDone=true;
+    gatherAnswers();
+  }
+}
+
+/* ───── GATHER ALL ANSWERS ───── */
+function gatherAnswers(){var o='LESSON 9.3 \u2014 CARRY ON, MR. BOWDITCH\n';o+='\u2550'.repeat(44)+'\n\n';var sw=document.getElementById('journal-spelling');if(sw){o+='WORD STUDY SWYK (Spelling SWYK)\n'+'\u2500'.repeat(36)+'\n\n'+sw.getAttribute('data-label')+'\n'+(sw.value.trim()||'(no answer)')+'\n\n';}o+='CHAPTER THINKING\n'+'\u2500'.repeat(36)+'\n';['journal-q1','journal-q2','journal-q3'].forEach(function(id){var el=document.getElementById(id);if(!el)return;o+='\n'+el.getAttribute('data-label')+'\n'+(el.value.trim()||'(no answer)')+'\n';});o+='\nWRITING CONNECTION\n'+'\u2500'.repeat(36)+'\n';var w=document.getElementById('journal-writing');if(w){o+='\n'+w.getAttribute('data-label')+'\n'+(w.value.trim()||'(no answer)')+'\n';}var g=document.getElementById('gatheredOutput');if(g)g.value=o;}
+
+/* ───── COPY TO CLIPBOARD ───── */
+function copyToClipboard(){
+  gatherAnswers();
+  var gathered=document.getElementById('gatheredOutput');
+  if(!gathered)return;
+  gathered.select();
+  gathered.setSelectionRange(0,99999);
+  try{
+    navigator.clipboard.writeText(gathered.value).then(function(){showCopied();}).catch(function(){document.execCommand('copy');showCopied();});
+  }catch(e){document.execCommand('copy');showCopied();}
+}
+function showCopied(){
+  var msg=document.getElementById('gatheredCopied');
+  msg.classList.add('show');
+  setTimeout(function(){msg.classList.remove('show');},2500);
+}
+
+/* ───── DOWNLOAD AS PDF ───── */
+function downloadPDF(){gatherAnswers();var t=document.getElementById('gatheredOutput').value;var win=window.open('','_blank');if(win){win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Georgia,serif;max-width:700px;margin:40px auto;padding:0 20px;line-height:1.7;}pre{white-space:pre-wrap;font-size:14px;}@media print{body{margin:20px;}}</style></head><body><pre>'+t.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</pre></body></html>');win.document.close();setTimeout(function(){win.print();},400);}}
+
+/* ───── TURN-IN CHECKLIST ───── */
+function toggleCheck(item){
+  item.classList.toggle('checked');
+  var check=item.querySelector('.turn-in-check');
+  check.textContent=item.classList.contains('checked')?'✓':'';
+  var container=item.closest('.turn-in-checklist');
+  if(!container)return;
+  var all=container.querySelectorAll('.turn-in-item');
+  var checked=container.querySelectorAll('.turn-in-item.checked');
+  if(all.length===checked.length&&all.length>0){fireConfetti();}
+}
+
+/* ───── CONFETTI ───── */
+function fireConfetti(){
+  var canvas=document.getElementById('confettiCanvas');
+  var ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+  var colors=['#0E3A5C','#C8962A','#52B788','#7B5EA7','#00897B','#F0F5FF','#1A4A6C','#D4A843'];
+  var particles=[];
+  for(var i=0;i<120;i++){
+    particles.push({x:Math.random()*canvas.width,y:-20-Math.random()*100,vx:(Math.random()-0.5)*6,vy:Math.random()*4+3,size:Math.random()*8+4,color:colors[Math.floor(Math.random()*colors.length)],rot:Math.random()*Math.PI*2,vrot:(Math.random()-0.5)*0.2});
+  }
+  var frame=0;
+  function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=0.1;p.rot+=p.vrot;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.color;ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size);ctx.restore();});
+    frame++;
+    if(frame<180)requestAnimationFrame(animate);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  animate();
+}
+
+/* ───── STORY JOURNEY TRACKER ───── */
+var TRACKER_PROGRESS=3;
+var TRACKER_TOTAL=10;
+var trackerIcons=["⛵","📜","📚","🔭","🌊","🗺️","⚓","🌙","🧭","🌫️"];
+var trackerPos=[
+  {x:5,y:128},{x:16,y:113},{x:27,y:126},{x:38,y:116},
+  {x:50,y:128},{x:61,y:118},{x:72,y:126},{x:81,y:116},
+  {x:90,y:126},{x:97,y:118}
+];
+(function renderTracker(){
+  var scene=document.getElementById('scene');
+  if(!scene)return;
+  for(var i=0;i<TRACKER_TOTAL;i++){
+    var n=document.createElement('div');
+    var done=i<TRACKER_PROGRESS;
+    var active=i===TRACKER_PROGRESS-1;
+    n.className='node'+(done&&!active?' done':'')+(active?' active':'')+(!done&&!active?' upcoming':'');
+    n.style.left='calc('+trackerPos[i].x+'% - 15px)';
+    n.style.top=trackerPos[i].y+'px';
+    n.innerHTML=done?(active?trackerIcons[i]:'✦'):trackerIcons[i];
+    scene.appendChild(n);
+  }
+  var token=document.getElementById('charToken');
+  var idx=Math.max(0,TRACKER_PROGRESS-1);
+  if(token){
+    token.style.left='calc('+trackerPos[idx].x+'% - 14px)';
+    token.style.top=(trackerPos[idx].y-36)+'px';
+  }
+})();
+
+/* ───── BACK TO TOP (iframe-aware) ───── */
+(function(){
+  var btn=document.getElementById('backToTop');
+  if(!btn)return;
+  var inIframe=(function(){try{return window.self!==window.top;}catch(e){return true;}})();
+  btn.addEventListener('click',function(){
+    try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){}
+    document.documentElement.scrollTop=0;
+    document.body.scrollTop=0;
+    var top=document.getElementById('pageTop');
+    if(top&&top.scrollIntoView){try{top.scrollIntoView({behavior:'smooth',block:'start'});}catch(e){}}
+    try{if(window.frameElement&&window.frameElement.scrollIntoView){window.frameElement.scrollIntoView({behavior:'smooth',block:'start'});}}catch(e){}
+    if(inIframe){try{window.parent.postMessage({type:'optima-lesson:scroll-to-top'},'*');}catch(e){}}
+  });
+  if(inIframe){setTimeout(function(){btn.classList.add('show');},1500);}
+  else{window.addEventListener('scroll',function(){btn.classList.toggle('show',window.pageYOffset>400);});}
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optima Academy Online</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:system-ui,-apple-system,sans-serif;background:#F0F2F8;color:#0E1C42;line-height:1.6;-webkit-font-smoothing:antialiased;}
+.page-wrap{max-width:920px;margin:0 auto;background:#fff;box-shadow:0 0 40px rgba(14,28,66,.08);}
+
+/* ═══════════ PROGRESS BAR ═══════════ */
+.progress-wrap{position:sticky;top:0;z-index:200;background:#0E1C42;padding:8px 20px 10px;display:flex;align-items:center;gap:14px;}
+.progress-label{font-size:12px;color:#F9A825;font-weight:800;text-transform:uppercase;letter-spacing:.8px;white-space:nowrap;}
+.progress-track{flex:1;height:10px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden;}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#F9A825,#C8962A);border-radius:10px;transition:width .4s ease;}
+.progress-pct{font-size:13px;color:#F9A825;font-weight:800;min-width:36px;text-align:right;}
+
+/* ═══════════ HEADER ═══════════ */
+.header{background:linear-gradient(135deg,#0A2A4A 0%,#0E3A5C 60%,#14507A 100%);border-bottom:6px solid #C8962A;padding:20px 28px 18px;position:relative;overflow:hidden;}
+.header::after{content:'';position:absolute;bottom:6px;left:0;right:0;height:3px;background:linear-gradient(90deg,#C8962A,#F9A825,#C8962A);}
+.header-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.header-logo{width:52px;height:52px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+.header-logo img{width:48px;height:38px;}
+.header-org{font-size:22px;color:#fff;font-weight:800;line-height:1.15;}
+.header-sub{font-size:11px;color:#C8962A;letter-spacing:.5px;}
+.header-title{font-family:Georgia,serif;font-size:28px;color:#fff;font-weight:700;line-height:1.2;margin-bottom:10px;}
+.header-title em{color:#F9A825;font-style:italic;}
+.header-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,150,42,.15);border:1.5px solid rgba(200,150,42,.4);border-radius:28px;padding:6px 16px;}
+.header-badge-icon{font-size:22px;}
+.header-badge-text{font-size:18px;color:#fff;font-weight:800;}
+
+/* ═══════════ HERO BANNER ═══════════ */
+.hero-visual{background:linear-gradient(180deg,#020A18 0%,#061428 60%,#0D2240 100%);padding:0;position:relative;overflow:hidden;border-bottom:3px solid #C8962A;}
+.hero-visual svg{display:block;width:100%;height:auto;}
+
+/* ═══════════ INFO STRIP ═══════════ */
+.info-strip{display:flex;flex-wrap:wrap;background:#fff;border-bottom:2px solid #E2E8F4;}
+.info-cell{flex:1;min-width:150px;padding:12px 16px;border-right:1px solid #E2E8F4;display:flex;align-items:center;gap:10px;}
+.info-cell:last-child{border-right:none;}
+.info-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.info-label{font-size:10px;color:#7A88A8;text-transform:uppercase;letter-spacing:.5px;font-weight:700;}
+.info-value{font-size:16px;color:#0E1C42;font-weight:800;line-height:1.2;}
+.info-detail{font-size:11px;color:#3A4A6B;line-height:1.3;}
+
+/* ═══════════ QUOTE STRIP ═══════════ */
+.quote-strip{background:linear-gradient(135deg,#FFF8F0 0%,#FFF3DC 100%);border-bottom:2px solid #F5E6C8;padding:14px 28px;text-align:center;}
+.quote-strip-text{font-family:Georgia,serif;font-size:16px;font-style:italic;color:#5A4A3A;line-height:1.6;}
+.quote-strip-attr{font-size:11px;color:#7A88A8;font-weight:700;margin-top:4px;text-transform:uppercase;letter-spacing:.5px;}
+
+/* ═══════════ INTRO COLLAPSIBLE ═══════════ */
+.intro-section{transition:max-height .35s ease,padding .35s ease,opacity .25s ease;overflow:hidden;}
+.intro-section.collapsed .intro-content{display:none;}
+.intro-collapsed-bar{display:none;align-items:center;gap:12px;padding:10px 28px;background:#FFF8E8;border-bottom:2px solid #F5E6C8;cursor:pointer;transition:background .15s;}
+.intro-collapsed-bar:hover{background:#FFF8E8;}
+.intro-section.collapsed .intro-collapsed-bar{display:flex;}
+.intro-collapsed-icon{font-size:18px;}
+.intro-collapsed-text{font-size:14px;color:#3A2A10;font-weight:700;flex:1;}
+.intro-collapsed-toggle{font-size:12px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:.5px;}
+
+/* ═══════════ INTRO 2-COL ═══════════ */
+.intro-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px 28px 4px;}
+.intro-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);}
+.intro-card-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:2px solid;}
+.intro-card-head-icon{width:40px;height:40px;border-radius:50%;color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.intro-card-head-label{font-size:10px;color:#7A88A8;text-transform:uppercase;letter-spacing:.8px;font-weight:700;}
+.intro-card-head-title{font-size:18px;color:#0E1C42;font-weight:800;line-height:1.2;}
+.intro-card-body{padding:14px 18px;}
+.intro-card-body p{font-size:15px;color:#3A4A6B;line-height:1.65;margin-bottom:8px;}
+.intro-card-body p:last-child{margin-bottom:0;}
+.obj-line{display:flex;align-items:flex-start;gap:8px;font-size:15px;color:#0E1C42;line-height:1.55;margin-bottom:8px;}
+.obj-line:last-child{margin-bottom:0;}
+.obj-icon{flex-shrink:0;font-size:17px;}
+.theme-question .intro-card-head{background:#FFF3DC;border-color:#F5E6C8;}
+.theme-question .intro-card-head-icon{background:#F9A825;}
+.theme-objectives .intro-card-head{background:#E0F2F1;border-color:#B2DFDB;}
+.theme-objectives .intro-card-head-icon{background:#00695C;}
+
+/* ═══════════ TODAY'S PATH ═══════════ */
+.todays-path{display:flex;align-items:center;justify-content:center;gap:6px;padding:12px 28px;flex-wrap:wrap;}
+.path-pill{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;color:#fff;white-space:nowrap;}
+.path-pill.p-warmup{background:#52B788;}
+.path-pill.p-words{background:#F9A825;color:#0E1C42;}
+.path-pill.p-reading{background:#00796B;}
+.path-pill.p-assign{background:#7B5EA7;}
+.path-arrow{font-size:16px;color:#B0B8CC;}
+
+/* ═══════════ NEED STRIP ═══════════ */
+.need-strip{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:12px 28px 18px;}
+.need-strip-label{font-size:13px;color:#3A4A6B;font-weight:700;white-space:nowrap;}
+.need-chip{display:inline-flex;align-items:center;gap:5px;background:#E0F2F1;border:1.5px solid #B2DFDB;border-radius:20px;padding:5px 12px;font-size:13px;color:#0E1C42;font-weight:700;}
+
+/* ═══════════ TAB BAR ═══════════ */
+.tab-bar{position:sticky;top:38px;z-index:100;background:#fff;border-bottom:3px solid #E2E8F4;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;box-shadow:0 -4px 0 0 #0E1C42;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{flex:1;min-width:130px;padding:12px 8px 11px;background:transparent;border:none;border-bottom:4px solid transparent;font-family:system-ui,sans-serif;font-size:13px;font-weight:700;color:#7A88A8;cursor:pointer;transition:all .2s;white-space:nowrap;line-height:1.3;text-align:center;}
+.tab-btn:hover{color:#0E1C42;background:#EEF4FF;}
+.tab-btn.active{color:#0E1C42;border-bottom-color:#C8962A;background:#fff;}
+.tab-btn .tab-check{display:none;font-size:12px;color:#34B76F;margin-left:4px;font-weight:800;}
+.tab-btn.visited .tab-check{display:inline;}
+.tab-panel{display:none;padding:24px 28px 36px;}
+.tab-panel.active{display:block;}
+
+/* ═══════════ VIDEO WRAP ═══════════ */
+.video-wrap{border-radius:18px;overflow:hidden;border:2px solid #E2E8F4;box-shadow:0 4px 20px rgba(14,28,66,.08);background:#000;margin:0 0 22px;}
+.video-wrap-header{display:flex;align-items:center;gap:12px;padding:12px 18px;background:linear-gradient(135deg,#0A2A4A,#0E3A5C);border-bottom:2px solid rgba(200,150,42,.25);}
+.video-wrap-type{font-size:10px;color:#00897B;text-transform:uppercase;letter-spacing:1.5px;font-weight:800;margin-bottom:2px;}
+.video-wrap-title{font-size:16px;color:#fff;font-weight:800;line-height:1.2;}
+.video-ratio{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}
+.video-ratio iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.video-placeholder{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#0E1C42,#1A2D5A);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;}
+.video-placeholder-icon{font-size:44px;margin-bottom:10px;opacity:.55;}
+.video-placeholder-text{font-size:14px;color:rgba(255,255,255,.55);font-weight:600;line-height:1.5;}
+.video-placeholder-id{font-size:11px;color:rgba(200,150,42,.5);font-family:monospace;margin-top:6px;letter-spacing:.5px;}
+
+/* ═══════════ ACTIVITY CARDS ═══════════ */
+.activity{background:#fff;border:2px solid #E2E8F4;border-radius:18px;margin-bottom:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);}
+.activity.bl-sage{border-left:6px solid #52B788;}
+.activity.bl-gold{border-left:6px solid #C8962A;}
+.activity.bl-teal{border-left:6px solid #00796B;}
+.activity.bl-plum{border-left:6px solid #7B5EA7;}
+.activity.bl-navy{border-left:6px solid #0E3A5C;}
+.activity-head{display:flex;align-items:center;gap:12px;padding:14px 20px 14px 18px;border-bottom:1.5px solid #E2E8F4;}
+.activity-num{width:38px;height:38px;border-radius:14px;color:#fff;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.activity-title{font-size:19px;color:#0E1C42;font-weight:800;line-height:1.2;}
+.activity-sub{font-size:12px;color:#7A88A8;}
+.activity-body{padding:18px 22px;}
+.activity-body p{font-size:17px;color:#3A4A6B;line-height:1.75;margin-bottom:12px;}
+.activity-body p:last-child{margin-bottom:0;}
+
+/* ═══════════ CALLOUTS ═══════════ */
+.callout{border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}
+.callout:last-child{margin-bottom:0;}
+.callout-icon{font-size:28px;flex-shrink:0;margin-top:2px;}
+.callout p{font-size:16px;color:#0E1C42;line-height:1.65;margin:0;}
+.callout-info{background:#EEF4FF;border:2px solid #C8D8F0;}
+.callout-think{background:#FFF3DC;border:2px solid #F5E6C8;}
+.callout-tip{background:#E8F5E9;border:2px solid #C8E6C9;}
+.callout-vocab{background:#F3E5F5;border:2px solid #E1BEE7;}
+.callout-submit{background:#FCE4EC;border:2px solid #F8BBD0;}
+
+/* ═══════════ SOCRATIC BOX ═══════════ */
+.socratic-box{background:linear-gradient(135deg,#F3E5F5 0%,#EDE7F6 100%);border:2px solid #D1C4E9;border-radius:14px;padding:16px 18px;margin-bottom:14px;}
+.socratic-box:last-child{margin-bottom:0;}
+.socratic-label{font-size:12px;color:#7B5EA7;text-transform:uppercase;letter-spacing:.5px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.socratic-q{font-size:16px;color:#0E1C42;line-height:1.7;font-style:italic;margin-bottom:8px;}
+.socratic-q:last-child{margin-bottom:0;}
+.socratic-q strong{font-style:normal;color:#0E1C42;}
+
+/* ═══════════ DOL COMPONENTS ═══════════ */
+.dol-model-sentence{background:#fff;border:1.5px solid #E2E8F4;border-left:4px solid #C8962A;border-radius:10px;padding:14px 18px;font-family:Georgia,serif;font-size:17px;color:#0E1C42;line-height:1.7;margin-bottom:8px;cursor:default;}
+.dol-highlight-word{padding:2px 4px;border-radius:4px;cursor:pointer;transition:background .2s,color .2s;}
+.dol-highlight-word:hover{background:#FFF8E8;}
+.dol-highlight-word.tapped{background:#FFF3CD;color:#7A5500;}
+.dol-explanation{font-size:14px;color:#C8962A;font-style:italic;padding:6px 12px;min-height:28px;margin-bottom:10px;}
+.dol-fix-sentence{background:#FFF8E1;border:1.5px solid #FFE082;border-left:4px solid #F9A825;border-radius:10px;padding:14px 18px;font-family:Georgia,serif;font-size:17px;color:#0E1C42;line-height:1.7;margin-bottom:10px;}
+.dol-check-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,#7B5EA7,#9575CD);color:#fff;border:none;border-radius:20px;font-family:system-ui,sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px;transition:transform .15s;}
+.dol-check-btn:hover{transform:translateY(-2px);}
+.dol-answer{display:none;margin-top:10px;padding:12px 16px;background:#E8F5E9;border:2px solid #C8E6C9;border-left:4px solid #4CAF50;border-radius:10px;font-size:15px;color:#0E1C42;line-height:1.65;}
+.dol-answer.show{display:block;}
+
+/* ═══════════ KEY CONCEPT ═══════════ */
+.key-concept{background:#FFF3DC;border:2px solid #F5E6C8;border-radius:14px;padding:16px 18px;margin-bottom:14px;}
+.key-concept:last-child{margin-bottom:0;}
+.key-concept-label{font-size:12px;color:#F9A825;text-transform:uppercase;letter-spacing:.5px;font-weight:800;margin-bottom:8px;}
+.key-concept p{font-size:15px;color:#0E1C42;line-height:1.7;margin-bottom:6px;}
+
+/* ═══════════ VOCABULARY FLIP CARDS ═══════════ */
+.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+.flip-card{perspective:800px;height:175px;cursor:pointer;}
+.flip-card-inner{position:relative;width:100%;height:100%;transition:transform .5s ease;transform-style:preserve-3d;}
+.flip-card.flipped .flip-card-inner{transform:rotateY(180deg);}
+.flip-card-front,.flip-card-back{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 16px;text-align:center;border:2px solid #E2E8F4;box-shadow:0 2px 10px rgba(14,28,66,.06);}
+.flip-card-front{background:#fff;border-top:5px solid #C8962A;}
+.flip-card-front .fc-emoji{font-size:28px;margin-bottom:6px;}
+.flip-card-front .fc-word{font-family:Georgia,serif;font-size:17px;font-weight:700;color:#0E1C42;margin-bottom:4px;}
+.flip-card-front .fc-tap{font-size:11px;color:#7A88A8;font-weight:600;letter-spacing:.3px;}
+.flip-card-back{background:linear-gradient(145deg,#0A2A4A,#0E3A5C);border-color:#0E1C42;transform:rotateY(180deg);}
+.flip-card-back .fc-def{font-size:13.5px;color:#fff;line-height:1.5;font-weight:600;}
+.flip-card-back .fc-word-back{font-size:10px;color:#C8962A;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:6px;}
+.fc-color-1 .flip-card-front{border-top-color:#C8962A;}
+.fc-color-2 .flip-card-front{border-top-color:#52B788;}
+.fc-color-3 .flip-card-front{border-top-color:#7B5EA7;}
+.fc-color-4 .flip-card-front{border-top-color:#52B788;}
+.fc-color-5 .flip-card-front{border-top-color:#E57373;}
+.fc-color-6 .flip-card-front{border-top-color:#0E1C42;}
+
+/* ═══════════ STORY JOURNEY TRACKER ═══════════ */
+.tracker-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);margin-bottom:22px;}
+.tracker-header{display:flex;align-items:center;gap:10px;padding:12px 20px;background:linear-gradient(135deg,#004D40 0%,#00695C 100%);border-bottom:2px solid #00796B;}
+.tracker-header-icon{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tracker-header-label{font-size:10px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.8px;font-weight:700;}
+.tracker-header-title{font-size:17px;color:#fff;font-weight:800;line-height:1.2;}
+.scene-wrap{width:100%;position:relative;height:210px;overflow:hidden;border-bottom:3px solid #8b6f47;background:linear-gradient(180deg,#c2ddf0 0%,#d4c9a8 30%,#c4a56a 50%,#8b7340 58%,#6b5a30 65%,#5a4a28 100%);user-select:none;}
+.cloud{position:absolute;background:rgba(255,255,255,.55);border-radius:50%;filter:blur(2px);}
+.hills-far{position:absolute;bottom:60px;left:0;right:0;height:80px;background:radial-gradient(ellipse 220px 60px at 10% 100%,#8abb6d 70%,transparent 71%),radial-gradient(ellipse 300px 70px at 30% 100%,#79ad58 70%,transparent 71%),radial-gradient(ellipse 250px 55px at 55% 100%,#8abb6d 70%,transparent 71%),radial-gradient(ellipse 280px 65px at 78% 100%,#6fa04a 70%,transparent 71%),radial-gradient(ellipse 200px 50px at 95% 100%,#8abb6d 70%,transparent 71%);}
+.path-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+.tree,.house,.flower,.landmark{position:absolute;pointer-events:none;z-index:1;filter:drop-shadow(0 2px 2px rgba(0,0,0,.15));}
+.flower{filter:none;font-size:12px;z-index:2;}
+.node{position:absolute;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;z-index:5;border:3px solid #f5f0e6;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.18),inset 0 -2px 0 rgba(0,0,0,.05);}
+.node.done{background:#00695C;border-color:#F9A825;box-shadow:0 0 0 2px #00695C,0 2px 8px rgba(0,105,92,.45);color:#fff;}
+.node.active{background:#F9A825;border-color:#FFF3DC;box-shadow:0 0 0 3px #F9A825,0 0 14px rgba(249,168,37,.5);transform:scale(1.15);color:#0E1C42;}
+.node.upcoming{opacity:.55;}
+.char-token{position:absolute;font-size:26px;z-index:20;pointer-events:none;filter:drop-shadow(0 3px 5px rgba(0,0,0,.3));animation:hop 2s ease-in-out infinite;}
+@keyframes hop{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-5px) rotate(3deg);}}
+.title-plaque{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:rgba(253,248,240,.92);border:2px solid #c4a882;border-radius:8px;padding:3px 18px 4px;z-index:15;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.1);white-space:nowrap;}
+.title-plaque h1{font-family:Georgia,serif;font-size:14px;font-weight:700;color:#004D40;line-height:1.2;}
+.title-plaque h1 em{color:#F9A825;font-style:italic;}
+.tracker-chapter-label{text-align:center;padding:10px 16px;font-size:13px;color:#7A88A8;font-weight:600;background:#FAFBFF;border-top:1px solid #E2E8F4;}
+.tracker-chapter-label strong{color:#F9A825;}
+
+/* ═══════════ OPEN BOOK CARD ═══════════ */
+.open-book-wrap{position:relative;margin-bottom:22px;padding:10px 6px 6px;}
+.open-book-cover{position:absolute;top:0;left:2px;right:2px;bottom:0;background:linear-gradient(145deg,#2A4278,#3B5998,#4A69A8);border-radius:6px 20px 20px 6px;box-shadow:0 4px 20px rgba(59,89,152,.2);}
+.open-book-spine{position:absolute;top:0;left:50%;transform:translateX(-50%);width:22px;height:100%;background:linear-gradient(90deg,#1E3060,#2A4278,#1E3060);border-radius:4px;z-index:1;box-shadow:inset 0 0 6px rgba(0,0,0,.2);}
+.open-book-pages-3{position:absolute;top:3px;left:14px;right:14px;bottom:3px;background:#E8E0D4;border-radius:3px 12px 12px 3px;z-index:2;}
+.open-book-pages-2{position:absolute;top:5px;left:16px;right:16px;bottom:4px;background:#F0E8DC;border-radius:3px 10px 10px 3px;z-index:3;}
+.open-book-pages-1{position:absolute;top:7px;left:18px;right:18px;bottom:5px;background:#F5EEE4;border-radius:3px 8px 8px 3px;z-index:4;}
+.open-book{position:relative;background:linear-gradient(170deg,#FFFDF8 0%,#FFF8F0 40%,#FFFDF8 100%);border:none;border-radius:3px 6px 6px 3px;padding:0;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:160px;z-index:5;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.open-book::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.04) 20%,rgba(0,0,0,.07) 40%,rgba(90,70,50,.10) 50%,rgba(0,0,0,.07) 60%,rgba(0,0,0,.04) 80%,transparent 100%);z-index:6;pointer-events:none;}
+.open-book::after{content:'';position:absolute;top:8px;bottom:8px;right:0;width:4px;background:repeating-linear-gradient(180deg,transparent 0px,transparent 3px,rgba(200,185,165,.3) 3px,rgba(200,185,165,.3) 4px);border-radius:0 4px 4px 0;z-index:6;pointer-events:none;}
+.open-book-left{display:flex;align-items:center;justify-content:center;padding:24px;opacity:.3;position:relative;}
+.open-book-left::before{content:'';position:absolute;top:8px;bottom:8px;left:0;width:4px;background:repeating-linear-gradient(180deg,transparent 0px,transparent 3px,rgba(200,185,165,.3) 3px,rgba(200,185,165,.3) 4px);border-radius:4px 0 0 4px;}
+.open-book-left-deco{font-size:48px;filter:grayscale(30%);}
+.open-book-right{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:24px 28px 24px 20px;}
+.open-book-title{font-family:Georgia,serif;font-size:22px;font-weight:700;color:#0E1C42;margin-bottom:4px;}
+.open-book-title em{color:#C8962A;}
+.open-book-chapter{font-family:Georgia,serif;font-size:16px;color:#5A4A3A;font-style:italic;margin-bottom:14px;}
+.open-book-prompt{font-size:14px;color:#7A88A8;font-weight:600;}
+
+/* ═══════════ READING LINKS ═══════════ */
+.reading-links{background:#EEF4FF;border:2px solid #C8D8F0;border-radius:14px;padding:16px 18px;margin-bottom:16px;}
+.reading-links-title{font-size:14px;color:#C8962A;font-weight:800;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;}
+.reading-link{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border:1.5px solid #C8D8F0;border-radius:10px;margin-bottom:8px;font-size:15px;color:#0E1C42;font-weight:600;text-decoration:none;transition:background .15s,border-color .15s;}
+.reading-link:last-child{margin-bottom:0;}
+.reading-link:hover{background:#EEF4FF;border-color:#C8962A;}
+.reading-link-icon{font-size:20px;}
+
+/* ═══════════ PAUSE & THINK ═══════════ */
+.pause-columns{display:grid;grid-template-columns:1fr;gap:16px;margin:14px 0;}
+
+/* ═══════════ ASSIGNMENT QUESTIONS ═══════════ */
+.q-block{background:#FAFBFF;border:2px solid #E2E8F4;border-radius:14px;padding:14px 18px;margin-bottom:12px;}
+.q-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#C8962A;color:#fff;font-weight:800;font-size:14px;margin-right:8px;vertical-align:middle;}
+.q-text{font-size:16px;color:#0E1C42;line-height:1.65;margin-bottom:4px;}
+
+/* ═══════════ TEXTBOX PROMPT ═══════════ */
+.textbox-prompt{background:linear-gradient(135deg,#C8962A,#D4A843);color:#fff;font-size:14px;font-weight:700;padding:10px 16px;border-radius:10px 10px 0 0;margin-top:10px;line-height:1.5;}
+
+/* ═══════════ JOURNAL TEXTBOX ═══════════ */
+.journal-box{width:100%;min-height:70px;padding:12px 14px;border:2px solid #E2E8F4;border-radius:0 0 12px 12px;font-family:system-ui,sans-serif;font-size:15px;color:#0E1C42;line-height:1.6;resize:vertical;background:#FAFBFF;transition:border-color .2s,box-shadow .2s;}
+.journal-box:focus{outline:none;border-color:#C8962A;box-shadow:0 0 0 3px rgba(200,150,42,.15);background:#fff;}
+.journal-box::placeholder{color:#B0B8CC;font-style:italic;}
+.journal-box.standalone{border-radius:12px;margin-top:10px;}
+.journal-label{font-size:12px;color:#7A88A8;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:12px;display:flex;align-items:center;gap:6px;}
+.journal-label .saved-dot{width:8px;height:8px;border-radius:50%;background:#B0B8CC;transition:background .3s;}
+.journal-label .saved-dot.saved{background:#34B76F;}
+
+/* ═══════════ SHOW WHAT YOU KNOW ═══════════ */
+.swyk{background:linear-gradient(135deg,#FFF8F0 0%,#FFF3DC 100%);border:2px solid #F5E6C8;border-left:6px solid #C8962A;border-radius:14px;padding:16px 18px;margin-top:16px;}
+.swyk-label{font-size:12px;color:#C8962A;text-transform:uppercase;letter-spacing:.8px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.swyk-prompt{font-size:15px;color:#0E1C42;line-height:1.6;margin-bottom:8px;}
+
+/* ═══════════ FILL-IN-BLANK GAME ═══════════ */
+.fillin-game{margin:14px 0;}
+.fillin-item{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#fff;border:2px solid #E2E8F4;border-radius:12px;margin-bottom:10px;font-size:16px;color:#0E1C42;flex-wrap:wrap;}
+.fillin-input{display:inline-block;width:120px;padding:4px 10px;border:2px dashed #7B5EA7;border-radius:8px;font-family:Georgia,serif;font-size:15px;font-weight:700;color:#7B5EA7;text-align:center;background:#FAFBFF;outline:none;transition:border-color .2s,background .2s;}
+.fillin-input:focus{border-color:#C8962A;background:#fff;}
+.fillin-input.correct{border-color:#4CAF50;background:#E8F5E9;color:#1B5E20;border-style:solid;}
+.fillin-input.wrong{border-color:#E57373;background:#FFEBEE;animation:shake .4s ease;}
+.fillin-check-btn{display:block;margin:14px auto 0;padding:10px 24px;background:linear-gradient(135deg,#7B5EA7,#9575CD);color:#fff;border:none;border-radius:24px;font-family:system-ui,sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:transform .2s;}
+.fillin-check-btn:hover{transform:translateY(-2px);}
+.fillin-feedback{text-align:center;padding:10px;font-size:15px;font-weight:700;color:#4CAF50;display:none;}
+.fillin-feedback.show{display:block;}
+
+/* ═══════════ VOCAB MATCH GAME ═══════════ */
+.match-game{margin:14px 0;}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.match-item{padding:12px 14px;background:#fff;border:2px solid #E2E8F4;border-radius:12px;font-size:14px;color:#0E1C42;font-weight:600;cursor:pointer;text-align:center;line-height:1.5;transition:background .15s,border-color .2s,transform .15s;user-select:none;}
+.match-item:hover{transform:translateY(-1px);border-color:#C8962A;}
+.match-item.selected{background:#FFF8E8;border-color:#C8962A;box-shadow:0 0 0 3px rgba(200,150,42,.2);}
+.match-item.matched{background:#E8F5E9;border-color:#4CAF50;pointer-events:none;opacity:.8;}
+.match-item.wrong-flash{background:#FFEBEE;border-color:#E57373;animation:shake .4s ease;}
+.match-item.is-word{font-weight:800;font-family:Georgia,serif;font-size:16px;}
+.match-feedback{text-align:center;padding:10px;font-size:15px;font-weight:700;color:#4CAF50;display:none;}
+.match-feedback.show{display:block;}
+
+/* ═══════════ WORD SORT GAME ═══════════ */
+.sort-game{margin:14px 0;}
+.sort-bank{display:flex;flex-wrap:wrap;gap:8px;padding:14px;background:#FAFBFF;border:2px dashed #C8D8F0;border-radius:14px;margin-bottom:14px;min-height:52px;justify-content:center;}
+.sort-chip{display:inline-flex;align-items:center;padding:8px 16px;background:#fff;border:2px solid #E2E8F4;border-radius:24px;font-size:15px;font-weight:700;color:#0E1C42;cursor:grab;user-select:none;transition:transform .15s,box-shadow .15s,background .2s,border-color .2s;}
+.sort-chip:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(14,28,66,.12);}
+.sort-chip.placed{opacity:.4;pointer-events:none;}
+.sort-chip.correct{background:#E8F5E9;border-color:#4CAF50;color:#1B5E20;}
+.sort-chip.wrong{background:#FFEBEE;border-color:#E57373;color:#B71C1C;animation:shake .4s ease;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.sort-columns{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.sort-col{background:#fff;border:2px solid #E2E8F4;border-radius:14px;overflow:hidden;min-height:160px;}
+.sort-col-header{padding:10px 14px;font-size:15px;font-weight:800;color:#fff;text-align:center;}
+.sort-col-drop{padding:12px;display:flex;flex-direction:column;gap:8px;min-height:120px;}
+.sort-col-drop .sort-chip{cursor:pointer;}
+.sort-col-drop .sort-chip:hover{transform:none;box-shadow:none;}
+.sort-score{text-align:center;padding:10px;font-size:14px;font-weight:700;color:#4CAF50;display:none;}
+.sort-score.show{display:block;}
+
+/* ═══════════ GRAMMAR SPOTTER GAME ═══════════ */
+.spotter-game{margin:14px 0;}
+.spotter-sentence{background:#fff;border:2px solid #E2E8F4;border-radius:12px;padding:14px 16px;margin-bottom:10px;line-height:1.8;font-size:16px;color:#0E1C42;}
+.spotter-word{display:inline;padding:2px 6px;border-radius:6px;cursor:pointer;transition:background .15s,color .15s;border:2px solid transparent;}
+.spotter-word:hover{background:#FFF8E8;border-color:#C8962A;}
+.spotter-word.correct-reveal{background:#E8F5E9;border-color:#4CAF50;color:#1B5E20;font-weight:700;}
+.spotter-word.wrong-reveal{background:#FFEBEE;border-color:#E57373;text-decoration:line-through;}
+.spotter-result{font-size:14px;font-weight:700;padding:8px 14px;border-radius:10px;margin-top:6px;display:none;}
+.spotter-result.show{display:block;}
+.spotter-result.win{background:#E8F5E9;color:#1B5E20;}
+.spotter-result.miss{background:#FFF3DC;color:#E65100;}
+
+/* ═══════════ GATHERED ANSWERS ═══════════ */
+.gathered-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);margin-top:22px;}
+.gathered-header{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#0A2A4A,#0E3A5C);padding:16px 22px;border-bottom:2px solid rgba(200,150,42,.25);}
+.gathered-header-icon{font-size:28px;line-height:1;}
+.gathered-header-label{font-size:11px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+.gathered-header-title{font-family:Georgia,serif;font-size:20px;color:#fff;font-weight:700;}
+.gathered-body{padding:18px 22px 20px;}
+.gathered-intro{font-size:15px;color:#3A4A6B;margin-bottom:14px;line-height:1.55;}
+.gathered-output{width:100%;min-height:300px;padding:16px 18px;border:2px solid #E2E8F4;border-radius:12px;font-family:system-ui,sans-serif;font-size:14px;color:#0E1C42;line-height:1.65;background:#FAFBFF;resize:vertical;white-space:pre-wrap;}
+.gathered-actions{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
+.gathered-btn{flex:1;min-width:200px;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border:none;border-radius:14px;font-family:system-ui,sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:transform .2s,box-shadow .2s;}
+.gathered-btn:hover{transform:translateY(-2px);}
+.gathered-btn-copy{background:linear-gradient(135deg,#0E3A5C,#1A4A6C);color:#fff;box-shadow:0 4px 14px rgba(14,58,92,.25);}
+.gathered-btn-pdf{background:linear-gradient(135deg,#0A2A4A,#0E3A5C);color:#fff;border:2px solid #C8962A;box-shadow:0 4px 14px rgba(14,28,66,.25);}
+.gathered-copied{text-align:center;font-size:14px;font-weight:700;color:#4CAF50;margin-top:8px;display:none;}
+.gathered-copied.show{display:block;}
+
+/* ═══════════ TURN-IN CHECKLIST ═══════════ */
+.turn-in-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);margin-top:18px;}
+.turn-in-header{display:flex;align-items:center;gap:14px;background:#EEF4FF;padding:18px 22px;border-bottom:2px solid #C8D8F0;}
+.turn-in-header-icon{font-size:36px;line-height:1;flex-shrink:0;}
+.turn-in-header-label{font-size:11px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+.turn-in-header-title{font-family:Georgia,serif;font-size:22px;color:#0E1C42;font-weight:700;line-height:1.15;}
+.turn-in-body{padding:18px 22px 20px;}
+.turn-in-intro{font-size:15px;color:#3A4A6B;margin-bottom:16px;line-height:1.55;}
+.turn-in-checklist{display:flex;flex-direction:column;gap:10px;}
+.turn-in-item{display:flex;align-items:center;gap:14px;padding:12px 16px;background:#FAFBFF;border:1.5px solid #E2E8F4;border-radius:12px;cursor:pointer;transition:background .2s,border-color .2s;}
+.turn-in-item:hover{background:#EEF4FF;border-color:#C8D8F0;}
+.turn-in-item.checked{background:#FFF8E8;border-color:#F5E6C8;}
+.turn-in-item .turn-in-check{width:26px;height:26px;border-radius:8px;border:2px solid #C8D8F0;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;line-height:1;transition:background .2s,border-color .2s;}
+.turn-in-item.checked .turn-in-check{background:#4CAF50;border-color:#4CAF50;color:#fff;}
+.turn-in-item-text{font-size:15px;color:#0E1C42;font-weight:600;line-height:1.55;flex:1;}
+.turn-in-item.checked .turn-in-item-text{color:#3A4A6B;}
+
+/* ═══════════ TAB TRANSITION ═══════════ */
+.tab-next-wrap{text-align:center;padding:24px 0 8px;}
+.tab-transition-voice{font-family:Georgia,serif;font-size:15px;font-style:italic;color:#5A4A3A;margin-bottom:12px;line-height:1.6;}
+.tab-next-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;background:linear-gradient(135deg,#0E3A5C,#1A4A6C);color:#fff;border:none;border-radius:28px;font-family:system-ui,sans-serif;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(14,58,92,.3);transition:transform .2s,box-shadow .2s;}
+.tab-next-btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(14,58,92,.4);}
+
+/* ═══════════ BACK TO TOP ═══════════ */
+.back-to-top{position:fixed;bottom:28px;right:28px;height:44px;padding:0 18px 0 14px;border-radius:22px;background:linear-gradient(135deg,#0E3A5C,#1A4A6C);color:#fff;border:2px solid #C8962A;font-size:14px;font-weight:800;font-family:system-ui,sans-serif;cursor:pointer;box-shadow:0 4px 18px rgba(0,105,92,.35);display:flex;align-items:center;gap:6px;opacity:0;visibility:hidden;transform:translateY(20px);transition:opacity .3s,visibility .3s,transform .3s,box-shadow .2s;z-index:500;letter-spacing:.3px;}
+.back-to-top.show{opacity:1;visibility:visible;transform:translateY(0);}
+.back-to-top:hover{box-shadow:0 6px 24px rgba(200,150,42,.4);transform:translateY(-3px);}
+
+/* ═══════════ DOWNLOAD BUTTON ═══════════ */
+.download-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px 24px;background:linear-gradient(135deg,#0E1C42,#1A2D5A);color:#fff;border:2px solid #C8962A;border-radius:16px;font-family:system-ui,sans-serif;font-size:17px;font-weight:800;cursor:pointer;margin-top:18px;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(14,28,66,.25);}
+.download-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(14,28,66,.35);}
+.download-btn-sub{font-size:12px;color:rgba(255,255,255,.6);font-weight:600;text-align:center;margin-top:6px;}
+
+/* ═══════════ CONFETTI ═══════════ */
+#confettiCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10000;}
+
+/* ═══════════ FOOTER ═══════════ */
+.footer{background:#0A2A4A;border-top:4px solid #C8962A;padding:18px 28px;text-align:center;}
+.footer-main{font-size:14px;color:#fff;margin-bottom:4px;}
+.footer-main span{color:#C8962A;font-weight:700;}
+.footer-sub{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:2px;}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.3);}
+
+/* ═══════════ DISCOVERY REVEAL ═══════════ */
+.reveal-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,#0E3A5C,#1A4A6C);color:#fff;border:none;border-radius:20px;font-family:system-ui,sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px;transition:transform .15s;}
+.reveal-btn:hover{transform:translateY(-2px);}
+.reveal-content{display:none;margin-top:10px;padding:12px 16px;background:#E8F5E9;border:2px solid #C8E6C9;border-left:4px solid #4CAF50;border-radius:10px;font-size:15px;color:#0E1C42;line-height:1.65;}
+.reveal-content.show{display:block;}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:620px){
+  .intro-2col{grid-template-columns:1fr;}
+  .vocab-grid{grid-template-columns:1fr;}
+  .flip-card{height:165px;}
+  .header-title{font-size:22px;}
+  .tab-btn{min-width:100px;font-size:11px;padding:10px 6px 9px;}
+  .todays-path{gap:4px;}
+  .path-pill{font-size:11px;padding:5px 10px;}
+  .sort-columns{grid-template-columns:1fr;}
+  .match-grid{grid-template-columns:1fr;}
+  .pause-columns{grid-template-columns:1fr;}
+}
+
+/* ═══════════ CMB-SPECIFIC ADDITIONS ═══════════ */
+/* Extra bl- colors for CMB lessons */
+.activity.bl-copper{border-left:6px solid #C8962A;}
+
+/* WGRD block */
+.wgrd-block{background:linear-gradient(135deg,#EEF4FF 0%,#E8F0FA 100%);border:2px solid #C8D8F0;border-left:5px solid #7B5EA7;border-radius:14px;padding:18px 20px;margin-bottom:20px;}
+.wgrd-label{font-size:11px;color:#7B5EA7;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;}
+.wgrd-strategy{font-size:17px;color:#0E1C42;font-weight:800;margin-bottom:8px;line-height:1.3;}
+.wgrd-body{font-size:15px;color:#3A4A6B;line-height:1.7;}
+
+/* Story Journey Tracker */
+.tracker-card{background:linear-gradient(135deg,#061A30,#0A2A4A);border-radius:18px;overflow:hidden;margin-bottom:22px;box-shadow:0 4px 20px rgba(6,26,48,.3);}
+.tracker-header{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid rgba(200,150,42,.2);}
+.tracker-header-icon{font-size:30px;}
+.tracker-header-label{font-size:11px;color:#C8962A;text-transform:uppercase;letter-spacing:.8px;font-weight:700;}
+.tracker-header-title{font-size:17px;color:#fff;font-weight:800;}
+.tracker-header-title em{color:#C8962A;}
+.tracker-scene{position:relative;height:180px;overflow:hidden;}
+.tracker-path-svg{position:absolute;top:0;left:0;width:100%;height:100%;}
+.landmark{position:absolute;opacity:.4;z-index:1;}
+.node{position:absolute;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;z-index:3;border:2px solid transparent;}
+.node.done{background:rgba(200,150,42,.2);border-color:rgba(200,150,42,.4);opacity:.6;}
+.node.active{background:rgba(200,150,42,.4);border-color:#C8962A;opacity:1;box-shadow:0 0 12px rgba(200,150,42,.5);}
+.node.upcoming{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.15);opacity:.4;}
+.char-token{position:absolute;font-size:26px;z-index:5;transition:all .6s ease;filter:drop-shadow(0 2px 6px rgba(200,150,42,.8));}
+.tracker-chapter-label{padding:10px 20px;background:rgba(200,150,42,.08);font-size:13px;color:#C8962A;font-weight:700;border-top:1px solid rgba(200,150,42,.2);}
+
+/* Open Book (CMB navy cover) */
+.open-book-wrap{margin-bottom:22px;}
+.open-book{display:flex;border-radius:16px;overflow:hidden;box-shadow:0 6px 30px rgba(10,42,74,.25);border:2px solid rgba(200,150,42,.4);}
+.book-spine{width:22px;background:linear-gradient(180deg,#030E1C,#061A30);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.book-spine-text{font-size:8px;color:rgba(200,150,42,.6);letter-spacing:2px;text-transform:uppercase;writing-mode:vertical-lr;transform:rotate(180deg);}
+.book-page{flex:1;background:#FFFEF8;padding:20px 22px;}
+.book-page-left{flex:1;background:linear-gradient(145deg,#061A30,#0A2A4A,#0E3A5C);padding:20px 22px;border-right:2px solid rgba(200,150,42,.25);}
+.book-page-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.book-page-left .book-page-label{color:#C8962A;}
+.book-page .book-page-label{color:#7A88A8;}
+.book-page-title{font-family:Georgia,serif;font-size:17px;font-weight:700;margin-bottom:10px;line-height:1.3;}
+.book-page-left .book-page-title{color:#fff;}
+.book-page .book-page-title{color:#0E1C42;}
+.book-page-body{font-size:14px;line-height:1.7;}
+.book-page-left .book-page-body{color:rgba(255,255,255,.75);}
+.book-page .book-page-body{color:#3A4A6B;}
+.book-page-link{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:#0E3A5C;color:#fff;border:none;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;margin-top:12px;}
+
+/* Poetry block */
+.poetry-block{background:linear-gradient(135deg,#F0F5FF 0%,#E8F0FA 100%);border:2px solid #C8D8F0;border-left:5px solid #0E3A5C;border-radius:12px;padding:20px 24px;margin:14px 0;}
+.poetry-label{font-size:11px;color:#0E3A5C;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;}
+.poetry-title{font-family:Georgia,serif;font-size:14px;font-weight:700;color:#0E1C42;margin-bottom:2px;}
+.poetry-author{font-size:12px;color:#7A88A8;margin-bottom:14px;}
+.poetry-lines{font-family:Georgia,serif;font-size:16px;color:#1A3A5C;line-height:2.1;}
+
+/* RWM block */
+.rwm-block{background:linear-gradient(135deg,#FFF8F0,#FFF0E0);border:2px solid #FFD0A0;border-left:5px solid #C8962A;border-radius:14px;padding:18px 20px;margin-top:8px;}
+.rwm-label{font-size:11px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
+.rwm-sentence{font-family:Georgia,serif;font-size:17px;color:#1A2A4A;line-height:1.7;padding:12px 16px;background:rgba(255,255,255,.6);border-radius:8px;margin-bottom:14px;border-left:4px solid #C8962A;}
+.rwm-step{margin-bottom:12px;}
+.rwm-step-label{font-size:12px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;}
+.rwm-frame{font-family:Georgia,serif;font-size:15px;color:#1A2A4A;background:rgba(255,255,255,.8);border-radius:8px;padding:10px 14px;margin-top:8px;border:1.5px dashed #C8962A;line-height:1.8;}
+
+/* Pause card */
+.pause-card{background:#FFF8E1;border:2px solid #FFE082;border-radius:14px;padding:18px 20px;margin-bottom:16px;}
+.pause-label{font-size:11px;color:#E65100;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
+.pause-q{font-size:15px;color:#1A2A4A;line-height:1.7;font-style:italic;margin-bottom:12px;}
+
+/* Vocab choice grid (Day 4) */
+.vocab-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;}
+.vocab-choice-card{border:2.5px solid #E2E8F4;border-radius:16px;padding:14px 16px;background:#FAFBFF;cursor:pointer;transition:all .2s;text-align:left;}
+.vocab-choice-card:hover{border-color:#C8962A;background:#FFF8E8;}
+.vocab-choice-card.selected{border-color:#C8962A;background:#FFF3D0;box-shadow:0 0 0 3px rgba(200,150,42,.15);}
+.vocab-choice-num{font-size:11px;color:#7A88A8;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.vocab-choice-title{font-size:14px;color:#0E1C42;font-weight:800;margin-bottom:4px;}
+.vocab-choice-desc{font-size:13px;color:#3A4A6B;line-height:1.5;}
+
+/* Choice game (use-it activities) */
+.choice-game{display:flex;flex-direction:column;gap:14px;margin:14px 0;}
+.choice-item{background:#FAFBFF;border:2px solid #E2E8F4;border-radius:12px;padding:14px 16px;}
+.choice-item.done{background:#F0FFF4;border-color:#C8E6C9;}
+.choice-prompt{font-size:16px;color:#0E1C42;line-height:1.6;margin-bottom:10px;}
+.choice-blank{display:inline-block;min-width:100px;border-bottom:2px solid #C8962A;padding:0 4px;color:#C8962A;font-style:italic;}
+.choice-row{display:flex;gap:8px;flex-wrap:wrap;}
+.choice-btn{padding:8px 16px;border:2px solid #E2E8F4;border-radius:24px;background:#fff;font-family:system-ui,sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;}
+.choice-btn:hover{border-color:#C8962A;background:#FFF8E8;}
+.choice-btn.correct{background:#C8E6C9;border-color:#4CAF50;color:#1B5E20;cursor:default;}
+.choice-btn.wrong{background:#FFCDD2;border-color:#EF9A9A;color:#B71C1C;opacity:.6;cursor:default;}
+.choice-score{font-size:14px;color:#3A4A6B;margin-top:8px;display:none;}
+.choice-score.show{display:block;}
+
+/* Odd One Out / Root Detective (Day 4 Word Study) */
+.root-det-group,.odd-group,.wins-group{background:#FAFBFF;border:2px solid #E2E8F4;border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+.root-det-group.done,.odd-group.done,.wins-group.done{background:#F0FFF4;border-color:#C8E6C9;}
+.root-det-word{font-family:Georgia,serif;font-size:20px;font-weight:800;color:#0E1C42;margin-bottom:10px;}
+.root-det-row,.odd-row,.wins-options{display:flex;gap:10px;flex-wrap:wrap;}
+.wins-options{flex-direction:column;}
+.root-det-btn,.odd-btn{padding:8px 18px;border:2px solid #E2E8F4;border-radius:22px;background:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;}
+.wins-btn{padding:10px 16px;border:2px solid #E2E8F4;border-radius:10px;background:#fff;font-size:14px;font-weight:600;cursor:pointer;text-align:left;line-height:1.5;transition:all .15s;}
+.root-det-btn:hover,.odd-btn:hover,.wins-btn:hover{border-color:#C8962A;background:#FFF8E8;}
+.root-det-btn.correct,.odd-btn.correct,.wins-btn.correct{background:#C8E6C9;border-color:#4CAF50;color:#1B5E20;}
+.root-det-btn.wrong,.odd-btn.wrong,.wins-btn.wrong{background:#FFCDD2;border-color:#EF9A9A;color:#B71C1C;opacity:.6;}
+.root-det-msg,.odd-msg,.wins-msg{font-size:14px;margin-top:8px;display:none;line-height:1.5;}
+.root-det-msg.show,.odd-msg.show,.wins-msg.show{display:block;color:#1B5E20;}
+
+/* DOP model (DOL) fix sentence */
+.dol-model-sentence{background:#fff;border:1.5px solid #E2E8F4;border-left:4px solid #C8962A;border-radius:10px;padding:14px 18px;font-family:Georgia,serif;font-size:17px;color:#0E1C42;line-height:1.7;margin-bottom:8px;cursor:default;}
+.dol-fix-sentence{background:#FFF8E1;border:1.5px solid #FFE082;border-left:4px solid #F9A825;border-radius:10px;padding:14px 18px;font-family:Georgia,serif;font-size:17px;color:#0E1C42;line-height:1.7;margin-bottom:10px;}
+</style>
+</head>
+<body>
+<canvas id="confettiCanvas"></canvas>
+<button class="back-to-top" id="backToTop">&#9650; Back to Top</button>
+<span id="pageTop" style="position:absolute;top:0;left:0;width:1px;height:1px;"></span>
+<div class="page-wrap">
+
+<div class="progress-wrap">
+  <span class="progress-label">&#x1F4D6; Lesson Progress</span>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <span class="progress-pct" id="progressPct">0%</span>
+</div>
+<div class="header">
+  <div class="header-brand">
+    <div class="header-logo"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy"></div>
+    <div><div class="header-org">Optima Academy Online</div>
+    <div class="header-sub">An Education Experience Company</div></div>
+  </div>
+  <div class="header-title"><em>Carry On, Mr. Bowditch</em> &mdash; Chapter 6</div>
+  <div class="header-badge"><span class="header-badge-icon">&#x1F9ED;</span><span class="header-badge-text">Lesson 10.2</span></div>
+</div>
+
+<div class="hero-visual">
+<svg viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg102" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#020810"/><stop offset="60%" stop-color="#06101C"/><stop offset="100%" stop-color="#0A1828"/>
+    </linearGradient>
+    <radialGradient id="glow102" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C8962A" stop-opacity=".5"/><stop offset="100%" stop-color="#C8962A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="920" height="260" fill="url(#bg102)"/>
+  <g fill="rgba(220,210,170,.6)">
+    <circle cx="60" cy="18" r="1.1"/><circle cx="200" cy="10" r="0.9"/><circle cx="350" cy="25" r="1.2"/>
+    <circle cx="520" cy="12" r="0.8"/><circle cx="700" cy="20" r="1.0"/><circle cx="840" cy="14" r="1.2"/>
+  </g>
+  <!-- Chandlery building -->
+  <rect x="520" y="70" width="360" height="150" fill="#07101A"/>
+  <polygon points="500,70 900,70 880,30" fill="#040C14"/>
+  <!-- Glowing window (Nat studying) -->
+  <rect x="580" y="100" width="70" height="80" fill="#150E04"/>
+  <rect x="583" y="103" width="64" height="74" fill="rgba(200,150,42,.15)"/>
+  <ellipse cx="615" cy="140" rx="55" ry="45" fill="url(#glow102)" opacity=".9"/>
+  <!-- Candle inside window (simple) -->
+  <rect x="612" y="152" width="5" height="20" fill="rgba(200,150,42,.4)"/>
+  <ellipse cx="614" cy="150" rx="5" ry="8" fill="rgba(255,220,100,.3)"/>
+  <!-- Window panes -->
+  <line x1="615" y1="103" x2="615" y2="177" stroke="rgba(5,5,10,.8)" stroke-width="2"/>
+  <line x1="583" y1="140" x2="647" y2="140" stroke="rgba(5,5,10,.8)" stroke-width="2"/>
+  <!-- Second dark window -->
+  <rect x="680" y="100" width="70" height="80" fill="#07101A"/>
+  <!-- Door -->
+  <rect x="760" y="155" width="45" height="65" fill="#050C14" rx="1"/>
+  <!-- Ash oar (rowing symbol) leaning against wall -->
+  <line x1="500" y1="220" x2="530" y2="90" stroke="#8B7355" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="515" cy="155" rx="16" ry="5" fill="#6B5540" opacity=".7" transform="rotate(-70,515,155)"/>
+  <!-- Text overlay left side -->
+  <text x="260" y="95" font-family="Georgia,serif" font-size="22" font-weight="bold" fill="rgba(255,255,255,.88)" text-anchor="middle">Chapter 6</text>
+  <text x="260" y="122" font-family="Georgia,serif" font-size="16" fill="rgba(200,150,42,.88)" text-anchor="middle" font-style="italic">&ldquo;Sail by Ash Breeze!&rdquo;</text>
+  <text x="260" y="148" font-family="Georgia,serif" font-size="12" fill="rgba(190,200,220,.65)" text-anchor="middle">When the wind dies, you row.</text>
+</svg>
+</div>
+
+<div class="info-strip">
+  <div class="info-cell"><div class="info-icon" style="background:#EEF4FF;">&#x1F4C5;</div><div><div class="info-label">Week &amp; Day</div><div class="info-value">Week 10 &middot; Day 2</div><div class="info-detail">Identify arc</div></div></div>
+  <div class="info-cell"><div class="info-icon" style="background:#FFF8E1;">&#x1F4D6;</div><div><div class="info-label">Reading</div><div class="info-value">Chapter 6</div><div class="info-detail">Sail by Ash Breeze!</div></div></div>
+  <div class="info-cell"><div class="info-icon" style="background:#EDE7F6;">&#x1F331;</div><div><div class="info-label">Morphology</div><div class="info-value">Identify graph/gram/meter</div><div class="info-detail">In new words from science</div></div></div>
+  <div class="info-cell"><div class="info-icon" style="background:#E0F2F1;">&#x270F;&#xFE0F;</div><div><div class="info-label">Grammar SWYK</div><div class="info-value">Tense shifts</div><div class="info-detail">Spot and fix errors</div></div></div>
+</div>
+
+<div class="quote-strip">
+  <div class="quote-strip-text">&ldquo;When there&rsquo;s no wind, you row. Sail by ash breeze!&rdquo;</div>
+  <div class="quote-strip-attr">Chapter 6 &bull; <em>Carry On, Mr. Bowditch</em></div>
+</div>
+
+<div class="intro-section" id="introSection">
+  <div class="intro-collapsed-bar" onclick="expandIntro()">
+    <span class="intro-collapsed-icon">&#x1F9ED;</span>
+    <span class="intro-collapsed-text">Lesson 10.2 Overview &mdash; tap to expand</span>
+    <span class="intro-collapsed-toggle">Show &#x25be;</span>
+  </div>
+  <div class="intro-content">
+    <div class="intro-2col">
+      <div class="intro-card theme-question">
+        <div class="intro-card-head"><div class="intro-card-head-icon">&#x1F30A;</div>
+          <div><div class="intro-card-head-label">Big Idea</div>
+          <div class="intro-card-head-title">What do you do when the wind dies?</div></div>
+        </div>
+        <div class="intro-card-body"><p>Nat is indentured for nine years. No Harvard. No wind in his sails. Chapter 6 gives him &mdash; and you &mdash; a philosophy for exactly that moment: sail by ash breeze. When you can&rsquo;t go by wind, you row.</p></div>
+      </div>
+      <div class="intro-card theme-objectives">
+        <div class="intro-card-head"><div class="intro-card-head-icon">&#x1F3AF;</div>
+          <div><div class="intro-card-head-label">Today&rsquo;s Objectives</div>
+          <div class="intro-card-head-title">Identify Arc</div></div>
+        </div>
+        <div class="intro-card-body">
+          <div class="obj-line"><span class="obj-icon">&#x1F331;</span><span><strong>Morphology:</strong> Identify graph/gram/meter roots in scientific vocabulary.</span></div>
+          <div class="obj-line"><span class="obj-icon">&#x270F;&#xFE0F;</span><span><strong>Grammar SWYK:</strong> Identify tense shifts and write the correction.</span></div>
+          <div class="obj-line"><span class="obj-icon">&#x1F524;</span><span><strong>Spelling:</strong> Identify syllable patterns in technical words.</span></div>
+          <div class="obj-line"><span class="obj-icon">&#x1F4D6;</span><span><strong>Reading:</strong> Chapter 6 &mdash; Sail by Ash Breeze!</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="todays-path">
+      <span class="path-pill p-warmup">&#x1F305; Warm-Up</span><span class="path-arrow">&rarr;</span>
+      <span class="path-pill p-words">&#x1F524; Word Study</span><span class="path-arrow">&rarr;</span>
+      <span class="path-pill p-reading">&#x1F4D6; Read Ch. 6</span><span class="path-arrow">&rarr;</span>
+      <span class="path-pill p-assign">&#x1F4EC; Assignment</span>
+    </div>
+    <div class="need-strip">
+      <span class="need-strip-label">You&rsquo;ll need:</span>
+      <span class="need-chip">&#x1F4D3; Reading Journal</span>
+      <span class="need-chip">&#x270F;&#xFE0F; Pencil</span>
+      <span class="need-chip">&#x1F4D5; Your Novel</span>
+    </div>
+  </div>
+</div>
+
+<div class="tab-bar" id="tabBar">
+  <button class="tab-btn active" data-tab="warmup" onclick="switchTab('warmup')">&#x1F305; Warm-Up<span class="tab-check">&#10003;</span></button>
+  <button class="tab-btn" data-tab="words" onclick="switchTab('words')">&#x1F524; Word Study<span class="tab-check">&#10003;</span></button>
+  <button class="tab-btn" data-tab="reading" onclick="switchTab('reading')">&#x1F4D6; Reading<span class="tab-check">&#10003;</span></button>
+  <button class="tab-btn" data-tab="assignment" onclick="switchTab('assignment')">&#x1F4EC; Assignment<span class="tab-check">&#10003;</span></button>
+</div>
+<!-- TAB 1: WARM-UP -->
+<div class="tab-panel active" id="tab-warmup">
+  <div class="video-wrap">
+    <div class="video-wrap-header"><span style="font-size:20px;">&#x1F3AC;</span><div>
+      <div class="video-wrap-type">Welcome &middot; Day 2 of 4</div>
+      <div class="video-wrap-title">Welcome to Lesson 10.2!</div>
+    </div></div>
+    <div class="video-ratio"><div class="video-placeholder">
+      <div class="video-placeholder-icon">&#x1F3AC;</div>
+      <div class="video-placeholder-text">Coming soon</div>
+      <div class="video-placeholder-id"><!-- slot: 10-2-welcome --></div>
+    </div></div>
+  </div>
+
+  <!-- WGRD — Day 2 on Tab 1 -->
+  <div class="activity bl-plum">
+    <div class="activity-head"><div class="activity-num" style="background:#7B5EA7;">&#x1F4DA;</div>
+      <div style="flex:1;"><div class="activity-title">What Good Readers Do</div>
+      <div class="activity-sub">Track how a single idea can change everything</div></div>
+    </div>
+    <div class="activity-body">
+      <p>In Chapter 6, Nat receives a piece of wisdom that will anchor his entire life: <em>sail by ash breeze.</em> Good readers notice when an author plants a key idea early that will echo through the rest of a book. As you read today, pay close attention to the moment Nat hears those words &mdash; and what he immediately does with them.</p>
+      <div class="socratic-box">
+        <div class="socratic-label">&#x1F9E0; Watch for this</div>
+        <p class="socratic-q">Who explains the &ldquo;ash breeze&rdquo; philosophy, and what is the literal meaning (what do sailors actually do when there is no wind)?</p>
+        <p class="socratic-q">How does Nat apply this idea to his own situation at Ropes and Hodges?</p>
+        <p class="socratic-q">What does Nat do at night after his long days in the chandlery? What is his &ldquo;ash breeze&rdquo;?</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOL — Day 2 (grammar focus: tense) -->
+  <div class="activity bl-teal">
+    <div class="activity-head"><div class="activity-num" style="background:#00796B;">&#x1F4DD;</div>
+      <div style="flex:1;"><div class="activity-title">Daily Oral Language</div>
+      <div class="activity-sub">Study the model; fix the tense error in Sentence 2</div></div>
+    </div>
+    <div class="activity-body">
+      <p style="font-size:14px;color:#7A88A8;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">Sentence 1 &mdash; The Correct Model</p>
+      <div class="dol-model-sentence" id="dolModel">
+        <span class="dol-highlight-word" onclick="dolWordClick(this,'Nat is a proper noun — always capitalized.')">Nat</span>
+        worked at his bookkeeping until the chandlery
+        <span class="dol-highlight-word" onclick="dolWordClick(this,'&quot;grew&quot; is past tense — consistent with &quot;worked.&quot; Good writers keep tense consistent.')">grew</span>
+        dark around him, and then he lit a candle and
+        <span class="dol-highlight-word" onclick="dolWordClick(this,'&quot;went on working&quot; keeps the past tense. The whole sentence stays in one time frame.')">went on working.</span>
+      </div>
+      <div class="dol-explanation" id="dolExplanation"></div>
+      <p style="font-size:14px;color:#7A88A8;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:16px;margin-bottom:8px;">Sentence 2 &mdash; Fix It</p>
+      <p style="font-size:14px;color:#3A4A6B;margin-bottom:10px;">This sentence has a tense shift. Find it and rewrite the sentence correctly in your journal.</p>
+      <div class="dol-fix-sentence">nat borrowed books from dr. prince and teaches himself latin at night by candlelight</div>
+      <button class="dol-check-btn" onclick="document.getElementById('dolAns').classList.toggle('show')">&#x1F50D; Check My Work</button>
+      <div class="dol-answer" id="dolAns">
+        <p><strong>Corrected:</strong> Nat borrowed books from Dr. Prince and taught himself Latin at night by candlelight.</p>
+        <p style="font-size:13px;color:#7A88A8;margin-top:8px;font-style:italic;">Three fixes: &ldquo;Nat&rdquo; capitalized; &ldquo;Dr. Prince&rdquo; both words capitalized (title + name); &ldquo;teaches&rdquo; &rarr; &ldquo;taught&rdquo; (tense shift: &ldquo;borrowed&rdquo; is past, so &ldquo;teaches&rdquo; must become &ldquo;taught&rdquo;).</p>
+      </div>
+  <div class="video-wrap">
+    <div class="video-wrap-header"><span style="font-size:20px;">&#x1F3AC;</span><div>
+      <div class="video-wrap-type">Feedback &middot; Check Your Work</div>
+      <div class="video-wrap-title">DOL Walk-Through</div>
+    </div></div>
+    <div class="video-ratio"><div class="video-placeholder">
+      <div class="video-placeholder-icon">&#x1F3AC;</div>
+      <div class="video-placeholder-text">Coming soon</div>
+      <div class="video-placeholder-id"><!-- slot: 10-2-dol-feedback --></div>
+    </div></div>
+  </div>
+    </div>
+  </div>
+
+  <!-- Poetry Corner — Day 2 -->
+  <div class="activity bl-navy">
+    <div class="activity-head"><div class="activity-num" style="background:#0E3A5C;">&#x1F4DC;</div>
+      <div style="flex:1;"><div class="activity-title">Poetry Corner</div>
+      <div class="activity-sub">A poem about choosing effort when the easy path is gone</div></div>
+    </div>
+    <div class="activity-body">
+      <p>Henry Wadsworth Longfellow was a New England poet who grew up just one generation after Nat Bowditch. He understood something about what it means to keep rowing when there is no wind.</p>
+      <div class="poetry-block">
+        <div class="poetry-label">&#x1F4DC; This Week&rsquo;s Poem</div>
+        <div class="poetry-title">from &ldquo;A Psalm of Life&rdquo;</div>
+        <div class="poetry-author">Henry Wadsworth Longfellow, 1838 &mdash; public domain</div>
+        <div class="poetry-lines">
+          Lives of great men all remind us<br>
+          &nbsp;&nbsp;We can make our lives sublime,<br>
+          And, departing, leave behind us<br>
+          &nbsp;&nbsp;Footprints on the sands of time;<br><br>
+          Let us, then, be up and doing,<br>
+          &nbsp;&nbsp;With a heart for any fate;<br>
+          Still achieving, still pursuing,<br>
+          &nbsp;&nbsp;Learn to labor and to wait.
+        </div>
+      </div>
+      <div class="callout callout-tip"><span class="callout-icon">&#x1F4A1;</span><p><em>Sublime</em> means noble or elevated. &ldquo;Sands of time&rdquo; is a metaphor for how quickly time passes and we are forgotten.</p></div>
+      <div class="socratic-box">
+        <div class="socratic-label">&#x1F914; Think &mdash; Write in Your Journal</div>
+        <p class="socratic-q">Longfellow writes &ldquo;learn to labor and to wait.&rdquo; Nat is nine years into an indenture he never chose. He works all day and studies all night. Where do you see him laboring? What might he be waiting for? How does this poem connect to &ldquo;sail by ash breeze&rdquo;?</p>
+      </div>
+      <p style="font-size:13px;color:#7A88A8;font-style:italic;margin-top:10px;">Write your response in your reading journal. No digital textbox needed for poetry responses.</p>
+    </div>
+  </div>
+
+  <div class="tab-next-wrap">
+    <p class="tab-transition-voice">Warmed up and thinking. Head to Word Study to identify the roots in action.</p>
+    <button class="tab-next-btn" onclick="switchTab('words')">Continue to &#x1F524; Word Study &rarr;</button>
+  </div>
+</div>
+<!-- TAB 2: WORD STUDY -->
+<div class="tab-panel" id="tab-words">
+
+  <!-- MORPHOLOGY — Identify -->
+  <div class="activity bl-plum">
+    <div class="activity-head"><div class="activity-num" style="background:#7B5EA7;">1</div>
+      <div style="flex:1;"><div class="activity-title">&#x1F331; Morphology: Identify graph/gram and meter in New Words</div>
+      <div class="activity-sub">Identify &mdash; can you see the roots you know in new vocabulary?</div></div>
+    </div>
+    <div class="activity-body">
+  <div class="video-wrap">
+    <div class="video-wrap-header"><span style="font-size:20px;">&#x1F3AC;</span><div>
+      <div class="video-wrap-type">Morphology &middot; Day 2</div>
+      <div class="video-wrap-title">Roots graph/gram and meter: Identify</div>
+    </div></div>
+    <div class="video-ratio"><div class="video-placeholder">
+      <div class="video-placeholder-icon">&#x1F3AC;</div>
+      <div class="video-placeholder-text">Coming soon</div>
+      <div class="video-placeholder-id"><!-- slot: 10-2-morphology --></div>
+    </div></div>
+  </div>
+      <p>Yesterday you defined the roots. Today, identify them inside new words from the world of science and navigation that Nat is entering.</p>
+      <div class="key-concept">
+        <div class="key-concept-label">&#x1F4CC; Identify the root</div>
+        <p><strong>biography</strong> &rarr; bio + <em>graph</em> (write) &rarr; a written account of someone&rsquo;s life</p>
+        <p><strong>chronometer</strong> &rarr; chrono + <em>meter</em> (measure) &rarr; an instrument that measures time precisely; sailors used it to find longitude</p>
+        <p><strong>geography</strong> &rarr; geo + <em>graph</em> (write/record) &rarr; the written study of the earth</p>
+        <p><strong>speedometer</strong> &rarr; speed + <em>meter</em> &rarr; measures how fast something moves</p>
+        <p><strong>monogram</strong> &rarr; mono + <em>gram</em> (written mark) &rarr; one&rsquo;s initials written as a single symbol</p>
+      </div>
+      <div class="callout callout-info"><span class="callout-icon">&#x1F3AF;</span><p><strong>Match game:</strong> Tap a word, then tap its definition. Use the roots to guide you.</p></div>
+      <div class="match-game">
+        <div class="match-grid">
+          <div class="match-item is-word" data-match="A" onclick="matchClick(this)">biography</div>
+          <div class="match-item" data-match="C" onclick="matchClick(this)">measures time precisely enough for navigation</div>
+          <div class="match-item is-word" data-match="B" onclick="matchClick(this)">geography</div>
+          <div class="match-item" data-match="D" onclick="matchClick(this)">measures speed</div>
+          <div class="match-item is-word" data-match="C" onclick="matchClick(this)">chronometer</div>
+          <div class="match-item" data-match="B" onclick="matchClick(this)">written study of the earth&rsquo;s surface</div>
+          <div class="match-item is-word" data-match="D" onclick="matchClick(this)">speedometer</div>
+          <div class="match-item" data-match="A" onclick="matchClick(this)">a written account of someone&rsquo;s life</div>
+        </div>
+        <div class="match-feedback" id="matchFeedback">&#x2728; All matched! You can find these roots in unfamiliar words.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VOCABULARY — Day 2: Word Sort -->
+  <div class="activity bl-teal">
+    <div class="activity-head"><div class="activity-num" style="background:#00796B;">2</div>
+      <div style="flex:1;"><div class="activity-title">&#x1F524; Vocabulary: Word Sort</div>
+      <div class="activity-sub">Identify &mdash; sort this week&rsquo;s words by category</div></div>
+    </div>
+    <div class="activity-body">
+  <div class="video-wrap">
+    <div class="video-wrap-header"><span style="font-size:20px;">&#x1F3AC;</span><div>
+      <div class="video-wrap-type">Vocabulary &middot; Day 2</div>
+      <div class="video-wrap-title">Word Sort: Two Worlds</div>
+    </div></div>
+    <div class="video-ratio"><div class="video-placeholder">
+      <div class="video-placeholder-icon">&#x1F3AC;</div>
+      <div class="video-placeholder-text">Coming soon</div>
+      <div class="video-placeholder-id"><!-- slot: 10-2-vocabulary --></div>
+    </div></div>
+  </div>
+      <p>Nat&rsquo;s extraordinary achievement was bringing mathematics into navigation. Today, sort this week&rsquo;s six vocabulary words into two categories: words from the world of <strong>mathematics and scholarship</strong>, and words from the world of <strong>ships and the sea</strong>.</p>
+      <div class="callout callout-info"><span class="callout-icon">&#x1F3AE;</span><p>Click a chip to select it, then click the column where it belongs.</p></div>
+      <div class="sort-bank" id="sortBank">
+        <span class="sort-chip" data-group="math" onclick="pickChip(this)">bookkeeping</span>
+        <span class="sort-chip" data-group="sea" onclick="pickChip(this)">latitude</span>
+        <span class="sort-chip" data-group="math" onclick="pickChip(this)">logarithm</span>
+        <span class="sort-chip" data-group="sea" onclick="pickChip(this)">celestial</span>
+        <span class="sort-chip" data-group="sea" onclick="pickChip(this)">almanac</span>
+        <span class="sort-chip" data-group="math" onclick="pickChip(this)">apprentice</span>
+      </div>
+      <div class="sort-columns">
+        <div class="sort-col">
+          <div class="sort-col-header" style="background:linear-gradient(135deg,#7B5EA7,#9575CD);">Mathematics &amp; Scholarship</div>
+          <div class="sort-col-drop" onclick="dropChip(this,'math')"></div>
+        </div>
+        <div class="sort-col">
+          <div class="sort-col-header" style="background:linear-gradient(135deg,#0E3A5C,#1A4A6C);">Ships &amp; the Sea</div>
+          <div class="sort-col-drop" onclick="dropChip(this,'sea')"></div>
+        </div>
+      </div>
+      <div class="sort-score" id="sortScore"></div>
+      <div class="callout callout-tip" style="margin-top:12px;"><span class="callout-icon">&#x1F4A1;</span><p>Notice: Nat needs <em>both</em> categories. His life&rsquo;s work was uniting them &mdash; using mathematics to transform navigation at sea.</p></div>
+    </div>
+  </div>
+
+  <!-- GRAMMAR SWYK — Day 2 -->
+  <div class="activity bl-gold">
+    <div class="activity-head"><div class="activity-num" style="background:#F9A825;color:#0E1C42;">3</div>
+      <div style="flex:1;"><div class="activity-title">&#x270F;&#xFE0F; Grammar: Identify Tense Shifts</div>
+      <div class="activity-sub">Show What You Know &mdash; spot and fix errors in informational writing</div></div>
+    </div>
+    <div class="activity-body">
+  <div class="video-wrap">
+    <div class="video-wrap-header"><span style="font-size:20px;">&#x1F3AC;</span><div>
+      <div class="video-wrap-type">Grammar &middot; Day 2</div>
+      <div class="video-wrap-title">Identifying Tense Shifts</div>
+    </div></div>
+    <div class="video-ratio"><div class="video-placeholder">
+      <div class="video-placeholder-icon">&#x1F3AC;</div>
+      <div class="video-placeholder-text">Coming soon</div>
+      <div class="video-placeholder-id"><!-- slot: 10-2-grammar --></div>
+    </div></div>
+  </div>
+      <p>Good informational writers stay in one tense throughout a passage. Read each sentence below. Decide: is the tense consistent, or does it shift? If it shifts, fix it.</p>
+      <div class="callout callout-info"><span class="callout-icon">&#x1F3AF;</span><p>Click the correct label for each sentence.</p></div>
+      <div class="spotter-game">
+        <div class="spotter-sentence" id="sp1">
+          <strong style="font-size:13px;color:#7A88A8;display:block;margin-bottom:6px;">&ldquo;Nat studied bookkeeping with Michael Walsh and masters it in two months.&rdquo;</strong>
+          <span class="spotter-word" onclick="spotterPick(this,'sp1')" data-correct="true">Tense shift &mdash; &ldquo;masters&rdquo; should be &ldquo;mastered&rdquo;</span>
+          <span class="spotter-word" onclick="spotterPick(this,'sp1')" data-correct="false">Consistent past tense &#x2713;</span>
+          <div class="spotter-result" id="sp1-r"></div>
+        </div>
+        <div class="spotter-sentence" id="sp2">
+          <strong style="font-size:13px;color:#7A88A8;display:block;margin-bottom:6px;">&ldquo;He borrowed books from Dr. Prince and read them by candlelight.&rdquo;</strong>
+          <span class="spotter-word" onclick="spotterPick(this,'sp2')" data-correct="false">Tense shift error</span>
+          <span class="spotter-word" onclick="spotterPick(this,'sp2')" data-correct="true">Consistent past tense &#x2713;</span>
+          <div class="spotter-result" id="sp2-r"></div>
+        </div>
+        <div class="spotter-sentence" id="sp3">
+          <strong style="font-size:13px;color:#7A88A8;display:block;margin-bottom:6px;">&ldquo;When sailors had no wind, they use oars made of ash wood to move the ship.&rdquo;</strong>
+          <span class="spotter-word" onclick="spotterPick(this,'sp3')" data-correct="true">Tense shift &mdash; &ldquo;use&rdquo; should be &ldquo;used&rdquo;</span>
+          <span class="spotter-word" onclick="spotterPick(this,'sp3')" data-correct="false">Consistent tense &#x2713;</span>
+          <div class="spotter-result" id="sp3-r"></div>
+        </div>
+      </div>
+      <div class="swyk">
+        <div class="swyk-label">&#x270F;&#xFE0F; Show What You Know &middot; Grammar</div>
+        <div class="swyk-prompt">Write the corrected version of the sentence with the tense shift from the activity above. Then write your own consistent past-tense sentence about something Nat does in Chapter 6 (the ash-breeze scene or his night studies).</div>
+        <div class="textbox-prompt">Write the fixed sentence. Then write your own sentence using consistent past tense about Nat in Chapter 6.</div>
+        <textarea class="journal-box" id="journal-grammar" data-label="Grammar SWYK: Tense shift correction + original sentence"
+          placeholder="Fixed sentence: ... My own sentence: Nat ___ed and ___ed..."
+          oninput="autoSave(this,'dot-grammar');gatherAnswers();"></textarea>
+        <div class="journal-label">&#x1F4D3; <span class="saved-dot" id="dot-grammar"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPELLING — Day 2: Identify -->
+  <div class="activity bl-navy">
+    <div class="activity-head"><div class="activity-num" style="background:#0E3A5C;">4</div>
+      <div style="flex:1;"><div class="activity-title">&#x1F524; Spelling: Identify Syllable Patterns</div>
+      <div class="activity-sub">Identify &mdash; mark VCV or VCCV in each word</div></div>
+    </div>
+    <div class="activity-body">
+  <div class="video-wrap">
+    <div class="video-wrap-header"><span style="font-size:20px;">&#x1F3AC;</span><div>
+      <div class="video-wrap-type">Spelling &middot; Day 2</div>
+      <div class="video-wrap-title">Syllable Division: Identify</div>
+    </div></div>
+    <div class="video-ratio"><div class="video-placeholder">
+      <div class="video-placeholder-icon">&#x1F3AC;</div>
+      <div class="video-placeholder-text">Coming soon</div>
+      <div class="video-placeholder-id"><!-- slot: 10-2-spelling --></div>
+    </div></div>
+  </div>
+      <p>Yesterday you discovered the VCV and VCCV patterns. Today, identify them in words from Nat&rsquo;s world. In your journal, write each word, mark each letter V or C, then draw a line at the syllable break.</p>
+      <div class="key-concept">
+        <div class="key-concept-label">&#x270F;&#xFE0F; Identify and divide in your reading journal</div>
+        <p><strong>bi&middot;og&middot;ra&middot;phy</strong> (4 syllables) &mdash; VCV at &ldquo;bi&rdquo; (open syllable, long i)</p>
+        <p><strong>chro&middot;nom&middot;e&middot;ter</strong> (4 syllables) &mdash; VCCV between &ldquo;n&rdquo; and &ldquo;o&rdquo;</p>
+        <p><strong>ap&middot;pren&middot;tice</strong> (3 syllables) &mdash; VCCV: divide between the double &ldquo;p&rdquo;</p>
+        <p><strong>log&middot;a&middot;rithm</strong> (3 syllables) &mdash; VCCV: divide after &ldquo;log&rdquo;</p>
+        <p>&#x1F4D3; Write each word in your journal with dots between syllables. Underline the consonant pair or single consonant where you divided.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-next-wrap">
+    <p class="tab-transition-voice">You&rsquo;ve identified the roots, sorted the words, spotted the tense errors, and marked the syllables. Time to sail by ash breeze &mdash; read Chapter 6.</p>
+    <button class="tab-next-btn" onclick="switchTab('reading')">Continue to &#x1F4D6; Reading &rarr;</button>
+  </div>
+</div>
+<!-- TAB 3: READING -->
+<div class="tab-panel" id="tab-reading">
+  <div class="tracker-card">
+    <div class="tracker-header"><div class="tracker-header-icon">&#x26F5;</div>
+      <div><div class="tracker-header-label">Your Story Journey</div>
+      <div class="tracker-header-title">Nat&rsquo;s Path Through <em>Carry On, Mr. Bowditch</em></div></div>
+    </div>
+    <div class="tracker-scene" id="scene">
+      <div style="position:absolute;top:18px;left:50%;transform:translateX(-50%);background:rgba(200,150,42,.12);border:1px solid rgba(200,150,42,.25);border-radius:20px;padding:4px 18px;white-space:nowrap;">
+        <span style="font-family:Georgia,serif;font-size:13px;color:rgba(200,150,42,.8);font-style:italic;">&#x1F9ED; Carry On, Mr. Bowditch</span>
+      </div>
+      <div class="landmark" style="left:2%;top:118px;font-size:22px;">&#x26F5;</div>
+      <div class="landmark" style="left:13%;top:105px;font-size:17px;">&#x1F4DC;</div>
+      <div class="landmark" style="left:25%;top:118px;font-size:17px;">&#x1F4DA;</div>
+      <div class="landmark" style="left:37%;top:108px;font-size:17px;">&#x1F52D;</div>
+      <div class="landmark" style="left:49%;top:120px;font-size:16px;">&#x1F30A;</div>
+      <div class="landmark" style="left:60%;top:110px;font-size:17px;">&#x1F5FA;&#xFE0F;</div>
+      <div class="landmark" style="left:71%;top:118px;font-size:16px;">&#x2693;</div>
+      <div class="landmark" style="left:80%;top:108px;font-size:17px;">&#x1F319;</div>
+      <div class="landmark" style="left:89%;top:118px;font-size:16px;">&#x1F9ED;</div>
+      <div class="landmark" style="left:96%;top:110px;font-size:17px;">&#x1F32B;&#xFE0F;</div>
+      <svg style="position:absolute;bottom:0;left:0;width:100%;height:100%;" viewBox="0 0 1400 180" preserveAspectRatio="none">
+        <path d="M -20,140 C 60,135 90,108 170,112 C 250,116 270,138 360,130 C 450,122 470,102 560,108 C 650,114 670,135 760,126 C 850,117 880,95 970,100 C 1060,105 1080,130 1160,122 C 1240,114 1270,98 1350,102" fill="none" stroke="rgba(200,150,42,0.3)" stroke-width="14" stroke-linecap="round"/>
+        <path d="M -20,140 C 60,135 90,108 170,112 C 250,116 270,138 360,130 C 450,122 470,102 560,108 C 650,114 670,135 760,126 C 850,117 880,95 970,100 C 1060,105 1080,130 1160,122 C 1240,114 1270,98 1350,102" fill="none" stroke="rgba(200,150,42,0.55)" stroke-width="5" stroke-linecap="round" stroke-dasharray="5 9"/>
+      </svg>
+      <div class="char-token" id="charToken">&#x1F9ED;</div>
+    </div>
+    <div class="tracker-chapter-label">&#x1F4CD; You are here: <strong>Chapter 6 &mdash; Sail by Ash Breeze!</strong></div>
+  </div>
+
+  <div class="video-wrap">
+    <div class="video-wrap-header"><span style="font-size:20px;">&#x1F3AC;</span><div>
+      <div class="video-wrap-type">Reading &middot; Chapter Introduction</div>
+      <div class="video-wrap-title">Before You Read Chapter 6</div>
+    </div></div>
+    <div class="video-ratio"><div class="video-placeholder">
+      <div class="video-placeholder-icon">&#x1F3AC;</div>
+      <div class="video-placeholder-text">Coming soon</div>
+      <div class="video-placeholder-id"><!-- slot: 10-2-reading --></div>
+    </div></div>
+  </div>
+
+  <div class="activity bl-teal">
+    <div class="activity-head"><div class="activity-num" style="background:#00796B;">&#x1F4D5;</div>
+      <div style="flex:1;"><div class="activity-title">Read: Chapter 6 &mdash; &ldquo;Sail by Ash Breeze!&rdquo;</div>
+      <div class="activity-sub">The philosophy Nat will carry for the rest of his life</div></div>
+    </div>
+    <div class="activity-body">
+      <p>In Chapter 6, Nat moves into the chandlery and begins his nine years. He is heartsick, but he has a question: what do you do when you can&rsquo;t go where you want to go? Someone gives him the answer &mdash; and Nat immediately sees how to apply it. Watch for that moment.</p>
+      <div class="reading-links">
+        <div class="reading-links-title">&#x1F4DA; Read or Listen</div>
+        <a href="#" class="reading-link"><span class="reading-link-icon">&#x1F4D6;</span><span>Read Chapter 6 in your novel</span></a>
+        <a href="#" class="reading-link"><span class="reading-link-icon">&#x1F3A7;</span><span>Listen to Chapter 6 (audio link coming soon)</span></a>
+      </div>
+      <div class="pause-columns">
+        <div style="display:flex;flex-direction:column;">
+          <div class="socratic-box" style="margin-bottom:0;">
+            <div class="socratic-label">&#x23F8;&#xFE0F; Pause at the Ash Breeze Scene</div>
+            <p class="socratic-q">Who tells Nat about sailing by ash breeze, and what is the literal explanation (what do sailors actually do when the wind dies)? How does Nat immediately apply this idea to his own situation?</p>
+          </div>
+          <textarea class="journal-box standalone" id="journal-pt1" placeholder="The ash breeze idea means... The person who tells Nat is... Nat applies it by..." oninput="autoSave(this,'dot-pt1');" style="margin-top:10px;min-height:70px;"></textarea>
+          <div class="journal-label">&#x1F4D3; <span class="saved-dot" id="dot-pt1"></span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;">
+          <div class="socratic-box" style="margin-bottom:0;">
+            <div class="socratic-label">&#x23F8;&#xFE0F; Pause at Nat&rsquo;s Night Studies</div>
+            <p class="socratic-q">Latham describes Nat working all day at the chandlery and then studying by candlelight at night. What subjects does he teach himself? Where does he get his books? What does this show about who Nat is?</p>
+          </div>
+          <textarea class="journal-box standalone" id="journal-pt2" placeholder="After his work days, Nat... He gets books from... This shows that Nat is a person who..." oninput="autoSave(this,'dot-pt2');" style="margin-top:10px;min-height:70px;"></textarea>
+          <div class="journal-label">&#x1F4D3; <span class="saved-dot" id="dot-pt2"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-next-wrap">
+    <p class="tab-transition-voice">You&rsquo;ve seen how Nat sails by ash breeze. Now put your thinking to work.</p>
+    <button class="tab-next-btn" onclick="switchTab('assignment')">Continue to &#x1F4EC; Assignment &rarr;</button>
+  </div>
+</div>
+<!-- TAB 4: ASSIGNMENT -->
+<div class="tab-panel" id="tab-assignment">
+  <div class="video-wrap">
+    <div class="video-wrap-header"><span style="font-size:20px;">&#x1F3AC;</span><div>
+      <div class="video-wrap-type">Assignment &middot; What to Submit</div>
+      <div class="video-wrap-title">Show What You Know &mdash; Chapter 6</div>
+    </div></div>
+    <div class="video-ratio"><div class="video-placeholder">
+      <div class="video-placeholder-icon">&#x1F3AC;</div>
+      <div class="video-placeholder-text">Coming soon</div>
+      <div class="video-placeholder-id"><!-- slot: 10-2-assignment --></div>
+    </div></div>
+  </div>
+  <div class="callout callout-info" style="margin-bottom:20px;"><span class="callout-icon">&#x1F4EC;</span><p>Answer in complete sentences with evidence from Chapter 6. Then scroll down to copy or download your work.</p></div>
+
+  <!-- Part A: Chapter Thinking -->
+  <div class="activity bl-teal">
+    <div class="activity-head"><div class="activity-num" style="background:#00796B;">A</div>
+      <div style="flex:1;"><div class="activity-title">Part A: Chapter Thinking &mdash; Chapter 6</div>
+      <div class="activity-sub">Three questions with evidence</div></div>
+    </div>
+    <div class="activity-body">
+      <div class="q-block"><div class="q-text"><span class="q-num">1</span>Explain the &ldquo;ash breeze&rdquo; idea in your own words. What does it literally mean for a sailor when the wind dies? Then explain how Nat applies this idea to his situation as an indentured apprentice.</div></div>
+      <div class="textbox-prompt">Explain the literal meaning first, then show how Nat applies it. Use the word &ldquo;ash breeze&rdquo; in your answer.</div>
+      <textarea class="journal-box" id="journal-q1" data-label="Q1: Explain ash breeze — literal and Nat's application" placeholder="Literally, 'sail by ash breeze' means... For Nat, it means... He applies it by..." oninput="autoSave(this,'dot-q1');gatherAnswers();"></textarea>
+      <div class="journal-label">&#x1F4D3; <span class="saved-dot" id="dot-q1"></span></div>
+
+      <div class="q-block" style="margin-top:18px;"><div class="q-text"><span class="q-num">2</span>Latham writes: &ldquo;Nat worked at his bookkeeping until the chandlery grew dark around him, and then he lit a candle and went on working.&rdquo; What does this single sentence reveal about Nat&rsquo;s character that could not be shown by simply saying &ldquo;Nat was very hardworking&rdquo;?</div></div>
+      <div class="textbox-prompt">Think about showing vs. telling. What does &ldquo;went on working&rdquo; do that &ldquo;very hardworking&rdquo; does not?</div>
+      <textarea class="journal-box" id="journal-q2" data-label="Q2: Latham's sentence — showing vs. telling character" placeholder="The sentence shows us that Nat... rather than just saying he was hardworking, Latham shows us..." oninput="autoSave(this,'dot-q2');gatherAnswers();"></textarea>
+      <div class="journal-label">&#x1F4D3; <span class="saved-dot" id="dot-q2"></span></div>
+
+      <div class="q-block" style="margin-top:18px;"><div class="q-text"><span class="q-num">3</span>At the end of Chapter 5, Nat&rsquo;s whistle died when he left the house. By the middle of Chapter 6, he is studying Latin by candlelight. What has changed? What is Nat&rsquo;s &ldquo;ash breeze&rdquo; &mdash; how is he rowing when he cannot sail?</div></div>
+      <div class="textbox-prompt">Use evidence from both chapters. What shift happens in Nat between the end of Chapter 5 and the middle of Chapter 6?</div>
+      <textarea class="journal-box" id="journal-q3" data-label="Q3: Shift from Ch.5 to Ch.6 — Nat's ash breeze" placeholder="At the end of Chapter 5, Nat... But by Chapter 6, he has... His 'ash breeze' is..." oninput="autoSave(this,'dot-q3');gatherAnswers();"></textarea>
+      <div class="journal-label">&#x1F4D3; <span class="saved-dot" id="dot-q3"></span></div>
+    </div>
+  </div>
+
+  <!-- Part B: RWM (physical journal — no textbox) -->
+    <div class="callout callout-submit" style="margin-bottom:18px;"><span class="callout-icon">&#x1F4D3;</span><p><strong>Reading Journal Reminder:</strong> Before submitting, make sure you completed this week&rsquo;s Read &bull; Write &bull; Make It Yours exercise in your <strong>reading journal</strong>. That work is collected in person or photographed and submitted separately.</p></div>
+
+  <!-- Part C: Writing Connection -->
+    <!-- Part C: Writer's Workshop -->
+  <div class="activity bl-gold" id="writers-workshop" style="margin-top:18px;">
+    <div class="activity-head" style="background:linear-gradient(135deg,#FFF8F0,#FFF3DC);border-bottom:2px solid #F5E6C8;">
+      <div class="activity-num" style="background:#C8962A;border-radius:10px;font-size:16px;">&#x270D;&#xFE0F;</div>
+      <div style="flex:1;">
+        <div class="activity-title">Writer&rsquo;s Workshop &middot; Week 10 &middot; PLAN</div>
+        <div class="activity-sub">Choose evidence for Body Section 1</div>
+      </div>
+    </div>
+    <div class="activity-body">
+      <div style="display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-bottom:12px;"><span style="background:#E8F1E8;color:#2D7A5A;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;">&#x2713; Research Claim</span><span style="background:#C8962A;color:#fff;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;">&#x2605; Plan</span><span style="background:#EEF4FF;color:#7A88A8;padding:4px 10px;border-radius:6px;font-size:11px;">&#x25CB; Draft</span><span style="background:#EEF4FF;color:#7A88A8;padding:4px 10px;border-radius:6px;font-size:11px;">&#x25CB; Add Craft</span><span style="background:#EEF4FF;color:#7A88A8;padding:4px 10px;border-radius:6px;font-size:11px;">&#x25CB; Revise & Edit</span><span style="background:#EEF4FF;color:#7A88A8;padding:4px 10px;border-radius:6px;font-size:11px;">&#x25CB; Publish</span></div>
+      <div class="callout callout-info" style="margin:0 0 14px;padding:10px 14px;"><span class="callout-icon">&#x1F3AF;</span><p style="font-size:14px;"><strong>Today&rsquo;s focus:</strong> Planning isn&rsquo;t just deciding WHAT to say &mdash; it&rsquo;s deciding WHICH evidence is strongest. Today you rank your Body 1 evidence.</p></div>
+      <div class="key-concept" style="background:#FFFEF7;border-color:#F5E6C8;margin-bottom:14px;">
+        <div class="key-concept-label" style="color:#C8962A;">&#x1F440; Watch How &mdash; Meet Alex, our example writer</div>
+        <p style="font-size:14px;margin-bottom:10px;">Alex has found four possible pieces of evidence for Body 1 (the self-made scholar subtopic). Now Alex has to pick the two best.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div style="background:#fff;border:1px solid #F5E6C8;border-radius:6px;padding:10px;">
+            <div style="font-size:11px;color:#C7627E;font-weight:700;letter-spacing:.5px;margin-bottom:4px;">BEFORE</div>
+            <div style="font-style:italic;font-size:13px;">All four options: (1) Nat studies at night in the chandlery. (2) Sam Smith teaches him navigation vocabulary. (3) Nat teaches himself Latin and algebra. (4) He fills notebooks with everything he learns.</div>
+          </div>
+          <div style="background:#fff;border:1px solid #D4ECC8;border-radius:6px;padding:10px;">
+            <div style="font-size:11px;color:#4A7C2E;font-weight:700;letter-spacing:.5px;margin-bottom:4px;">AFTER</div>
+            <div style="font-style:italic;font-size:13px;">Alex&rsquo;s ranking: (1) Chandlery nights &mdash; most powerful, shows volume of work. (2) Filling notebooks &mdash; shows method, not just effort. Cuts: Sam Smith &mdash; Sam helps, but the EFFORT is Nat&rsquo;s. Latin/algebra &mdash; supports the first point, doesn&rsquo;t add new subtopic.</div>
+          </div>
+        </div>
+        <p style="margin-top:10px;font-size:13px;color:#3A4A6B;"><strong>Notice:</strong> Alex doesn&rsquo;t use ALL the evidence. Using your best two pieces is stronger than listing four weak ones. The cut evidence isn&rsquo;t wasted &mdash; it might appear in another body section or support your claim indirectly.</p>
+      </div>
+      <div class="key-concept" style="background:#EEF4FF;border-color:#C8D8F0;margin-bottom:14px;">
+        <div class="key-concept-label" style="color:#0E3A5C;">&#x1F4CB; Today&rsquo;s Tool: Evidence Ranker</div>
+        <p style="font-size:14px;margin-bottom:10px;">List 3&ndash;4 pieces of evidence for your Body 1 subtopic. Then rank them: which TWO are strongest?</p>
+        <p style="font-size:13px;font-weight:700;color:#0E3A5C;margin-bottom:6px;">Alex&rsquo;s example (filled):</p>
+        <div style="font-size:13px;"><p style="margin:0 0 6px;"><strong>Alex&rsquo;s subtopic:</strong> Nat as a self-made scholar</p><p style="margin:0 0 4px;">&#x2460; Chandlery nights &larr; <strong style="color:#4A7C2E;">STRONGEST (volume + persistence)</strong></p><p style="margin:0 0 4px;">&#x2461; Fills notebooks &larr; <strong style="color:#4A7C2E;">2nd STRONGEST (method + intentionality)</strong></p><p style="margin:0 0 4px;">&#x2462; Sam Smith vocabulary &larr; cut (Sam helps, but Nat&rsquo;s effort is the point)</p><p style="margin:0;">&#x2463; Latin/algebra &larr; cut (supports but doesn&rsquo;t add new angle)</p></div>
+        <p style="font-size:13px;font-weight:700;color:#0E3A5C;margin-top:12px;margin-bottom:6px;">Your turn &mdash; do the same in your reading journal:</p>
+        <div style="background:#FAFBFF;border:2px dashed #C8D8F0;border-radius:8px;padding:14px;font-size:13px;">My Body 1 subtopic: ___<br>Evidence option 1: ___ (chapters: ___) Strength: ___/3<br>Evidence option 2: ___ (chapters: ___) Strength: ___/3<br>Evidence option 3: ___ (chapters: ___) Strength: ___/3<br><strong>I choose options ___ and ___ because:</strong> ___</div>
+      </div>
+      <div class="key-concept" style="background:#F0E8FF;border-color:#D8CCF0;margin-bottom:14px;">
+        <div class="key-concept-label" style="color:#6B4FB0;">&#x1FAB6; Sentence Frames You Can Borrow</div>
+        <ul style="margin:0 0 0 18px;font-size:14px;"><li style="margin-bottom:5px;">&ldquo;The strongest evidence for my first body section is ___.&rdquo;</li><li style="margin-bottom:5px;">&ldquo;This is especially powerful because ___.&rdquo;</li><li style="margin-bottom:5px;">&ldquo;In Chapter ___, Nat ___, which shows that...&rdquo;</li></ul>
+      </div>
+      <div class="callout callout-info" style="background:#E8F5E8;border-color:#A8D8A8;margin:0 0 10px;padding:10px 14px;"><span class="callout-icon">&#x270F;&#xFE0F;</span><p style="font-size:14px;"><strong>Now you try.</strong> Use what Alex showed you. Borrow a sentence frame if you want. Type below.</p></div>
+      <div class="textbox-prompt">List your Body 1 evidence options, rank them by strength, and choose your two best. Write your ranking and reasoning.</div>
+      <textarea class="journal-box" id="journal-writing" data-label="Writer&apos;s Workshop: Plan (Week 10)" placeholder="My Body 1 subtopic is... My strongest evidence is from Chapter ___ when Nat... I chose it because..." oninput="autoSave(this,&apos;dot-writing&apos;);gatherAnswers();"></textarea>
+      <div class="journal-label">&#x1F4D3; <span class="saved-dot" id="dot-writing"></span></div>
+    </div>
+  </div>
+
+  <div class="gathered-card">
+    <div class="gathered-header">
+      <div class="gathered-header-icon">&#x1F4CB;</div>
+      <div><div class="gathered-header-label">All Your Work</div>
+      <div class="gathered-header-title">Review, Copy, or Download</div></div>
+    </div>
+    <div class="gathered-body">
+      <p class="gathered-intro">Everything you typed is gathered here. Review, then copy to Canvas or download as a PDF.</p>
+      <textarea class="gathered-output" id="gatheredOutput" readonly></textarea>
+      <div class="gathered-actions">
+        <button class="gathered-btn gathered-btn-copy" onclick="copyToClipboard()">&#x1F4CB; Copy to Clipboard</button>
+        <button class="gathered-btn gathered-btn-pdf" onclick="downloadPDF()">&#x1F4C4; Download as PDF</button>
+      </div>
+      <div class="gathered-copied" id="gatheredCopied">Copied!</div>
+    </div>
+  </div>
+  <button class="download-btn" onclick="downloadPDF()">&#x1F4E5; Download All My Work as PDF</button>
+  <div class="download-btn-sub">Opens a print-ready page &mdash; save or upload to Canvas</div>
+  <div class="turn-in-card">
+    <div class="turn-in-header"><div class="turn-in-header-icon">&#x1F4EC;</div>
+      <div><div class="turn-in-header-label">Ready to Submit?</div>
+      <div class="turn-in-header-title">Before You Turn In</div></div>
+    </div>
+    <div class="turn-in-body">
+      <p class="turn-in-intro">Check each item off as you finish.</p>
+      <div class="turn-in-checklist">
+        <div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I answered all 3 comprehension questions with evidence from Chapter 6.</div></div>
+        <div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I completed the Grammar Show What You Know (tense shift) in Word Study.</div></div>
+        <div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I wrote my RWM sentence in my reading journal.</div></div>
+        <div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I wrote my Writing Connection research note from Chapter 6.</div></div>
+        <div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I copied my work to Canvas or downloaded the PDF.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-main"><span>Optima Academy Online</span> &middot; 5th Grade ELA &middot; Week 10 &middot; Lesson 10.2</div>
+  <div class="footer-sub"><em>Carry On, Mr. Bowditch</em> &mdash; Chapter 6 &bull; Sail by Ash Breeze!</div>
+  <div class="footer-copy">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+</div>
+<script>
+
+function switchTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  var btn=document.querySelector('.tab-btn[data-tab="'+id+'"]');
+  btn.classList.add('active','visited');
+  updateProgress();
+  var intro=document.getElementById('introSection');
+  if(id==='warmup') intro.classList.remove('collapsed');
+  else intro.classList.add('collapsed');
+  if(id==='assignment') gatherAnswers();
+  try{document.getElementById('pageTop').scrollIntoView({behavior:'smooth',block:'start'});}catch(e){}
+  document.documentElement.scrollTop=0; document.body.scrollTop=0;
+}
+function expandIntro(){document.getElementById('introSection').classList.remove('collapsed');}
+function updateProgress(){
+  var t=document.querySelectorAll('.tab-btn').length;
+  var v=document.querySelectorAll('.tab-btn.visited').length;
+  var p=Math.round((v/t)*100);
+  document.getElementById('progressFill').style.width=p+'%';
+  document.getElementById('progressPct').textContent=p+'%';
+}
+document.querySelector('.tab-btn.active').classList.add('visited'); updateProgress();
+function autoSave(el,dotId){
+  var dot=document.getElementById(dotId);
+  if(dot) dot.classList.toggle('saved', el.value.trim().length>0);
+}
+function dolWordClick(el,msg){
+  el.classList.toggle('tapped');
+  document.getElementById('dolExplanation').textContent=el.classList.contains('tapped')?msg:'';
+}
+/* match game */
+var _mFirst=null,_mCount=0,_mTotal=4,_mDone=false;
+function matchClick(item){
+  if(item.classList.contains('matched'))return;
+  if(!_mFirst){_mFirst=item;item.classList.add('selected');return;}
+  if(_mFirst===item){_mFirst.classList.remove('selected');_mFirst=null;return;}
+  var k1=_mFirst.getAttribute('data-match'),k2=item.getAttribute('data-match');
+  if(k1===k2&&_mFirst.classList.contains('is-word')!==item.classList.contains('is-word')){
+    _mFirst.classList.remove('selected'); _mFirst.classList.add('matched'); item.classList.add('matched');
+    _mCount++; _mFirst=null;
+    if(_mCount>=_mTotal){var fb=document.getElementById('matchFeedback');if(fb)fb.classList.add('show');_mDone=true;}
+  } else {
+    item.classList.add('wrong-flash');_mFirst.classList.add('wrong-flash');
+    var a=_mFirst,b=item;
+    setTimeout(()=>{a.classList.remove('wrong-flash','selected');b.classList.remove('wrong-flash');},500);
+    _mFirst=null;
+  }
+}
+/* sort */
+var _sSel=null,_sPlaced=0,_sTotal=6,_sDone=false;
+function pickChip(chip){
+  if(chip.classList.contains('placed'))return;
+  if(_sSel) _sSel.style.outline='';
+  _sSel=chip; chip.style.outline='3px solid #C8962A'; chip.style.outlineOffset='2px';
+}
+function dropChip(col,colName){
+  if(!_sSel)return;
+  var g=_sSel.getAttribute('data-group');
+  var clone=_sSel.cloneNode(true); clone.style.outline=''; clone.onclick=null; clone.style.cursor='default';
+  if(g===colName){clone.classList.add('correct');_sSel.classList.add('placed');col.appendChild(clone);_sPlaced++;}
+  else{clone.classList.add('wrong');col.appendChild(clone);setTimeout(()=>col.removeChild(clone),600);}
+  _sSel.style.outline=''; _sSel=null;
+  if(_sPlaced>=_sTotal){var sc=document.getElementById('sortScore');if(sc){sc.textContent='All sorted!';sc.classList.add('show');}  _sDone=true;}
+}
+/* spotter */
+var _spotDone=false;
+function spotterPick(word,sid){
+  var s=document.getElementById(sid);
+  if(s.getAttribute('data-done')==='true')return;
+  var r=document.getElementById(sid+'-r');
+  if(word.getAttribute('data-correct')==='true'){
+    word.classList.add('correct-reveal');
+    r.textContent='Correct!'; r.className='spotter-result show win';
+    s.setAttribute('data-done','true');
+    if([...document.querySelectorAll('.spotter-sentence')].every(x=>x.getAttribute('data-done')==='true'))_spotDone=true;
+  } else {
+    word.classList.add('wrong-reveal');
+    r.textContent='Look again.'; r.className='spotter-result show miss';
+    setTimeout(()=>{word.classList.remove('wrong-reveal');r.classList.remove('show');},1500);
+  }
+}
+/* choice game */
+var _choiceDone=false,_choiceCorrect=0;
+function choiceBtn(btn,correct){
+  var row=btn.closest('.choice-item');
+  if(row.getAttribute('data-done')==='true')return;
+  if(correct){
+    btn.classList.add('correct'); row.setAttribute('data-done','true'); _choiceCorrect++;
+    var msg=row.querySelector('.choice-score'); if(msg){msg.textContent='Correct!';msg.classList.add('show');}
+    if(_choiceCorrect>=document.querySelectorAll('.choice-item').length) _choiceDone=true;
+  } else {
+    btn.classList.add('wrong'); setTimeout(()=>btn.classList.remove('wrong'),700);
+  }
+}
+/* checklist */
+function toggleCheck(item){
+  item.classList.toggle('checked');
+  item.querySelector('.turn-in-check').textContent=item.classList.contains('checked')? '\u2713':'';
+  var all=[...item.closest('.turn-in-checklist').querySelectorAll('.turn-in-item')];
+  if(all.every(x=>x.classList.contains('checked'))&&all.length>0) fireConfetti();
+}
+/* confetti */
+function fireConfetti(){
+  var canvas=document.getElementById('confettiCanvas'); if(!canvas)return;
+  var ctx=canvas.getContext('2d'); canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  var colors=['#0E3A5C','#C8962A','#52B788','#7B5EA7'];
+  var parts=Array.from({length:120},()=>({
+    x:Math.random()*canvas.width, y:-30-Math.random()*100,
+    vx:(Math.random()-.5)*6, vy:Math.random()*4+3, r:Math.random()*6+3,
+    c:colors[Math.floor(Math.random()*colors.length)], rot:Math.random()*6.28, vr:(Math.random()-.5)*.2
+  }));
+  var fr=0;
+  (function anim(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.1;p.rot+=p.vr;
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.c;
+      ctx.fillRect(-p.r,-p.r,p.r*2,p.r*2);ctx.restore();});
+    if(++fr<180) requestAnimationFrame(anim); else ctx.clearRect(0,0,canvas.width,canvas.height);
+  })();
+}
+/* back to top */
+(function(){
+  var btn=document.getElementById('backToTop'); if(!btn) return;
+  var inFrame=(()=>{try{return window.self!==window.top;}catch(e){return true;}})();
+  btn.addEventListener('click',()=>{
+    document.documentElement.scrollTop=0; document.body.scrollTop=0;
+    try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){}
+    if(inFrame)try{window.parent.postMessage({type:'optima-lesson:scroll-to-top'},'*');}catch(e){}
+  });
+  if(inFrame) setTimeout(()=>btn.classList.add('show'),1500);
+  else window.addEventListener('scroll',()=>btn.classList.toggle('show',window.scrollY>400));
+})();
+/* copy / pdf */
+function copyToClipboard(){
+  gatherAnswers();
+  var t=document.getElementById('gatheredOutput').value;
+  navigator.clipboard&&navigator.clipboard.writeText(t).then(showCopied).catch(()=>{execCopy(t);});
+  execCopy(t);
+}
+function execCopy(t){
+  var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+  showCopied();
+}
+function showCopied(){
+  var m=document.getElementById('gatheredCopied');if(m){m.classList.add('show');setTimeout(()=>m.classList.remove('show'),2500);}
+}
+function downloadPDF(){
+  gatherAnswers();
+  var text=document.getElementById('gatheredOutput').value;
+  var win=window.open('','_blank');
+  if(win){
+    win.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Georgia,serif;max-width:700px;margin:40px auto;padding:0 20px;line-height:1.7;}pre{white-space:pre-wrap;font-size:14px;}@media print{body{margin:20px;}}</style></head><body><pre>'+text.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</pre></body></html>');
+    win.document.close();
+    setTimeout(()=>win.print(),400);
+  }
+}
+/* video loader */
+(function(){
+  function load(){if(!window.VIDEO_MANIFEST)return;
+    document.querySelectorAll('.video-placeholder').forEach(ph=>{
+      var slot=null;
+      ph.childNodes.forEach(n=>{if(n.nodeType===1&&n.className==='video-placeholder-id')
+        n.childNodes.forEach(c=>{if(c.nodeType===8&&/slot:/.test(c.nodeValue))slot=c.nodeValue.replace(/.*slot:\s*/,'').trim();});});
+      if(!slot)return;
+      var entry=window.VIDEO_MANIFEST[slot];if(!entry)return;
+      var wrap=ph.parentElement;if(!wrap)return;
+      wrap.innerHTML=entry.startsWith('<')?entry:'<iframe src="'+entry+'" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allowfullscreen></iframe>';
+    });
+  }
+  var s=document.createElement('script');
+  s.src='https://raw.githubusercontent.com/optimaondemand/optima-assets/main/videos.js';
+  s.async=true; s.onload=load; s.onerror=()=>{};
+  document.head.appendChild(s);
+})();
+
+var _tp=[5,128,16,113,27,126,38,116,50,128,61,118,72,126,81,116,90,126,97,118];
+var _ti=["\u26f5","\ud83d\udcdc","\ud83d\udcda","\ud83d\udd2d","\ud83c\udf0a","\ud83d\uddfa\ufe0f","\u2693","\ud83c\udf19","\ud83e\udded","\ud83c\udf2b\ufe0f"];
+(function(){
+  var sc=document.getElementById('scene'); if(!sc) return;
+  for(var i=0;i<10;i++){
+    var nd=document.createElement('div');
+    var done=i<6,active=i===6-1;
+    nd.className='node'+(done&&!active?' done':'')+(active?' active':'')+((!done&&!active)?' upcoming':'');
+    nd.style.left='calc('+_tp[i*2]+'% - 15px)'; nd.style.top=_tp[i*2+1]+'px';
+    nd.innerHTML=done?(active?_ti[i]:'\u2726'):_ti[i];
+    sc.appendChild(nd);
+  }
+  var tk=document.getElementById('charToken');
+  var idx=Math.max(0,6-1);
+  if(tk){tk.style.left='calc('+_tp[idx*2]+'% - 14px)';tk.style.top=(_tp[idx*2+1]-36)+'px';}
+})();
+function gatherAnswers(){
+  var o='LESSON 10.2 \u2014 CARRY ON, MR. BOWDITCH, Chapter 6\n';
+  o+='\u2550'.repeat(40)+'\n\n';
+  o+='\u270F\uFE0F GRAMMAR SWYK (Tense Shifts)\n'+'\u2500'.repeat(36)+'\n';
+  var g=document.getElementById('journal-grammar');
+  if(g){o+='\n'+g.getAttribute('data-label')+'\n'+(g.value.trim()||'(no answer)')+'\n';}
+  o+='\n\U0001f4ec CHAPTER THINKING\n'+'\u2500'.repeat(36)+'\n';
+  ['journal-q1','journal-q2','journal-q3'].forEach(id=>{
+    var el=document.getElementById(id);if(!el)return;
+    o+='\n'+el.getAttribute('data-label')+'\n'+(el.value.trim()||'(no answer)')+'\n';
+  });
+  o+='\n WRITING CONNECTION\n'+'\u2500'.repeat(36)+'\n';
+  var w=document.getElementById('journal-writing');
+  if(w){o+='\n'+w.getAttribute('data-label')+'\n'+(w.value.trim()||'(no answer)')+'\n';}
+  document.getElementById('gatheredOutput').value=o;
+}
+</script>
+</body>
+</html>

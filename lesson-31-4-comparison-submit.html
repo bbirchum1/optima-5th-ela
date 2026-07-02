@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optima Academy Online — Week 31 Day 4: Peer Review & Submit</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:system-ui,-apple-system,sans-serif;background:#F0F2F8;color:#0E1C42;line-height:1.6;-webkit-font-smoothing:antialiased;}
+.page-wrap{max-width:920px;margin:0 auto;background:#fff;box-shadow:0 0 40px rgba(14,28,66,.08);}
+
+/* ═══════════ PROGRESS BAR ═══════════ */
+.progress-wrap{position:sticky;top:0;z-index:200;background:#0E1C42;padding:8px 20px 10px;display:flex;align-items:center;gap:14px;}
+.progress-label{font-size:12px;color:#F9A825;font-weight:800;text-transform:uppercase;letter-spacing:.8px;white-space:nowrap;}
+.progress-track{flex:1;height:10px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden;}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#C8862A,#F9A825);border-radius:10px;transition:width .4s ease;}
+.progress-pct{font-size:13px;color:#F9A825;font-weight:800;min-width:36px;text-align:right;}
+
+/* ═══════════ HEADER ═══════════ */
+.header{background:linear-gradient(135deg,#0E1C42 0%,#1A2D5A 60%,#243868 100%);border-bottom:6px solid #C8862A;padding:20px 28px 18px;position:relative;overflow:hidden;}
+.header::after{content:'';position:absolute;bottom:6px;left:0;right:0;height:3px;background:linear-gradient(90deg,#C8862A,#F9A825,#C8862A);}
+.header-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.header-logo{width:52px;height:52px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+.header-logo img{width:48px;height:38px;}
+.header-org{font-size:22px;color:#fff;font-weight:800;line-height:1.15;}
+.header-sub{font-size:11px;color:#C8962A;letter-spacing:.5px;}
+.header-title{font-family:Georgia,serif;font-size:28px;color:#fff;font-weight:700;line-height:1.2;margin-bottom:10px;}
+.header-title em{color:#F9A825;font-style:italic;}
+.header-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,134,42,.20);border:1.5px solid rgba(0,137,123,.4);border-radius:28px;padding:6px 16px;}
+.header-badge-icon{font-size:22px;}
+.header-badge-text{font-size:18px;color:#fff;font-weight:800;}
+
+/* ═══════════ HERO BANNER ═══════════ */
+.hero-visual{background:linear-gradient(180deg,#070a12 0%,#0e1829 60%,#1a2540 100%);padding:0;position:relative;overflow:hidden;border-bottom:3px solid #C8862A;}
+.hero-visual svg{display:block;width:100%;height:auto;}
+
+/* ═══════════ INFO STRIP ═══════════ */
+.info-strip{display:flex;flex-wrap:wrap;background:#fff;border-bottom:2px solid #E2E8F4;}
+.info-cell{flex:1;min-width:150px;padding:12px 16px;border-right:1px solid #E2E8F4;display:flex;align-items:center;gap:10px;}
+.info-cell:last-child{border-right:none;}
+.info-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.info-label{font-size:10px;color:#7A88A8;text-transform:uppercase;letter-spacing:.5px;font-weight:700;}
+.info-value{font-size:16px;color:#0E1C42;font-weight:800;line-height:1.2;}
+.info-detail{font-size:11px;color:#3A4A6B;line-height:1.3;}
+
+/* ═══════════ QUOTE STRIP ═══════════ */
+.quote-strip{background:linear-gradient(135deg,#FFF8F0 0%,#FFF3DC 100%);border-bottom:2px solid #F5E6C8;padding:14px 28px;text-align:center;}
+.quote-strip-text{font-family:Georgia,serif;font-size:16px;font-style:italic;color:#5A4A3A;line-height:1.6;}
+.quote-strip-attr{font-size:11px;color:#7A88A8;font-weight:700;margin-top:4px;text-transform:uppercase;letter-spacing:.5px;}
+
+/* ═══════════ INTRO COLLAPSIBLE ═══════════ */
+.intro-section{transition:max-height .35s ease,padding .35s ease,opacity .25s ease;overflow:hidden;}
+.intro-section.collapsed .intro-content{display:none;}
+.intro-collapsed-bar{display:none;align-items:center;gap:12px;padding:10px 28px;background:#FFF8F0;border-bottom:2px solid #F5E6C8;cursor:pointer;transition:background .15s;}
+.intro-collapsed-bar:hover{background:#FFF3DC;}
+.intro-section.collapsed .intro-collapsed-bar{display:flex;}
+.intro-collapsed-icon{font-size:18px;}
+.intro-collapsed-text{font-size:14px;color:#5A4A3A;font-weight:700;flex:1;}
+.intro-collapsed-toggle{font-size:12px;color:#C8862A;font-weight:800;text-transform:uppercase;letter-spacing:.5px;}
+
+/* ═══════════ INTRO 2-COL ═══════════ */
+.intro-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px 28px 4px;}
+.intro-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);}
+.intro-card-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:2px solid;}
+.intro-card-head-icon{width:40px;height:40px;border-radius:50%;color:#fff;font-size:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.intro-card-head-label{font-size:10px;color:#7A88A8;text-transform:uppercase;letter-spacing:.8px;font-weight:700;}
+.intro-card-head-title{font-size:18px;color:#0E1C42;font-weight:800;line-height:1.2;}
+.intro-card-body{padding:14px 18px;}
+.intro-card-body p{font-size:15px;color:#3A4A6B;line-height:1.65;margin-bottom:8px;}
+.intro-card-body p:last-child{margin-bottom:0;}
+.obj-line{display:flex;align-items:flex-start;gap:8px;font-size:15px;color:#0E1C42;line-height:1.55;margin-bottom:8px;}
+.obj-line:last-child{margin-bottom:0;}
+.obj-icon{flex-shrink:0;font-size:17px;}
+.theme-question .intro-card-head{background:#FFF3DC;border-color:#F5E6C8;}
+.theme-question .intro-card-head-icon{background:#F9A825;}
+.theme-objectives .intro-card-head{background:#FFF8E8;border-color:#E8D0A0;}
+.theme-objectives .intro-card-head-icon{background:#C8862A;}
+
+/* ═══════════ TODAY'S PATH ═══════════ */
+.todays-path{display:flex;align-items:center;justify-content:center;gap:6px;padding:12px 28px;flex-wrap:wrap;}
+.path-pill{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;color:#fff;white-space:nowrap;}
+.path-pill.p-warmup{background:#52B788;}
+.path-pill.p-words{background:#F9A825;color:#0E1C42;}
+.path-pill.p-reading{background:#A86820;}
+.path-pill.p-assign{background:#7B5EA7;}
+.path-arrow{font-size:16px;color:#B0B8CC;}
+
+/* ═══════════ NEED STRIP ═══════════ */
+.need-strip{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:12px 28px 18px;}
+.need-strip-label{font-size:13px;color:#3A4A6B;font-weight:700;white-space:nowrap;}
+.need-chip{display:inline-flex;align-items:center;gap:5px;background:#FFF8E8;border:1.5px solid #E8D0A0;border-radius:20px;padding:5px 12px;font-size:13px;color:#0E1C42;font-weight:700;}
+
+/* ═══════════ TAB BAR ═══════════ */
+.tab-bar{position:sticky;top:38px;z-index:100;background:#fff;border-bottom:3px solid #E2E8F4;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;box-shadow:0 -4px 0 0 #0E1C42;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{flex:1;min-width:130px;padding:12px 8px 11px;background:transparent;border:none;border-bottom:4px solid transparent;font-family:system-ui,sans-serif;font-size:13px;font-weight:700;color:#7A88A8;cursor:pointer;transition:all .2s;white-space:nowrap;line-height:1.3;text-align:center;}
+.tab-btn:hover{color:#0E1C42;background:#FFF8E8;}
+.tab-btn.active{color:#0E1C42;border-bottom-color:#C8862A;background:#fff;}
+.tab-btn .tab-check{display:none;font-size:12px;color:#34B76F;margin-left:4px;font-weight:800;}
+.tab-btn.visited .tab-check{display:inline;}
+.tab-panel{display:none;padding:24px 28px 36px;}
+.tab-panel.active{display:block;}
+
+/* ═══════════ VIDEO WRAP ═══════════ */
+.video-wrap{border-radius:18px;overflow:hidden;border:2px solid #E2E8F4;box-shadow:0 4px 20px rgba(14,28,66,.08);background:#000;margin:0 0 22px;}
+.video-wrap-header{display:flex;align-items:center;gap:12px;padding:12px 18px;background:linear-gradient(135deg,#0E1C42,#1A2D5A);border-bottom:2px solid rgba(200,134,42,.25);}
+.video-wrap-type{font-size:10px;color:#C8962A;text-transform:uppercase;letter-spacing:1.5px;font-weight:800;margin-bottom:2px;}
+.video-wrap-title{font-size:16px;color:#fff;font-weight:800;line-height:1.2;}
+.video-ratio{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;}
+.video-ratio iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.video-placeholder{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#0E1C42,#1A2D5A);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;}
+.video-placeholder-icon{font-size:44px;margin-bottom:10px;opacity:.55;}
+.video-placeholder-text{font-size:14px;color:rgba(255,255,255,.55);font-weight:600;line-height:1.5;}
+.video-placeholder-id{font-size:11px;color:rgba(200,134,42,.5);font-family:monospace;margin-top:6px;letter-spacing:.5px;}
+
+/* ═══════════ ACTIVITY CARDS ═══════════ */
+.activity{background:#fff;border:2px solid #E2E8F4;border-radius:18px;margin-bottom:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);}
+.activity.bl-sage{border-left:6px solid #52B788;}
+.activity.bl-gold{border-left:6px solid #F9A825;}
+.activity.bl-teal{border-left:6px solid #A86820;}
+.activity.bl-plum{border-left:6px solid #7B5EA7;}
+.activity.bl-navy{border-left:6px solid #0E1C42;}
+.activity-head{display:flex;align-items:center;gap:12px;padding:14px 20px 14px 18px;border-bottom:1.5px solid #E2E8F4;}
+.activity-num{width:38px;height:38px;border-radius:14px;color:#fff;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.activity-title{font-size:19px;color:#0E1C42;font-weight:800;line-height:1.2;}
+.activity-sub{font-size:12px;color:#7A88A8;}
+.activity-body{padding:18px 22px;}
+.activity-body p{font-size:17px;color:#3A4A6B;line-height:1.75;margin-bottom:12px;}
+.activity-body p:last-child{margin-bottom:0;}
+
+/* ═══════════ CALLOUTS ═══════════ */
+.callout{border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}
+.callout:last-child{margin-bottom:0;}
+.callout-icon{font-size:28px;flex-shrink:0;margin-top:2px;}
+.callout p{font-size:16px;color:#0E1C42;line-height:1.65;margin:0;}
+.callout-info{background:#FFF8E8;border:2px solid #E8D0A0;}
+.callout-think{background:#FFF3DC;border:2px solid #F5E6C8;}
+.callout-tip{background:#E8F5E9;border:2px solid #C8E6C9;}
+.callout-vocab{background:#F3E5F5;border:2px solid #E1BEE7;}
+.callout-submit{background:#FCE4EC;border:2px solid #F8BBD0;}
+
+/* ═══════════ SOCRATIC BOX ═══════════ */
+.socratic-box{background:linear-gradient(135deg,#F3E5F5 0%,#EDE7F6 100%);border:2px solid #D1C4E9;border-radius:14px;padding:16px 18px;margin-bottom:14px;}
+.socratic-box:last-child{margin-bottom:0;}
+.socratic-label{font-size:12px;color:#7B5EA7;text-transform:uppercase;letter-spacing:.5px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.socratic-q{font-size:16px;color:#0E1C42;line-height:1.7;font-style:italic;margin-bottom:8px;}
+.socratic-q:last-child{margin-bottom:0;}
+.socratic-q strong{font-style:normal;color:#0E1C42;}
+
+/* ═══════════ DOL COMPONENTS ═══════════ */
+.dol-model-sentence{background:#fff;border:1.5px solid #E2E8F4;border-left:4px solid #C8862A;border-radius:10px;padding:14px 18px;font-family:Georgia,serif;font-size:17px;color:#0E1C42;line-height:1.7;margin-bottom:8px;cursor:default;}
+.dol-highlight-word{padding:2px 4px;border-radius:4px;cursor:pointer;transition:background .2s,color .2s;}
+.dol-highlight-word:hover{background:#FFF8E8;}
+.dol-highlight-word.tapped{background:#C8E6C9;color:#1B5E20;}
+.dol-explanation{font-size:14px;color:#C8862A;font-style:italic;padding:6px 12px;min-height:28px;margin-bottom:10px;}
+.dol-fix-sentence{background:#FFF8E1;border:1.5px solid #FFE082;border-left:4px solid #F9A825;border-radius:10px;padding:14px 18px;font-family:Georgia,serif;font-size:17px;color:#0E1C42;line-height:1.7;margin-bottom:10px;}
+.dol-check-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,#7B5EA7,#9575CD);color:#fff;border:none;border-radius:20px;font-family:system-ui,sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px;transition:transform .15s;}
+.dol-check-btn:hover{transform:translateY(-2px);}
+.dol-answer{display:none;margin-top:10px;padding:12px 16px;background:#E8F5E9;border:2px solid #C8E6C9;border-left:4px solid #4CAF50;border-radius:10px;font-size:15px;color:#0E1C42;line-height:1.65;}
+.dol-answer.show{display:block;}
+
+/* ═══════════ KEY CONCEPT ═══════════ */
+.key-concept{background:#FFF3DC;border:2px solid #F5E6C8;border-radius:14px;padding:16px 18px;margin-bottom:14px;}
+.key-concept:last-child{margin-bottom:0;}
+.key-concept-label{font-size:12px;color:#F9A825;text-transform:uppercase;letter-spacing:.5px;font-weight:800;margin-bottom:8px;}
+.key-concept p{font-size:15px;color:#0E1C42;line-height:1.7;margin-bottom:6px;}
+
+/* ═══════════ VOCABULARY FLIP CARDS ═══════════ */
+.vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+.flip-card{perspective:800px;height:175px;cursor:pointer;}
+.flip-card-inner{position:relative;width:100%;height:100%;transition:transform .5s ease;transform-style:preserve-3d;}
+.flip-card.flipped .flip-card-inner{transform:rotateY(180deg);}
+.flip-card-front,.flip-card-back{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 16px;text-align:center;border:2px solid #E2E8F4;box-shadow:0 2px 10px rgba(14,28,66,.06);}
+.flip-card-front{background:#fff;border-top:5px solid #C8862A;}
+.flip-card-front .fc-emoji{font-size:28px;margin-bottom:6px;}
+.flip-card-front .fc-word{font-family:Georgia,serif;font-size:17px;font-weight:700;color:#0E1C42;margin-bottom:4px;}
+.flip-card-front .fc-tap{font-size:11px;color:#7A88A8;font-weight:600;letter-spacing:.3px;}
+.flip-card-back{background:linear-gradient(145deg,#0E1C42,#1A2D5A);border-color:#0E1C42;transform:rotateY(180deg);}
+.flip-card-back .fc-def{font-size:13.5px;color:#fff;line-height:1.5;font-weight:600;}
+.flip-card-back .fc-word-back{font-size:10px;color:#C8962A;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:6px;}
+.fc-color-1 .flip-card-front{border-top-color:#C8862A;}
+.fc-color-2 .flip-card-front{border-top-color:#F9A825;}
+.fc-color-3 .flip-card-front{border-top-color:#7B5EA7;}
+.fc-color-4 .flip-card-front{border-top-color:#52B788;}
+.fc-color-5 .flip-card-front{border-top-color:#E57373;}
+.fc-color-6 .flip-card-front{border-top-color:#0E1C42;}
+
+/* ═══════════ STORY JOURNEY TRACKER ═══════════ */
+.tracker-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);margin-bottom:22px;}
+.tracker-header{display:flex;align-items:center;gap:10px;padding:12px 20px;background:linear-gradient(135deg,#7A4A08 0%,#C8862A 100%);border-bottom:2px solid #C8862A;}
+.tracker-header-icon{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tracker-header-label{font-size:10px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.8px;font-weight:700;}
+.tracker-header-title{font-size:17px;color:#fff;font-weight:800;line-height:1.2;}
+.scene-wrap{width:100%;position:relative;height:210px;overflow:hidden;border-bottom:3px solid #8b6f47;background:linear-gradient(180deg,#c2ddf0 0%,#d4c9a8 30%,#c4a56a 50%,#8b7340 58%,#6b5a30 65%,#5a4a28 100%);user-select:none;}
+.cloud{position:absolute;background:rgba(255,255,255,.55);border-radius:50%;filter:blur(2px);}
+.hills-far{position:absolute;bottom:60px;left:0;right:0;height:80px;background:radial-gradient(ellipse 220px 60px at 10% 100%,#8abb6d 70%,transparent 71%),radial-gradient(ellipse 300px 70px at 30% 100%,#79ad58 70%,transparent 71%),radial-gradient(ellipse 250px 55px at 55% 100%,#8abb6d 70%,transparent 71%),radial-gradient(ellipse 280px 65px at 78% 100%,#6fa04a 70%,transparent 71%),radial-gradient(ellipse 200px 50px at 95% 100%,#8abb6d 70%,transparent 71%);}
+.path-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+.tree,.house,.flower,.landmark{position:absolute;pointer-events:none;z-index:1;filter:drop-shadow(0 2px 2px rgba(0,0,0,.15));}
+.flower{filter:none;font-size:12px;z-index:2;}
+.node{position:absolute;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;z-index:5;border:3px solid #f5f0e6;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.18),inset 0 -2px 0 rgba(0,0,0,.05);}
+.node.done{background:#C8862A;border-color:#F9A825;box-shadow:0 0 0 2px #C8862A,0 2px 8px rgba(200,134,42,.45);color:#fff;}
+.node.active{background:#F9A825;border-color:#FFF3DC;box-shadow:0 0 0 3px #F9A825,0 0 14px rgba(249,168,37,.5);transform:scale(1.15);color:#0E1C42;}
+.node.upcoming{opacity:.55;}
+.char-token{position:absolute;font-size:26px;z-index:20;pointer-events:none;filter:drop-shadow(0 3px 5px rgba(0,0,0,.3));animation:hop 2s ease-in-out infinite;}
+@keyframes hop{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-5px) rotate(3deg);}}
+.title-plaque{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:rgba(253,248,240,.92);border:2px solid #c4a882;border-radius:8px;padding:3px 18px 4px;z-index:15;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.1);white-space:nowrap;}
+.title-plaque h1{font-family:Georgia,serif;font-size:14px;font-weight:700;color:#7A4A08;line-height:1.2;}
+.title-plaque h1 em{color:#F9A825;font-style:italic;}
+.tracker-chapter-label{text-align:center;padding:10px 16px;font-size:13px;color:#7A88A8;font-weight:600;background:#FAFBFF;border-top:1px solid #E2E8F4;}
+.tracker-chapter-label strong{color:#F9A825;}
+
+/* ═══════════ OPEN BOOK CARD ═══════════ */
+.open-book-wrap{position:relative;margin-bottom:22px;padding:10px 6px 6px;}
+.open-book-cover{position:absolute;top:0;left:2px;right:2px;bottom:0;background:linear-gradient(145deg,#2A4278,#3B5998,#4A69A8);border-radius:6px 20px 20px 6px;box-shadow:0 4px 20px rgba(59,89,152,.2);}
+.open-book-spine{position:absolute;top:0;left:50%;transform:translateX(-50%);width:22px;height:100%;background:linear-gradient(90deg,#1E3060,#2A4278,#1E3060);border-radius:4px;z-index:1;box-shadow:inset 0 0 6px rgba(0,0,0,.2);}
+.open-book-pages-3{position:absolute;top:3px;left:14px;right:14px;bottom:3px;background:#E8E0D4;border-radius:3px 12px 12px 3px;z-index:2;}
+.open-book-pages-2{position:absolute;top:5px;left:16px;right:16px;bottom:4px;background:#F0E8DC;border-radius:3px 10px 10px 3px;z-index:3;}
+.open-book-pages-1{position:absolute;top:7px;left:18px;right:18px;bottom:5px;background:#F5EEE4;border-radius:3px 8px 8px 3px;z-index:4;}
+.open-book{position:relative;background:linear-gradient(170deg,#FFFDF8 0%,#FFF8F0 40%,#FFFDF8 100%);border:none;border-radius:3px 6px 6px 3px;padding:0;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:160px;z-index:5;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.open-book::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.04) 20%,rgba(0,0,0,.07) 40%,rgba(90,70,50,.10) 50%,rgba(0,0,0,.07) 60%,rgba(0,0,0,.04) 80%,transparent 100%);z-index:6;pointer-events:none;}
+.open-book::after{content:'';position:absolute;top:8px;bottom:8px;right:0;width:4px;background:repeating-linear-gradient(180deg,transparent 0px,transparent 3px,rgba(200,185,165,.3) 3px,rgba(200,185,165,.3) 4px);border-radius:0 4px 4px 0;z-index:6;pointer-events:none;}
+.open-book-left{display:flex;align-items:center;justify-content:center;padding:24px;opacity:.3;position:relative;}
+.open-book-left::before{content:'';position:absolute;top:8px;bottom:8px;left:0;width:4px;background:repeating-linear-gradient(180deg,transparent 0px,transparent 3px,rgba(200,185,165,.3) 3px,rgba(200,185,165,.3) 4px);border-radius:4px 0 0 4px;}
+.open-book-left-deco{font-size:48px;filter:grayscale(30%);}
+.open-book-right{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:24px 28px 24px 20px;}
+.open-book-title{font-family:Georgia,serif;font-size:22px;font-weight:700;color:#0E1C42;margin-bottom:4px;}
+.open-book-title em{color:#C8862A;}
+.open-book-chapter{font-family:Georgia,serif;font-size:16px;color:#5A4A3A;font-style:italic;margin-bottom:14px;}
+.open-book-prompt{font-size:14px;color:#7A88A8;font-weight:600;}
+
+/* ═══════════ READING LINKS ═══════════ */
+.reading-links{background:#FFF8E8;border:2px solid #E8D0A0;border-radius:14px;padding:16px 18px;margin-bottom:16px;}
+.reading-links-title{font-size:14px;color:#C8862A;font-weight:800;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;}
+.reading-link{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border:1.5px solid #E8D0A0;border-radius:10px;margin-bottom:8px;font-size:15px;color:#0E1C42;font-weight:600;text-decoration:none;transition:background .15s,border-color .15s;}
+.reading-link:last-child{margin-bottom:0;}
+.reading-link:hover{background:#FFF8E8;border-color:#C8862A;}
+.reading-link-icon{font-size:20px;}
+
+/* ═══════════ PAUSE & THINK ═══════════ */
+.pause-columns{display:grid;grid-template-columns:1fr;gap:16px;margin:14px 0;}
+
+/* ═══════════ ASSIGNMENT QUESTIONS ═══════════ */
+.q-block{background:#FAFBFF;border:2px solid #E2E8F4;border-radius:14px;padding:14px 18px;margin-bottom:12px;}
+.q-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#C8862A;color:#fff;font-weight:800;font-size:14px;margin-right:8px;vertical-align:middle;}
+.q-text{font-size:16px;color:#0E1C42;line-height:1.65;margin-bottom:4px;}
+
+/* ═══════════ TEXTBOX PROMPT ═══════════ */
+.textbox-prompt{background:linear-gradient(135deg,#C8862A,#A86820);color:#fff;font-size:14px;font-weight:700;padding:10px 16px;border-radius:10px 10px 0 0;margin-top:10px;line-height:1.5;}
+
+/* ═══════════ JOURNAL TEXTBOX ═══════════ */
+.journal-box{width:100%;min-height:70px;padding:12px 14px;border:2px solid #E2E8F4;border-radius:0 0 12px 12px;font-family:system-ui,sans-serif;font-size:15px;color:#0E1C42;line-height:1.6;resize:vertical;background:#FAFBFF;transition:border-color .2s,box-shadow .2s;}
+.journal-box:focus{outline:none;border-color:#C8862A;box-shadow:0 0 0 3px rgba(200,134,42,.15);background:#fff;}
+.journal-box::placeholder{color:#B0B8CC;font-style:italic;}
+.journal-box.standalone{border-radius:12px;margin-top:10px;}
+.journal-label{font-size:12px;color:#7A88A8;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:12px;display:flex;align-items:center;gap:6px;}
+.journal-label .saved-dot{width:8px;height:8px;border-radius:50%;background:#B0B8CC;transition:background .3s;}
+.journal-label .saved-dot.saved{background:#34B76F;}
+
+/* ═══════════ SHOW WHAT YOU KNOW ═══════════ */
+.swyk{background:linear-gradient(135deg,#FFF8F0 0%,#FFF3DC 100%);border:2px solid #F5E6C8;border-left:6px solid #F9A825;border-radius:14px;padding:16px 18px;margin-top:16px;}
+.swyk-label{font-size:12px;color:#F9A825;text-transform:uppercase;letter-spacing:.8px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.swyk-prompt{font-size:15px;color:#0E1C42;line-height:1.6;margin-bottom:8px;}
+
+/* ═══════════ FILL-IN-BLANK GAME ═══════════ */
+.fillin-game{margin:14px 0;}
+.fillin-item{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#fff;border:2px solid #E2E8F4;border-radius:12px;margin-bottom:10px;font-size:16px;color:#0E1C42;flex-wrap:wrap;}
+.fillin-input{display:inline-block;width:120px;padding:4px 10px;border:2px dashed #7B5EA7;border-radius:8px;font-family:Georgia,serif;font-size:15px;font-weight:700;color:#7B5EA7;text-align:center;background:#FAFBFF;outline:none;transition:border-color .2s,background .2s;}
+.fillin-input:focus{border-color:#C8862A;background:#fff;}
+.fillin-input.correct{border-color:#4CAF50;background:#E8F5E9;color:#1B5E20;border-style:solid;}
+.fillin-input.wrong{border-color:#E57373;background:#FFEBEE;animation:shake .4s ease;}
+.fillin-check-btn{display:block;margin:14px auto 0;padding:10px 24px;background:linear-gradient(135deg,#7B5EA7,#9575CD);color:#fff;border:none;border-radius:24px;font-family:system-ui,sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:transform .2s;}
+.fillin-check-btn:hover{transform:translateY(-2px);}
+.fillin-feedback{text-align:center;padding:10px;font-size:15px;font-weight:700;color:#4CAF50;display:none;}
+.fillin-feedback.show{display:block;}
+
+/* ═══════════ VOCAB MATCH GAME ═══════════ */
+.match-game{margin:14px 0;}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.match-item{padding:12px 14px;background:#fff;border:2px solid #E2E8F4;border-radius:12px;font-size:14px;color:#0E1C42;font-weight:600;cursor:pointer;text-align:center;line-height:1.5;transition:background .15s,border-color .2s,transform .15s;user-select:none;}
+.match-item:hover{transform:translateY(-1px);border-color:#C8862A;}
+.match-item.selected{background:#FFF8E8;border-color:#C8862A;box-shadow:0 0 0 3px rgba(200,134,42,.20);}
+.match-item.matched{background:#E8F5E9;border-color:#4CAF50;pointer-events:none;opacity:.8;}
+.match-item.wrong-flash{background:#FFEBEE;border-color:#E57373;animation:shake .4s ease;}
+.match-item.is-word{font-weight:800;font-family:Georgia,serif;font-size:16px;}
+.match-feedback{text-align:center;padding:10px;font-size:15px;font-weight:700;color:#4CAF50;display:none;}
+.match-feedback.show{display:block;}
+
+/* ═══════════ WORD SORT GAME ═══════════ */
+.sort-game{margin:14px 0;}
+.sort-bank{display:flex;flex-wrap:wrap;gap:8px;padding:14px;background:#FAFBFF;border:2px dashed #E8D0A0;border-radius:14px;margin-bottom:14px;min-height:52px;justify-content:center;}
+.sort-chip{display:inline-flex;align-items:center;padding:8px 16px;background:#fff;border:2px solid #E2E8F4;border-radius:24px;font-size:15px;font-weight:700;color:#0E1C42;cursor:grab;user-select:none;transition:transform .15s,box-shadow .15s,background .2s,border-color .2s;}
+.sort-chip:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(14,28,66,.12);}
+.sort-chip.placed{opacity:.4;pointer-events:none;}
+.sort-chip.correct{background:#E8F5E9;border-color:#4CAF50;color:#1B5E20;}
+.sort-chip.wrong{background:#FFEBEE;border-color:#E57373;color:#B71C1C;animation:shake .4s ease;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.sort-columns{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.sort-col{background:#fff;border:2px solid #E2E8F4;border-radius:14px;overflow:hidden;min-height:160px;}
+.sort-col-header{padding:10px 14px;font-size:15px;font-weight:800;color:#fff;text-align:center;}
+.sort-col-drop{padding:12px;display:flex;flex-direction:column;gap:8px;min-height:120px;}
+.sort-col-drop .sort-chip{cursor:pointer;}
+.sort-col-drop .sort-chip:hover{transform:none;box-shadow:none;}
+.sort-score{text-align:center;padding:10px;font-size:14px;font-weight:700;color:#4CAF50;display:none;}
+.sort-score.show{display:block;}
+
+/* ═══════════ GRAMMAR SPOTTER GAME ═══════════ */
+.spotter-game{margin:14px 0;}
+.spotter-sentence{background:#fff;border:2px solid #E2E8F4;border-radius:12px;padding:14px 16px;margin-bottom:10px;line-height:1.8;font-size:16px;color:#0E1C42;}
+.spotter-word{display:inline;padding:2px 6px;border-radius:6px;cursor:pointer;transition:background .15s,color .15s;border:2px solid transparent;}
+.spotter-word:hover{background:#FFF8E8;border-color:#C8862A;}
+.spotter-word.correct-reveal{background:#E8F5E9;border-color:#4CAF50;color:#1B5E20;font-weight:700;}
+.spotter-word.wrong-reveal{background:#FFEBEE;border-color:#E57373;text-decoration:line-through;}
+.spotter-result{font-size:14px;font-weight:700;padding:8px 14px;border-radius:10px;margin-top:6px;display:none;}
+.spotter-result.show{display:block;}
+.spotter-result.win{background:#E8F5E9;color:#1B5E20;}
+.spotter-result.miss{background:#FFF3DC;color:#E65100;}
+
+/* ═══════════ GATHERED ANSWERS ═══════════ */
+.gathered-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);margin-top:22px;}
+.gathered-header{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#0E1C42,#1A2D5A);padding:16px 22px;border-bottom:2px solid rgba(200,134,42,.25);}
+.gathered-header-icon{font-size:28px;line-height:1;}
+.gathered-header-label{font-size:11px;color:#C8962A;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+.gathered-header-title{font-family:Georgia,serif;font-size:20px;color:#fff;font-weight:700;}
+.gathered-body{padding:18px 22px 20px;}
+.gathered-intro{font-size:15px;color:#3A4A6B;margin-bottom:14px;line-height:1.55;}
+.gathered-output{width:100%;min-height:300px;padding:16px 18px;border:2px solid #E2E8F4;border-radius:12px;font-family:system-ui,sans-serif;font-size:14px;color:#0E1C42;line-height:1.65;background:#FAFBFF;resize:vertical;white-space:pre-wrap;}
+.gathered-actions{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
+.gathered-btn{flex:1;min-width:200px;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border:none;border-radius:14px;font-family:system-ui,sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:transform .2s,box-shadow .2s;}
+.gathered-btn:hover{transform:translateY(-2px);}
+.gathered-btn-copy{background:linear-gradient(135deg,#C8862A,#C8962A);color:#fff;box-shadow:0 4px 14px rgba(200,134,42,.25);}
+.gathered-btn-pdf{background:linear-gradient(135deg,#0E1C42,#1A2D5A);color:#fff;border:2px solid #C8862A;box-shadow:0 4px 14px rgba(14,28,66,.25);}
+.gathered-copied{text-align:center;font-size:14px;font-weight:700;color:#4CAF50;margin-top:8px;display:none;}
+.gathered-copied.show{display:block;}
+
+/* ═══════════ TURN-IN CHECKLIST ═══════════ */
+.turn-in-card{background:#fff;border:2px solid #E2E8F4;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(14,28,66,.04);margin-top:18px;}
+.turn-in-header{display:flex;align-items:center;gap:14px;background:#FFF8E8;padding:18px 22px;border-bottom:2px solid #E8D0A0;}
+.turn-in-header-icon{font-size:36px;line-height:1;flex-shrink:0;}
+.turn-in-header-label{font-size:11px;color:#C8862A;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+.turn-in-header-title{font-family:Georgia,serif;font-size:22px;color:#0E1C42;font-weight:700;line-height:1.15;}
+.turn-in-body{padding:18px 22px 20px;}
+.turn-in-intro{font-size:15px;color:#3A4A6B;margin-bottom:16px;line-height:1.55;}
+.turn-in-checklist{display:flex;flex-direction:column;gap:10px;}
+.turn-in-item{display:flex;align-items:center;gap:14px;padding:12px 16px;background:#FAFBFF;border:1.5px solid #E2E8F4;border-radius:12px;cursor:pointer;transition:background .2s,border-color .2s;}
+.turn-in-item:hover{background:#FFF8E8;border-color:#E8D0A0;}
+.turn-in-item.checked{background:#E8F5E9;border-color:#C8E6C9;}
+.turn-in-item .turn-in-check{width:26px;height:26px;border-radius:8px;border:2px solid #E8D0A0;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;line-height:1;transition:background .2s,border-color .2s;}
+.turn-in-item.checked .turn-in-check{background:#4CAF50;border-color:#4CAF50;color:#fff;}
+.turn-in-item-text{font-size:15px;color:#0E1C42;font-weight:600;line-height:1.55;flex:1;}
+.turn-in-item.checked .turn-in-item-text{color:#3A4A6B;}
+
+/* ═══════════ TAB TRANSITION ═══════════ */
+.tab-next-wrap{text-align:center;padding:24px 0 8px;}
+.tab-transition-voice{font-family:Georgia,serif;font-size:15px;font-style:italic;color:#5A4A3A;margin-bottom:12px;line-height:1.6;}
+.tab-next-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;background:linear-gradient(135deg,#C8862A,#C8962A);color:#fff;border:none;border-radius:28px;font-family:system-ui,sans-serif;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(200,134,42,.30);transition:transform .2s,box-shadow .2s;}
+.tab-next-btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(200,134,42,.40);}
+
+/* ═══════════ BACK TO TOP ═══════════ */
+.back-to-top{position:fixed;bottom:28px;right:28px;height:44px;padding:0 18px 0 14px;border-radius:22px;background:linear-gradient(135deg,#C8862A,#C8962A);color:#fff;border:2px solid #F9A825;font-size:14px;font-weight:800;font-family:system-ui,sans-serif;cursor:pointer;box-shadow:0 4px 18px rgba(200,134,42,.35);display:flex;align-items:center;gap:6px;opacity:0;visibility:hidden;transform:translateY(20px);transition:opacity .3s,visibility .3s,transform .3s,box-shadow .2s;z-index:500;letter-spacing:.3px;}
+.back-to-top.show{opacity:1;visibility:visible;transform:translateY(0);}
+.back-to-top:hover{box-shadow:0 6px 24px rgba(200,134,42,.50);transform:translateY(-3px);}
+
+/* ═══════════ DOWNLOAD BUTTON ═══════════ */
+.download-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px 24px;background:linear-gradient(135deg,#0E1C42,#1A2D5A);color:#fff;border:2px solid #C8862A;border-radius:16px;font-family:system-ui,sans-serif;font-size:17px;font-weight:800;cursor:pointer;margin-top:18px;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(14,28,66,.25);}
+.download-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(14,28,66,.35);}
+.download-btn-sub{font-size:12px;color:rgba(255,255,255,.6);font-weight:600;text-align:center;margin-top:6px;}
+
+/* ═══════════ CONFETTI ═══════════ */
+#confettiCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10000;}
+
+/* ═══════════ FOOTER ═══════════ */
+.footer{background:#0E1C42;border-top:4px solid #C8862A;padding:18px 28px;text-align:center;}
+.footer-main{font-size:14px;color:#fff;margin-bottom:4px;}
+.footer-main span{color:#C8962A;font-weight:700;}
+.footer-sub{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:2px;}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.3);}
+
+/* ═══════════ DISCOVERY REVEAL ═══════════ */
+.reveal-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:linear-gradient(135deg,#3B5998,#5A7BC0);color:#fff;border:none;border-radius:20px;font-family:system-ui,sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px;transition:transform .15s;}
+.reveal-btn:hover{transform:translateY(-2px);}
+.reveal-content{display:none;margin-top:10px;padding:12px 16px;background:#E8F5E9;border:2px solid #C8E6C9;border-left:4px solid #4CAF50;border-radius:10px;font-size:15px;color:#0E1C42;line-height:1.65;}
+.reveal-content.show{display:block;}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:620px){
+  .intro-2col{grid-template-columns:1fr;}
+  .vocab-grid{grid-template-columns:1fr;}
+  .flip-card{height:165px;}
+  .header-title{font-size:22px;}
+  .tab-btn{min-width:100px;font-size:11px;padding:10px 6px 9px;}
+  .todays-path{gap:4px;}
+  .path-pill{font-size:11px;padding:5px 10px;}
+  .sort-columns{grid-template-columns:1fr;}
+  .match-grid{grid-template-columns:1fr;}
+  .pause-columns{grid-template-columns:1fr;}
+}
+
+/* ═══ BTGHS ADDITIONS ═══ */
+.hero-banner{width:100%;overflow:hidden;max-height:220px;}
+.hero-banner svg{width:100%;display:block;}
+.passage-block{background:#FFF8E8;border:2px solid #E8D0A0;border-radius:14px;padding:20px 24px;margin:14px 0;position:relative;}
+.passage-block::before{content:'📜';font-size:24px;position:absolute;top:-14px;left:18px;background:#fff;padding:0 6px;}
+.passage-label{font-size:11px;color:#8B5E0A;text-transform:uppercase;letter-spacing:1px;font-weight:800;margin-bottom:10px;}
+.passage-text{font-family:Georgia,serif;font-size:17px;color:#0E1C42;line-height:1.9;}
+.passage-text p{margin-bottom:12px;}.passage-text p:last-child{margin-bottom:0;}
+.passage-source{font-size:12px;color:#7A88A8;font-style:italic;margin-top:10px;}
+.map-activity{background:#EEF4FF;border:2px solid #1A3A5C;border-radius:14px;padding:16px;margin:14px 0;}
+.map-label{font-size:11px;color:#1A3A5C;text-transform:uppercase;letter-spacing:.8px;font-weight:800;margin-bottom:10px;}
+.map-svg-wrap{border-radius:8px;overflow:hidden;margin-bottom:10px;}
+.decode-steps{margin:12px 0;}
+.decode-step{display:flex;gap:12px;padding:12px;background:#fff;border:2px solid #E2E8F4;border-radius:12px;margin-bottom:8px;}
+.decode-num{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#C8862A,#A86820);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.decode-label{font-size:11px;color:#8B5E0A;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.decode-text{font-size:15px;color:#0E1C42;line-height:1.6;}
+.decode-word{font-weight:800;color:#C8862A;}
+.workshop-progress{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.wp-step{padding:5px 12px;border-radius:16px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;border:1.5px solid #E2E8F4;color:#7A88A8;background:#F0F2F8;}
+.wp-step.active{background:#C8862A;color:#fff;border-color:#A86820;}
+.wp-step.done{background:#52B788;color:#fff;border-color:#3D9B70;}
+.reading-guide{background:#FFF8E8;border:2px solid #E8D0A0;border-radius:14px;padding:16px 18px;margin:12px 0;}
+.reading-guide-label{font-size:11px;color:#8B5E0A;text-transform:uppercase;letter-spacing:.8px;font-weight:800;margin-bottom:8px;}
+.reading-guide p{font-size:15px;color:#3A4A6B;line-height:1.7;margin-bottom:8px;}.reading-guide p:last-child{margin-bottom:0;}
+.vocab-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
+@media(max-width:500px){.vocab-choice-grid{grid-template-columns:1fr;}}
+.vocab-choice-card{background:#fff;border:2px solid #E2E8F4;border-radius:12px;padding:14px;cursor:pointer;transition:all .2s;}
+.vocab-choice-card:hover{border-color:#C8862A;background:#FFF8E8;}
+.vocab-choice-card.selected{border-color:#C8862A;background:#FFF8E8;box-shadow:0 0 0 3px rgba(200,134,42,.20);}
+.vocab-choice-num{font-size:10px;color:#7A88A8;font-weight:800;text-transform:uppercase;margin-bottom:4px;}
+.vocab-choice-title{font-size:14px;color:#0E1C42;font-weight:800;margin-bottom:6px;}
+.vocab-choice-desc{font-size:12px;color:#3A4A6B;line-height:1.5;}
+
+/* ═══════════ UNIT TRACKER (umap) ═══════════ */
+.umap-row{display:flex;align-items:center;overflow-x:auto;padding:8px 4px;}
+.umap-stop{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;}
+.umap-circle{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;border:3px solid #E2E8F4;background:#fff;transition:all .2s;}
+.umap-done .umap-circle{background:#00695C;border-color:#F9A825;color:#fff;font-size:18px;}
+.umap-active .umap-circle{background:#C8862A;border-color:#A86820;color:#fff;box-shadow:0 0 0 4px rgba(200,134,42,.25);animation:umap-pulse 2s infinite;}
+@keyframes umap-pulse{0%,100%{box-shadow:0 0 0 4px rgba(200,134,42,.25);}50%{box-shadow:0 0 0 8px rgba(200,134,42,.10);}}
+.umap-future .umap-circle{background:#F0F2F8;border-color:#C8D4E4;opacity:.7;}
+.umap-label{font-size:11px;font-weight:800;color:#0E1C42;text-align:center;white-space:nowrap;}
+.umap-sub{font-size:10px;color:#7A88A8;text-align:center;white-space:nowrap;}
+.umap-connector{flex:1;height:3px;min-width:14px;margin-bottom:20px;background:linear-gradient(90deg,#E2E8F4,#C8862A,#E2E8F4);}
+.tracker-chapter-label{text-align:center;padding:10px 16px;font-size:13px;color:#7A88A8;font-weight:600;background:#FAFBFF;border-top:1px solid #E2E8F4;}
+.tracker-chapter-label strong{color:#C8862A;}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+<div class="progress-wrap">
+  <span class="progress-label">Lesson Progress</span>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <span class="progress-pct" id="progressPct">0%</span>
+</div>
+<div class="header">
+  <div class="header-brand">
+    <div class="header-logo"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" /></div>
+    <div><div class="header-org">Optima Academy Online</div>
+    <div class="header-sub">5th Grade ELA &mdash; Year Synthesis</div></div>
+  </div>
+  <div class="header-title">Cross-Text Comparison &amp; Year Synthesis</div>
+  <div class="header-badge"><span class="header-badge-icon">🔍</span><span class="header-badge-text">Week 31 · Day 4</span></div>
+</div>
+<div class="hero-banner"><svg viewBox="0 0 960 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="200" fill="#0E1C42"/>
+  <circle cx="80" cy="14" r="1.5" fill="#fff" opacity=".7"/>
+  <text x="55" y="148" font-size="26" opacity=".8">👥</text><text x="140" y="148" font-size="26" opacity=".75">✏️</text><text x="220" y="148" font-size="26" opacity=".75">✅</text><text x="300" y="148" font-size="26" opacity=".75">🏆</text>
+  <rect x="340" y="18" width="580" height="128" rx="14" fill="rgba(14,28,66,.92)" stroke="#00695C" stroke-width="2.5"/>
+  <text x="630" y="55" text-anchor="middle" font-size="12" fill="#4DB6AC" font-family="Georgia,serif" letter-spacing="2">WEEK 31 · DAY 4</text>
+  <text x="630" y="84" text-anchor="middle" font-size="20" fill="#E0F2F1" font-family="Georgia,serif" font-weight="700">Peer Review &amp; Revision</text>
+  <text x="630" y="107" text-anchor="middle" font-size="12" fill="rgba(200,230,225,.8)" font-family="Georgia,serif">Read like a reviewer — revise like a writer</text>
+  <text x="630" y="136" text-anchor="middle" font-size="22">👥 ✏️ ✅ 🏆</text>
+</svg></div>
+<div class="info-strip"><div class="info-cell"><div class="info-icon" style="background:#E0F7FA;">📅</div><div><div class="info-label">Week &amp; Day</div><div class="info-value">Week 31 · Day 4</div></div></div><div class="info-cell"><div class="info-icon" style="background:#E8F5E9;">👥</div><div><div class="info-label">Focus</div><div class="info-value">Peer Review &amp; Revision</div></div></div><div class="info-cell"><div class="info-icon" style="background:#E8F5E9;">✅</div><div><div class="info-label">Project</div><div class="info-value">Revise &amp; Submit</div></div></div><div class="info-cell"><div class="info-icon" style="background:#FFF8E8;">📚</div><div><div class="info-label">Vocab SWYK</div><div class="info-value">Year-Long Review</div></div></div></div>
+<div class="quote-strip">
+  <div class="quote-strip-text">&ldquo;The most powerful comparison essays do not simply describe — they argue why the difference between two texts matters.&rdquo;</div>
+  <div class="quote-strip-attr">Comparison Essay Writing Guide &bull; Optima Academy Online</div>
+</div>
+<div class="intro-section collapsed">
+  <div class="intro-collapsed-bar" onclick="toggleIntro()"><span class="intro-collapsed-icon">👥</span><span class="intro-collapsed-text">Lesson 31.4 Overview — tap to expand</span><span class="intro-collapsed-toggle" id="introToggleLabel">Show &#x25be;</span></div>
+  <div id="introContent" style="display:none;">
+    <div class="intro-2col">
+      <div class="intro-card theme-question"><div class="intro-card-head"><div class="intro-card-head-icon" style="background:#00695C;">👥</div><div><div class="intro-card-head-label">Week Closing</div><div class="intro-card-head-title">What does a strong peer reviewer do — and what do you do with the feedback?</div></div></div>
+      <div class="intro-card-body"><p>A peer reviewer is not a proofreader. They read to understand — and then ask: Is the claim clear? Is the evidence convincing? Does the comparison actually show a meaningful difference? Today you review a classmate&rsquo;s work (or self-review) and make targeted revisions.</p></div></div>
+      <div class="intro-card theme-objectives"><div class="intro-card-head"><div class="intro-card-head-icon" style="background:#00695C;">🎯</div><div><div class="intro-card-head-label">Today&rsquo;s Arc — Explain</div><div class="intro-card-head-title">Review, Revise, Submit</div></div></div>
+      <div class="intro-card-body">
+        <div class="obj-line"><span class="obj-icon">📚</span><span><strong>Vocab SWYK:</strong> Year-long vocabulary review — identify words across all units.</span></div>
+        <div class="obj-line"><span class="obj-icon">👥</span><span><strong>Peer Review:</strong> I will give specific, helpful feedback on a comparison essay (classmate&rsquo;s or own).</span></div>
+        <div class="obj-line"><span class="obj-icon">✅</span><span><strong>Revision:</strong> I will make at least two targeted revisions and submit my final draft.</span></div>
+      </div></div>
+    </div>
+    <div class="todays-path" style="padding:12px 20px;"><span class="path-pill p-warmup">🌅 Warm-Up</span><span class="path-arrow">→</span><span class="path-pill p-words">🔤 Word Study</span><span class="path-arrow">→</span><span class="path-pill p-reading">👥 Review</span><span class="path-arrow">→</span><span class="path-pill p-assign">📬 Submit</span></div>
+    <div class="need-strip" style="padding:10px 20px 18px;"><span class="need-strip-label">You&#x2019;ll need:</span><span class="need-chip">📓 Reading Journal</span><span class="need-chip">✏️ Pencil</span><span class="need-chip">📝 Your Essay Draft</span></div>
+  </div>
+</div>
+<div class="tab-bar" id="tabBar">
+  <button class="tab-btn active" data-tab="warmup" onclick="switchTab('warmup')">🌅 Warm-Up<span class="tab-check">✓</span></button>
+  <button class="tab-btn" data-tab="words" onclick="switchTab('words')">🔤 Word Study<span class="tab-check">✓</span></button>
+  <button class="tab-btn" data-tab="reading" onclick="switchTab('reading')">👥 Peer Review<span class="tab-check">✓</span></button>
+  <button class="tab-btn" data-tab="assignment" onclick="switchTab('assignment')">📬 Submit<span class="tab-check">✓</span></button>
+</div><div class="tab-panel active" id="tab-warmup"><div class="video-wrap"><div class="video-wrap-header"><span style="font-size:18px;">🎬</span><div><div class="video-wrap-type">Welcome · Day 4 of 4</div><div class="video-wrap-title">Day 4 — Peer Review & Final Submission</div></div></div><div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">🎬</div><div class="video-placeholder-text">Coming soon</div><div class="video-placeholder-id"><!-- slot: 31-4-welcome --></div></div></div></div><div class="activity bl-sage">
+  <div class="activity-head"><div class="activity-num" style="background:#52B788;">📝</div><div style="flex:1;"><div class="activity-title">Daily Oral Language</div><div class="activity-sub">Spiral grammar review — from across the year</div></div></div>
+  <div class="activity-body">
+    <p style="font-size:13px;color:#7A88A8;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">Sentence 1 &mdash; The Correct Model</p>
+    <div class="dol-model-sentence" id="dolModel">The most powerful comparison essays do not simply describe — <span class="dol-highlight-word" onclick="dolWord(this,'Em dash for emphasis before the main point. The essay that only describes is a report. The one that explains why the difference matters becomes an argument. That is the difference between 3rd grade and 5th grade writing — not the length, but the analytical move.')">they argue why the difference between two texts matters.</span></div>
+    <div class="dol-explanation" id="dolExp" style="display:none;"></div>
+    <p style="font-size:13px;color:#7A88A8;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:18px;margin-bottom:8px;">Sentence 2 &mdash; Edit It</p>
+    <div class="dol-fix-sentence">both novels demonstrate courage however the contexts are so different that they reveal entirely different things about what it means to be brave on the one hand kit must hide her compassion and on the other hand praiseworthy must display his competence in a world that will respect it</div>
+    <button class="dol-check-btn" onclick="document.getElementById('dolAns4').classList.toggle('show')">🔍 See the Answer</button>
+    <div class="dol-answer" id="dolAns4"><p><strong>Corrected:</strong> Both novels demonstrate courage; however, the contexts are so different that they reveal entirely different things about what it means to be brave. On one hand, Kit must hide her compassion; on the other hand, Praiseworthy must display his competence in a world that will respect it.</p></div>
+  </div>
+</div><div class="activity bl-plum"><div class="activity-head"><div class="activity-num" style="background:#7B5EA7;">📓</div><div style="flex:1;"><div class="activity-title">Read &amp; Write &mdash; Your Reading Journal</div></div></div><div class="activity-body"><div class="socratic-box"><div class="socratic-label">🤔 Before You Begin</div><p class="socratic-q">Today you review your own essay (or a classmate&rsquo;s) as a careful reader. In your journal: What is the ONE thing a comparison essay absolutely must do to be an argument rather than a description? Write 2 sentences.</p></div></div></div><div class="tab-next-wrap"><p class="tab-transition-voice">Day 4 — review, revise, publish.</p><button class="tab-next-btn" onclick="markDone('warmup');switchTab('words')">Continue to 🔤 Word Study →</button></div></div><div class="tab-panel" id="tab-words"><div class="activity bl-gold"><div class="activity-head"><div class="activity-num" style="background:#F9A825;color:#0E1C42;">1</div><div style="flex:1;"><div class="activity-title">📚 Vocabulary: Year-Long Review — SWYK</div></div></div><div class="activity-body">
+<div class="video-wrap"><div class="video-wrap-header"><span style="font-size:18px;">📚</span><div><div class="video-wrap-type">Vocabulary · Week 31</div><div class="video-wrap-title">Year-Long Vocabulary Review — Choice Board</div></div></div><div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">📚</div><div class="video-placeholder-text">Coming soon</div><div class="video-placeholder-id"><!-- slot: 31-4-vocabulary --></div></div></div></div>
+<div class="key-concept"><div class="key-concept-label">📌 Year&rsquo;s Vocabulary — By Unit</div>
+  <p><strong>Historical fiction (WOBP, JT):</strong> defiance, covenant, rebellion, apprentice, tyranny, colonial, parliament, congregation</p>
+  <p><strong>Navigation/science (CMB):</strong> celestial navigation, lunar observation, latitude, longitude, lunar tables, maritime</p>
+  <p><strong>Gold Rush/adventure (BTGHS):</strong> fortitude, tenacious, notoriety, exuberance, ludicrous, extraction, prospector, reprieve</p>
+  <p><strong>Analysis vocabulary (all year):</strong> however, consequently, furthermore, nevertheless, validity, persistence, descriptive, creativity</p>
+</div>
+<div class="swyk"><div class="swyk-label">📚 Show What You Know · Vocabulary — Year-Long</div>
+<div class="swyk-prompt">Choose five words from across the year — at least one from each of the three novel units. For each word: write it, identify which unit it&rsquo;s from, define it in your own words, and use it in a sentence that connects to your comparison essay theme.</div>
+<div class="textbox-prompt">Five words from across the year — unit identified, definition, essay-connected sentence.</div>
+<textarea class="journal-box" id="journal-vocab" data-label="Vocabulary Year-Long Review SWYK: Five words across three units — definition + essay-connected sentence" placeholder="Word 1 (Unit: ___): Definition: ___  Sentence: ...&#10;&#10;Word 2 (Unit: ___): ...&#10;..." oninput="autoSave(this,'dot-vocab');"></textarea>
+<div class="journal-label">📓 <span class="saved-dot" id="dot-vocab"></span></div></div></div></div><div class="activity bl-plum"><div class="activity-head"><div class="activity-num" style="background:#7B5EA7;">2</div><div style="flex:1;"><div class="activity-title">🔬 Morphology: Year-Long Review — Explain</div></div></div><div class="activity-body">
+<div class="video-wrap"><div class="video-wrap-header"><span style="font-size:18px;">🔬</span><div><div class="video-wrap-type">Morphology · Day 4</div><div class="video-wrap-title">Year-Long Review: Explain the Most Useful Root</div></div></div><div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">🔬</div><div class="video-placeholder-text">Coming soon</div><div class="video-placeholder-id"><!-- slot: 31-4-morphology --></div></div></div></div>
+<div class="callout callout-think"><span class="callout-icon">✏️</span><p>In your journal: Which root from the entire year do you think gives you the most useful vocabulary for academic writing? Explain in 3 sentences — name the root, give 3 example words, and explain why these words appear so often in essays and analysis.</p></div></div></div><div class="activity bl-sage"><div class="activity-head"><div class="activity-num" style="background:#52B788;">3</div><div style="flex:1;"><div class="activity-title">✏️ Grammar: Final Conventions Check</div></div></div><div class="activity-body">
+<div class="video-wrap"><div class="video-wrap-header"><span style="font-size:18px;">✏️</span><div><div class="video-wrap-type">Grammar · Day 4</div><div class="video-wrap-title">Final Conventions Check — Before Submission</div></div></div><div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">✏️</div><div class="video-placeholder-text">Coming soon</div><div class="video-placeholder-id"><!-- slot: 31-4-grammar --></div></div></div></div>
+<div class="key-concept"><div class="key-concept-label">📌 Grammar Spiral Review — All Year</div>
+  <p><strong>Sentence types:</strong> compound (FANBOYS) · complex (subordinating conjunctions) · compound-complex</p>
+  <p><strong>Openers:</strong> participial phrase · adverb · prepositional phrase · dependent clause</p>
+  <p><strong>Punctuation:</strong> commas in compound, complex, and introductory clauses · dialogue · semicolon · em dash</p>
+  <p><strong>Abstract nouns:</strong> –ity, –ment, –ness · transitions: however, therefore, furthermore, consequently</p>
+  <p style="font-size:13px;color:#7A88A8;margin-top:6px;">In your final comparison project, use all of these tools deliberately — vary your sentence structure, choose the right transition, punctuate carefully.</p>
+</div>
+<div class="callout callout-think"><span class="callout-icon">✏️</span><p>In your journal: Run the full grammar conventions checklist on your essay. Count: How many compound sentences? How many complex sentences? How many transition words? How many different sentence openers? Write your count and note one thing you&rsquo;ll fix.</p></div></div></div><div class="tab-next-wrap"><p class="tab-transition-voice">All reviewed. Peer review and submit.</p><button class="tab-next-btn" onclick="markDone('words');switchTab('reading')">Continue to 👥 Peer Review →</button></div></div><div class="tab-panel" id="tab-reading">
+  <div class="video-wrap"><div class="video-wrap-header"><span style="font-size:18px;">🎬</span><div><div class="video-wrap-type">Peer Review · Day 4</div><div class="video-wrap-title">How to Give Useful Feedback</div></div></div><div class="video-ratio"><div class="video-placeholder"><div class="video-placeholder-icon">🎬</div><div class="video-placeholder-text">Coming soon</div><div class="video-placeholder-id"><!-- slot: 31-4-reading --></div></div></div></div>
+  <div class="activity bl-teal">
+    <div class="activity-head"><div class="activity-num" style="background:#00796B;">👥</div><div style="flex:1;"><div class="activity-title">Peer Review: Read to Understand, Then Respond</div><div class="activity-sub">Specific feedback that helps — not just praise or nitpicking</div></div></div>
+    <div class="activity-body">
+      <div class="key-concept"><div class="key-concept-label">📌 The Three Questions of Good Peer Review</div>
+        <p><strong>1. What is the comparison claim?</strong> Can you state it in one sentence? If not — the writer needs to make it clearer.</p>
+        <p><strong>2. Does the comparison paragraph show a meaningful difference?</strong> Not just &ldquo;they&rsquo;re different&rdquo; — but WHY the difference matters for the theme.</p>
+        <p><strong>3. Is the evidence specific?</strong> Does the writer name scenes, moments, or quotes — or just make general statements?</p>
+      </div>
+      <div class="callout callout-think"><span class="callout-icon">💡</span><p><strong>How to write helpful feedback:</strong> Be specific and kind. Not: &ldquo;Your essay is good.&rdquo; Instead: &ldquo;Your comparison claim is clear — I can see the difference between the two novels. Your Body Paragraph 1 has strong evidence. In the comparison paragraph, I couldn&rsquo;t tell why the difference between the two novels MATTERS. One more sentence explaining that would make your argument much stronger.&rdquo;</p></div>
+
+      <div class="swyk" style="margin-bottom:12px;">
+        <div class="swyk-label">👥 Peer Review Question 1</div>
+        <div class="swyk-prompt">Read the full draft (a classmate&rsquo;s, or your own with fresh eyes). Write your answers to the three peer review questions: (1) State the comparison claim in your own words. (2) Is the comparison paragraph showing WHY the difference matters? (3) Are the evidence examples specific?</div>
+        <textarea class="journal-box" id="journal-q1" data-label="Peer Review Q1: Three peer review questions answered" placeholder="1. The comparison claim is: ...&#10;2. The comparison paragraph [does/does not] explain why the difference matters because...&#10;3. The evidence [is/is not] specific — for example, ..." oninput="autoSave(this,'dot-q1');"></textarea>
+        <div class="journal-label">📓 <span class="saved-dot" id="dot-q1"></span></div>
+      </div>
+      <div class="swyk" style="margin-bottom:12px;">
+        <div class="swyk-label">👥 Peer Review Question 2</div>
+        <div class="swyk-prompt">Write two pieces of specific feedback: (1) Name the strongest part of the essay and explain specifically why it works. (2) Name one part that could be stronger and give a specific suggestion for how to improve it.</div>
+        <textarea class="journal-box" id="journal-q2" data-label="Peer Review Q2: Strongest part + one specific improvement suggestion" placeholder="Strongest part: [specific quote or section] — this works because...&#10;&#10;One part to strengthen: [specific section] — suggestion: ..." oninput="autoSave(this,'dot-q2');"></textarea>
+        <div class="journal-label">📓 <span class="saved-dot" id="dot-q2"></span></div>
+      </div>
+      <div class="swyk">
+        <div class="swyk-label">👥 Peer Review Question 3 — Week Synthesis</div>
+        <div class="swyk-prompt">Looking back at the week: What did you learn about comparison writing that you didn&rsquo;t know before? What was the hardest part — and what helped? In 3–4 sentences, reflect on your process from Plan (Day 1) to this final review.</div>
+        <textarea class="journal-box" id="journal-q3" data-label="Peer Review Q3 (Week Synthesis): Process reflection — what you learned, what was hardest, what helped" placeholder="What I learned about comparison writing this week: ...&#10;The hardest part was...&#10;What helped was..." oninput="autoSave(this,'dot-q3');"></textarea>
+        <div class="journal-label">📓 <span class="saved-dot" id="dot-q3"></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-next-wrap"><p class="tab-transition-voice">Reviewed. Make your revisions and submit.</p>
+  <button class="tab-next-btn" onclick="markDone('reading');switchTab('assignment')">Continue to 📬 Submit →</button></div>
+</div><div class="tab-panel" id="tab-assignment"><div class="activity bl-gold" style="margin-bottom:20px;">
+  <div class="activity-head" style="background:#FFF8E8;border-bottom:1.5px solid #E2E8F4;">
+    <div class="activity-num" style="background:#F9A825;color:#0E1C42;">✍️</div>
+    <div style="flex:1;"><div class="activity-title">Comparison Project &middot; Week 31 &middot; FINAL REVISION &amp; SUBMIT</div><div class="activity-sub">Make two targeted revisions, then submit</div></div>
+  </div>
+  <div class="activity-body">
+    <div class="workshop-progress">
+      <span class="wp-step done">✓ Plan</span><span class="wp-step done">✓ Draft</span><span class="wp-step done">✓ Revise</span><span class="wp-step active">⭐ Publish</span>
+    </div>
+    <div class="key-concept"><div class="key-concept-label">📋 Final Revision Targets (make at least two)</div>
+      <p>✓ Sharpen your comparison claim — does it name both the similarity AND the meaningful difference?</p>
+      <p>✓ Add one specific detail to your weakest piece of evidence</p>
+      <p>✓ Strengthen the comparison paragraph — add the sentence explaining WHY the difference matters</p>
+      <p>✓ Check transitions — are they varied? (not just <em>however</em> every time)</p>
+      <p>✓ Run the spelling checklist — fortitude, tenacious, consequently, nevertheless, exuberance</p>
+    </div>
+    <div class="textbox-prompt">Write your FINAL revised essay here. Note at the top which two revisions you made.</div>
+    <textarea class="journal-box" id="journal-writing" data-label="Comparison Project FINAL — revised essay with two targeted changes noted" placeholder="Revisions I made:&#10;1. ...&#10;2. ...&#10;&#10;[Final revised essay]" style="min-height:220px;" oninput="autoSave(this,'dot-writing');"></textarea>
+    <div class="journal-label">📓 <span class="saved-dot" id="dot-writing"></span></div>
+  </div>
+</div><div class="turn-in-card"><div class="turn-in-header"><div class="turn-in-header-icon">✅</div><div><div class="turn-in-header-label">Before You Finish</div><div class="turn-in-header-title">Check Your Work</div></div></div><div class="turn-in-body"><div class="turn-in-checklist"><div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I answered all three peer review questions and provided specific feedback.</div></div><div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I completed my Vocabulary Year-Long Review SWYK — five words from three units.</div></div><div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I made at least two targeted revisions and submitted my final essay.</div></div><div class="turn-in-item" onclick="toggleCheck(this)"><div class="turn-in-check"></div><div class="turn-in-item-text">I am ready for Week 32 — Year-End Synthesis &amp; Portfolio.</div></div></div></div></div><div class="gathered-card">
+  <div class="gathered-header"><div class="gathered-header-icon">📋</div><div><div class="gathered-header-label">All Your Work</div><div class="gathered-header-title">Review, Copy, or Download</div></div></div>
+  <div class="gathered-body">
+    <p class="gathered-intro">Everything you typed is collected here.</p>
+    <span id="lessonMeta" style="display:none">WEEK 31 · DAY 4 — Cross-Text Comparison
+Peer Review & Final Submission</span>
+    <textarea class="gathered-output" id="gatheredOutput" readonly></textarea>
+    <div class="gathered-actions">
+      <button class="gathered-btn gathered-btn-copy" onclick="copyToClipboard()">📋 Copy to Clipboard</button>
+      <button class="gathered-btn gathered-btn-pdf" onclick="downloadPDF()">📄 Download as PDF</button>
+    </div>
+    <div class="gathered-copied" id="gatheredCopied">Copied!</div>
+  </div>
+</div>
+<button class="download-btn" onclick="downloadPDF()">📥 Download All My Work</button>
+<div class="download-btn-sub">Opens a print-ready page</div></div>
+<div class="footer">
+  <div class="footer-main">Optima Academy Online &middot; <span>5th Grade ELA</span> &middot; Week 31</div>
+  <div class="footer-sub">Cross-Text Comparison &mdash; Day 4: Peer Review &amp; Submission</div>
+</div>
+</div>
+<script>
+function switchTab(id){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');document.querySelector('[data-tab="'+id+'"]').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function markDone(id){document.querySelector('[data-tab="'+id+'"]').classList.add('visited');}
+function toggleIntro(){var c=document.getElementById('introContent'),l=document.getElementById('introToggleLabel');var open=c.style.display==='block';c.style.display=open?'none':'block';l.innerHTML=open?'Show &#x25be;':'Hide &#x25b4;';}
+function dolWord(el,msg){el.classList.toggle('tapped');var ex=document.getElementById('dolExp');if(ex){ex.textContent=msg;ex.style.display='block';}}
+function checkFillin(gId,fId){var ok=true;document.getElementById(gId).querySelectorAll('.fillin-input').forEach(function(el){var v=el.value.trim().toLowerCase(),a=el.getAttribute('data-answer').toLowerCase();if(v===a){el.classList.add('correct');el.classList.remove('wrong');}else{el.classList.add('wrong');el.classList.remove('correct');ok=false;}});var fb=document.getElementById(fId);if(fb){fb.textContent=ok?'✓ All correct!':'Check highlighted fields.';fb.style.display='block';}}
+function autoSave(el,dotId){try{localStorage.setItem('w31-'+el.id,el.value);}catch(e){}var dot=document.getElementById(dotId);if(dot)dot.classList.add('saved');gatherAnswers();updateProgress();}
+function gatherAnswers(){var tas=document.querySelectorAll('textarea[data-label]');var out='';tas.forEach(function(t){if(t.id==='gatheredOutput')return;out+=(t.getAttribute('data-label')||t.id)+'\n'+(t.value.trim()||'(no answer)')+'\n\n';});var go=document.getElementById('gatheredOutput');if(go)go.value=out;}
+function updateProgress(){var boxes=document.querySelectorAll('textarea[data-label]');var filled=0;boxes.forEach(function(b){if(b.id!=='gatheredOutput'&&b.value.trim().length>0)filled++;});var total=boxes.length>1?boxes.length-1:1;var pct=Math.round((filled/total)*100);var fill=document.getElementById('progressFill');var pctEl=document.getElementById('progressPct');if(fill)fill.style.width=pct+'%';if(pctEl)pctEl.textContent=pct+'%';}
+function copyToClipboard(){var ta=document.getElementById('gatheredOutput');ta.select();ta.setSelectionRange(0,99999);document.execCommand('copy');var msg=document.getElementById('gatheredCopied');if(msg){msg.classList.add('show');setTimeout(function(){msg.classList.remove('show');},2500);}}
+function downloadPDF(){window.print();}
+function toggleCheck(item){item.classList.toggle('checked');}
+function selectChoice(el,grp){document.querySelectorAll('.'+grp).forEach(c=>c.classList.remove('selected'));el.classList.add('selected');}
+</script>
+</body>
+</html>
